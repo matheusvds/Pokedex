@@ -49,6 +49,13 @@ extension PokemonListViewController {
         interactor?.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: pagination))
     }
     
+    private func fetchNewPokemonPage() {
+        DispatchQueue.global().asyncDeduped(target: self, after: 0.25) { [weak self] in
+            self?.pagination += 20
+            self?.fetchPokemons()
+        }
+    }
+    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -68,7 +75,6 @@ extension PokemonListViewController: PokemonListDisplayLogic {
             return
         }
         
-        displayedPokemons.append(contentsOf: pokemons)
         displayedPokemons.append(contentsOf: pokemons)
         reloadData()
     }
@@ -99,15 +105,13 @@ extension PokemonListViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detectedEndingOf(scrollView)
     }
-
+    
     func detectedEndingOf(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y + 49
         let difference = scrollView.contentSize.height - scrollView.frame.size.height
         
         if offset >= difference && difference > 0 {
-            DispatchQueue.main.asyncDeduped(target: self, after: 0.25) {
-                 print("Ending")
-            }
+            fetchNewPokemonPage()
         }
     }
 }
