@@ -8,8 +8,8 @@ class RemoteFetchPokemons: FetchPokemons {
         self.client = client
     }
     
-    func fetchPokemons(completion: @escaping (Result<PokemonListModel, FetchPokemonError>) -> Void) {
-        let request = FetchPokemonsRequest().request
+    func fetchPokemons(offset: Int, completion: @escaping (Result<PokemonListModel, FetchPokemonError>) -> Void) {
+        let request = FetchPokemonsRequest(offset: offset).request
         client.fetch(with: request) { (result: Result<PokemonListModel, HttpError>) in
             switch result {
             case .success(let pokemonList):

@@ -4,7 +4,9 @@ typealias DisplayedPokemon = PokemonList.FetchPokemons.ViewModel.DisplayedPokemo
 
 enum PokemonList {
     enum FetchPokemons {
-        struct Request {}
+        struct Request {
+            var offset: Int = 20
+        }
         struct Response {
             let pokemons: [PokemonModel]?
         }

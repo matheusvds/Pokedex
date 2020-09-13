@@ -18,7 +18,7 @@ class PokemonListInteractor: PokemonListDataStore {
 // MARK: - UnlockBusinessLogic
 extension PokemonListInteractor: PokemonListBusinessLogic {
     func fetchPokemons(request: PokemonList.FetchPokemons.Request) {
-        fetchPokemonsUseCase.fetchPokemons { [weak self] (result) in
+        fetchPokemonsUseCase.fetchPokemons(offset: request.offset) { [weak self] (result) in
             switch result {
             case .success(let pokemonsList):
                 let response = PokemonList.FetchPokemons.Response(pokemons: pokemonsList.results)

@@ -35,19 +35,20 @@ class PokemonListViewController: UIViewController {
     }
     
     private func start() {
-        fetchPokemons()
         setupTableView()
+        fetchPokemons()
     }
 }
 
 // MARK: - Helper Methods
 extension PokemonListViewController {
     private func fetchPokemons() {
-        interactor?.fetchPokemons(request: PokemonList.FetchPokemons.Request())
+        interactor?.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: 60))
     }
     
     private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     private func reloadData() {
@@ -64,7 +65,8 @@ extension PokemonListViewController: PokemonListDisplayLogic {
             return
         }
         
-        displayedPokemons = pokemons
+        displayedPokemons.append(contentsOf: pokemons)
+        displayedPokemons.append(contentsOf: pokemons)
         reloadData()
     }
 }
@@ -83,5 +85,24 @@ extension PokemonListViewController: UITableViewDataSource {
         cell.textLabel?.text = item.name
         
         return cell
+    }
+    
+    
+}
+
+// MARK: - UITableViewDelegate
+extension PokemonListViewController: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        detectedEndingOf(scrollView)
+    }
+
+    func detectedEndingOf(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y + 49
+        let difference = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        if offset >= difference && difference > 0 {
+            
+        }
     }
 }

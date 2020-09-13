@@ -3,20 +3,39 @@ import Foundation
 protocol PokeAPIRequest {
     var resource: String { get }
     var method: String { get }
+    var queryItems: [URLQueryItem]? { get }
 }
 
 extension PokeAPIRequest {
-    var baseURL: String {
-        return "https://pokeapi.co/api/v2"
+    
+    var scheme: String {
+        return "https"
     }
     
-    var url: URL {
-        return URL(string: baseURL)!.appendingPathComponent(resource)
+    var baseURL: String {
+        return "pokeapi.co"
+    }
+    
+    var path: String {
+        return "/api/v2/" + resource
+    }
+    
+    var serviceURL: URL {
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = baseURL
+        components.path = path
+        components.queryItems = queryItems
+        return components.url!
     }
     
     var request: URLRequest {
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: serviceURL)
         request.httpMethod = method
         return request
+    }
+    
+    var queryItems: [URLQueryItem]? {
+        return nil
     }
 }
