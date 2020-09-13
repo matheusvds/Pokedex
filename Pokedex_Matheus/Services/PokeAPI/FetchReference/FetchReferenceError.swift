@@ -1,5 +1,5 @@
 import Foundation
 
-enum FetchPokemonError: Error {
+enum FetchReferenceError: Error {
     case errorFetchingData
 }

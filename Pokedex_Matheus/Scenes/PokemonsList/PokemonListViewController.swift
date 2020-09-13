@@ -13,6 +13,7 @@ class PokemonListViewController: UIViewController {
     
     //MARK: - Control
     var pagination: Int = 20
+    var isLoading: Bool = true
     
     override func loadView() {
         self.view = tableView
@@ -38,45 +39,18 @@ class PokemonListViewController: UIViewController {
     }
     
     private func start() {
+        startLoading()
         setupTableView()
         fetchPokemons()
-    }
-}
-
-// MARK: - Helper Methods
-extension PokemonListViewController {
-    private func fetchPokemons() {
-        interactor?.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: pagination))
-    }
-    
-    private func fetchNewPokemonPage() {
-        DispatchQueue.global().asyncDeduped(target: self, after: 0.25) { [weak self] in
-            self?.pagination += 20
-            self?.fetchPokemons()
-        }
-    }
-    
-    private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
-    
-    private func reloadData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
     }
 }
 
 // MARK: - PokemonListDisplayLogic
 extension PokemonListViewController: PokemonListDisplayLogic {
     func displayFetchPokemons(viewModel: PokemonList.FetchPokemons.ViewModel) {
-        guard let pokemons = viewModel.pokemons else {
-            return
-        }
-        
-        displayedPokemons.append(contentsOf: pokemons)
+        setPokemonList(viewModel)
         reloadData()
+        stopLoading()
     }
 }
 
@@ -95,8 +69,6 @@ extension PokemonListViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
 
 // MARK: - UITableViewDelegate
@@ -105,12 +77,59 @@ extension PokemonListViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detectedEndingOf(scrollView)
     }
+}
+
+extension PokemonListViewController {
     
-    func detectedEndingOf(_ scrollView: UIScrollView) {
+    // MARK: - DisplayLogic Helpers
+    private func fetchPokemons() {
+        interactor?.fetchReferences(request: PokemonList.FetchPokemons.Request(offset: pagination))
+    }
+    
+    private func fetchNewPokemonPage() {
+        self.startLoading()
+        self.incrementPagination()
+        self.fetchPokemons()
+        debugPrint("Ask new page: \(self.pagination)")
+    }
+    
+    private func setPokemonList(_ viewModel: PokemonList.FetchPokemons.ViewModel) {
+        guard let pokemons = viewModel.pokemons else {
+            return
+        }
+        displayedPokemons.append(contentsOf: pokemons)
+    }
+
+    // MARK: - Control Helpers
+    private func incrementPagination() {
+        self.pagination += 20
+    }
+    
+    private func startLoading() {
+        self.isLoading = true
+    }
+    
+    private func stopLoading() {
+        self.isLoading = false
+    }
+    
+    // MARK: - TableView Helpers
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    private func reloadData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func detectedEndingOf(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y + 49
         let difference = scrollView.contentSize.height - scrollView.frame.size.height
         
-        if offset >= difference && difference > 0 {
+        if offset >= difference && !isLoading {
             fetchNewPokemonPage()
         }
     }

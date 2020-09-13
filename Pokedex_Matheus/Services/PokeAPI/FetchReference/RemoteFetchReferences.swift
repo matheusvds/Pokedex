@@ -1,6 +1,6 @@
 import Foundation
 
-class RemoteFetchPokemons: FetchPokemons {
+class RemoteFetchReferences: FetchReferences {
     
     let client: HttpClient
     
@@ -8,9 +8,9 @@ class RemoteFetchPokemons: FetchPokemons {
         self.client = client
     }
     
-    func fetchPokemons(offset: Int, completion: @escaping (Result<PokemonListModel, FetchPokemonError>) -> Void) {
-        let request = FetchPokemonsRequest(offset: offset).request
-        client.fetch(with: request) { (result: Result<PokemonListModel, HttpError>) in
+    func fetchReferences(offset: Int, completion: @escaping (Result<ReferenceList, FetchReferenceError>) -> Void) {
+        let request = FetchReferencesRequest(offset: offset).request
+        client.fetch(with: request) { (result: Result<ReferenceList, HttpError>) in
             switch result {
             case .success(let pokemonList):
                 completion(.success(pokemonList))

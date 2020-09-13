@@ -8,7 +8,7 @@ enum PokemonList {
             var offset: Int = 20
         }
         struct Response {
-            let pokemons: [PokemonModel]?
+            let pokemons: [Reference]?
         }
         
         struct ViewModel {

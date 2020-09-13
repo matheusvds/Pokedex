@@ -1,24 +1,24 @@
 import Foundation
 
 protocol PokemonListBusinessLogic {
-    func fetchPokemons(request: PokemonList.FetchPokemons.Request)
+    func fetchReferences(request: PokemonList.FetchPokemons.Request)
 }
 
 protocol PokemonListDataStore {}
 
 class PokemonListInteractor: PokemonListDataStore {
     var presenter: PokemonListPresentationLogic?
-    let fetchPokemonsUseCase: FetchPokemons
+    let fetchReferencesUseCase: FetchReferences
     
-    init(fetchPokemons: FetchPokemons = RemoteFetchPokemons()) {
-        self.fetchPokemonsUseCase = fetchPokemons
+    init(fetchReferences: FetchReferences = RemoteFetchReferences()) {
+        self.fetchReferencesUseCase = fetchReferences
     }
 }
 
 // MARK: - UnlockBusinessLogic
 extension PokemonListInteractor: PokemonListBusinessLogic {
-    func fetchPokemons(request: PokemonList.FetchPokemons.Request) {
-        fetchPokemonsUseCase.fetchPokemons(offset: request.offset) { [weak self] (result) in
+    func fetchReferences(request: PokemonList.FetchPokemons.Request) {
+        fetchReferencesUseCase.fetchReferences(offset: request.offset) { [weak self] (result) in
             switch result {
             case .success(let pokemonsList):
                 let response = PokemonList.FetchPokemons.Response(pokemons: pokemonsList.results)

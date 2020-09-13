@@ -1,6 +1,6 @@
 import Foundation
 
-struct FetchPokemonsRequest {
+struct FetchReferencesRequest {
     
     let offset: Int
     let limit: Int
@@ -19,7 +19,7 @@ struct FetchPokemonsRequest {
 }
 
 // MARK: - PokeAPIRequest
-extension FetchPokemonsRequest: PokeAPIRequest {
+extension FetchReferencesRequest: PokeAPIRequest {
     var queryItems: [URLQueryItem]? {
         return makeQueryItems()
     }
