@@ -1,5 +1,5 @@
 import Foundation
 
-protocol HttpClient {
+public protocol HttpClient {
     func fetch<T: Decodable>(with request: URLRequest, completion: @escaping (Result<T, HttpError>) -> Void)
 }

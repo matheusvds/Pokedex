@@ -1,14 +1,14 @@
 import Foundation
 
-class RemoteFetchReferences: FetchReferences {
+public class RemoteFetchReferences: FetchReferences {
     
     let client: HttpClient
     
-    init(client: HttpClient = URLSessionAdapter()) {
+    public init(client: HttpClient = URLSessionAdapter()) {
         self.client = client
     }
     
-    func fetchReferences(offset: Int, completion: @escaping (Result<ReferenceList, FetchReferenceError>) -> Void) {
+    public func fetchReferences(offset: Int, completion: @escaping (Result<ReferenceList, FetchReferenceError>) -> Void) {
         let request = FetchReferencesRequest(offset: offset).request
         client.fetch(with: request) { (result: Result<ReferenceList, HttpError>) in
             switch result {

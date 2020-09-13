@@ -1,4 +1,5 @@
 import Foundation
+import Data
 
 typealias DisplayedPokemon = PokemonList.FetchPokemons.ViewModel.DisplayedPokemon
 

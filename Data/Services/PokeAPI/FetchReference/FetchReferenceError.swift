@@ -1,5 +1,5 @@
 import Foundation
 
-enum FetchReferenceError: Error {
+public enum FetchReferenceError: Error {
     case errorFetchingData
 }

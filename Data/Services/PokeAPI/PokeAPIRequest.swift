@@ -1,12 +1,12 @@
 import Foundation
 
-protocol PokeAPIRequest {
+public protocol PokeAPIRequest {
     var resource: String { get }
     var method: String { get }
     var queryItems: [URLQueryItem]? { get }
 }
 
-extension PokeAPIRequest {
+public extension PokeAPIRequest {
     
     var scheme: String {
         return "https"
