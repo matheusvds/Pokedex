@@ -9,7 +9,6 @@ class PokemonListPresenter {
 }
 
 // MARK: - PokemonListPresentationLogic
-
 extension PokemonListPresenter: PokemonListPresentationLogic {
     func presentFetchPokemons(response: PokemonList.FetchPokemons.Response) {
         let formattedResponse = format(response)

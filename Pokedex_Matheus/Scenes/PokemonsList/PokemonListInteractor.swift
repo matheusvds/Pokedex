@@ -4,9 +4,7 @@ protocol PokemonListBusinessLogic {
     func fetchPokemons(request: PokemonList.FetchPokemons.Request)
 }
 
-protocol PokemonListDataStore {
-    
-}
+protocol PokemonListDataStore {}
 
 class PokemonListInteractor: PokemonListDataStore {
     var presenter: PokemonListPresentationLogic?
@@ -18,7 +16,6 @@ class PokemonListInteractor: PokemonListDataStore {
 }
 
 // MARK: - UnlockBusinessLogic
-
 extension PokemonListInteractor: PokemonListBusinessLogic {
     func fetchPokemons(request: PokemonList.FetchPokemons.Request) {
         fetchPokemonsUseCase.fetchPokemons { [weak self] (result) in
