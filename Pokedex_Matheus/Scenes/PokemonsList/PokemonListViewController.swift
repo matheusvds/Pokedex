@@ -11,6 +11,9 @@ class PokemonListViewController: UIViewController {
     var displayedPokemons = [DisplayedPokemon]()
     var tableView = PokemonListTableView()
     
+    //MARK: - Control
+    var pagination: Int = 20
+    
     override func loadView() {
         self.view = tableView
     }
@@ -43,7 +46,7 @@ class PokemonListViewController: UIViewController {
 // MARK: - Helper Methods
 extension PokemonListViewController {
     private func fetchPokemons() {
-        interactor?.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: 60))
+        interactor?.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: pagination))
     }
     
     private func setupTableView() {
@@ -102,7 +105,9 @@ extension PokemonListViewController: UITableViewDelegate {
         let difference = scrollView.contentSize.height - scrollView.frame.size.height
         
         if offset >= difference && difference > 0 {
-            
+            DispatchQueue.main.asyncDeduped(target: self, after: 0.25) {
+                 print("Ending")
+            }
         }
     }
 }
