@@ -1,5 +1,5 @@
 import Foundation
-import Data
+import Domain
 
 protocol PokemonListBusinessLogic {
     func fetchReferences(request: PokemonList.FetchPokemons.Request)

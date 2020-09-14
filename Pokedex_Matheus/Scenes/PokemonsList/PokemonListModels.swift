@@ -1,5 +1,5 @@
 import Foundation
-import Data
+import Domain
 
 typealias DisplayedPokemon = PokemonList.FetchPokemons.ViewModel.DisplayedPokemon
 
