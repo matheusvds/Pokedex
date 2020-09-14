@@ -359,14 +359,14 @@
 			path = PokemonsList;
 			sourceTree = "<group>";
 		};
-		C658C1EA250D7BBF00FC54D1 /* FetchReference */ = {
+		C658C1EA250D7BBF00FC54D1 /* RemoteFetchReferences */ = {
 			isa = PBXGroup;
 			children = (
 				C658C1F3250D7DD200FC54D1 /* RemoteFetchReferences.swift */,
 				C658C205250E58EE00FC54D1 /* FetchReferencesRequest.swift */,
 				C658C202250E56CD00FC54D1 /* PokeAPIRequest.swift */,
 			);
-			path = FetchReference;
+			path = RemoteFetchReferences;
 			sourceTree = "<group>";
 		};
 		C658C209250E73B700FC54D1 /* Views */ = {
@@ -430,9 +430,9 @@
 		C673623B250EE3F9003BB122 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				C673628A251007AA003BB122 /* FetchPokemons */,
-				C6736274250EFBBE003BB122 /* FetchAllPokemons */,
-				C658C1EA250D7BBF00FC54D1 /* FetchReference */,
+				C673628A251007AA003BB122 /* RemoteFetchPokemons */,
+				C6736274250EFBBE003BB122 /* RemoteFetchAllPokemons */,
+				C658C1EA250D7BBF00FC54D1 /* RemoteFetchReferences */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -494,20 +494,20 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
-		C6736274250EFBBE003BB122 /* FetchAllPokemons */ = {
+		C6736274250EFBBE003BB122 /* RemoteFetchAllPokemons */ = {
 			isa = PBXGroup;
 			children = (
 				C6736275250EFBDC003BB122 /* RemoteFetchAllPokemons.swift */,
 			);
-			path = FetchAllPokemons;
+			path = RemoteFetchAllPokemons;
 			sourceTree = "<group>";
 		};
-		C673628A251007AA003BB122 /* FetchPokemons */ = {
+		C673628A251007AA003BB122 /* RemoteFetchPokemons */ = {
 			isa = PBXGroup;
 			children = (
 				C6736288251007A3003BB122 /* RemoteFetchPokemons.swift */,
 			);
-			path = FetchPokemons;
+			path = RemoteFetchPokemons;
 			sourceTree = "<group>";
 		};
 		C673629125102AC3003BB122 /* Error */ = {
