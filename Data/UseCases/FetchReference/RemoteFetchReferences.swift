@@ -4,7 +4,7 @@ public class RemoteFetchReferences: FetchReferences {
     
     let client: HttpClient
     
-    public init(client: HttpClient = URLSessionAdapter()) {
+    public init(client: HttpClient) {
         self.client = client
     }
     

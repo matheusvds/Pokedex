@@ -5,8 +5,8 @@ protocol PokemonListDisplayLogic: class {
 }
 
 class PokemonListViewController: UIViewController {
-    var interactor: PokemonListBusinessLogic?
-    var router: (NSObjectProtocol & PokemonListRoutingLogic & PokemonListDataPassing)?
+    let interactor: PokemonListBusinessLogic
+    let router: RouterLogic
     
     var displayedPokemons = [DisplayedPokemon]()
     var tableView = PokemonListTableView()
@@ -15,27 +15,22 @@ class PokemonListViewController: UIViewController {
     var pagination: Int = 20
     var isLoading: Bool = true
     
+    init(interactor: PokemonListBusinessLogic, router: RouterLogic) {
+        self.interactor = interactor
+        self.router = router
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         self.view = tableView
     }
     
     override func viewDidLoad() {
-        setup()
         start()
-    }
-    
-    private func setup() {
-        let viewController = self
-        let interactor = PokemonListInteractor()
-        let presenter = PokemonListPresenter()
-        let router = PokemonListRouter()
-        
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.displayLogic = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
     }
     
     private func start() {
@@ -83,7 +78,7 @@ extension PokemonListViewController {
     
     // MARK: - DisplayLogic Helpers
     private func fetchPokemons() {
-        interactor?.fetchReferences(request: PokemonList.FetchPokemons.Request(offset: pagination))
+        interactor.fetchReferences(request: PokemonList.FetchPokemons.Request(offset: pagination))
     }
     
     private func fetchNewPokemonPage() {

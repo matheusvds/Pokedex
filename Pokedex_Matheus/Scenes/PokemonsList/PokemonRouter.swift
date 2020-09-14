@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+typealias RouterLogic =  (NSObjectProtocol & PokemonListRoutingLogic & PokemonListDataPassing)?
+
 @objc protocol PokemonListRoutingLogic { }
 
 protocol PokemonListDataPassing {

@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureApp() {
-        let pokemonVC = PokemonListViewController()
+        let pokemonVC = makePokemonListViewController()
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = pokemonVC
         self.window = window

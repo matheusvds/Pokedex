@@ -8,11 +8,12 @@ protocol PokemonListBusinessLogic {
 protocol PokemonListDataStore {}
 
 class PokemonListInteractor: PokemonListDataStore {
-    var presenter: PokemonListPresentationLogic?
+    let presenter: PokemonListPresentationLogic
     let fetchReferencesUseCase: FetchReferences
     
-    init(fetchReferences: FetchReferences = RemoteFetchReferences()) {
+    init(fetchReferences: FetchReferences, presenter: PokemonListPresentationLogic) {
         self.fetchReferencesUseCase = fetchReferences
+        self.presenter = presenter
     }
 }
 
@@ -23,9 +24,9 @@ extension PokemonListInteractor: PokemonListBusinessLogic {
             switch result {
             case .success(let pokemonsList):
                 let response = PokemonList.FetchPokemons.Response(pokemons: pokemonsList.results)
-                self?.presenter?.presentFetchPokemons(response: response)
+                self?.presenter.presentFetchPokemons(response: response)
             case .failure:
-                self?.presenter?.presentFetchPokemons(response: PokemonList.FetchPokemons.Response(pokemons: nil))
+                self?.presenter.presentFetchPokemons(response: PokemonList.FetchPokemons.Response(pokemons: nil))
             }
         }
     }
