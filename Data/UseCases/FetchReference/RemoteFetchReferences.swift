@@ -9,7 +9,7 @@ public class RemoteFetchReferences: FetchReferences {
         self.client = client
     }
     
-    public func fetchReferences(offset: Int, completion: @escaping (Result<ReferenceList, FetchReferenceError>) -> Void) {
+    public func fetchReferences(offset: Int, completion: @escaping (Result<ReferenceList, FetchError>) -> Void) {
         let request = FetchReferencesRequest(offset: offset).request
         client.fetch(with: request) { (result: Result<ReferenceList, HttpError>) in
             switch result {

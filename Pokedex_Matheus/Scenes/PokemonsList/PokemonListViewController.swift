@@ -78,7 +78,7 @@ extension PokemonListViewController {
     
     // MARK: - DisplayLogic Helpers
     private func fetchPokemons() {
-        interactor.fetchReferences(request: PokemonList.FetchPokemons.Request(offset: pagination))
+        interactor.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: pagination))
     }
     
     private func fetchNewPokemonPage() {
