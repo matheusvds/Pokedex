@@ -2,9 +2,9 @@ import Foundation
 import Domain
 
 public class RemoteFetchAllPokemons: FetchAllPokemons {
-    let client: HttpClient
+    let client: RequestObject
     
-    public init(client: HttpClient) {
+    public init(client: RequestObject) {
         self.client = client
     }
     
@@ -32,7 +32,7 @@ public class RemoteFetchAllPokemons: FetchAllPokemons {
     private func fetch(reference: Reference, completion: @escaping (Pokemon?) -> Void) {
         guard let url = URL(string: reference.url) else { return }
         let request = URLRequest(url: url)
-        client.fetch(with: request) { (result: Result<Pokemon, HttpError>) in
+        client.fetch(with: request) { (result: Result<Pokemon, RequestError>) in
             switch result {
             case .success(let pokemon):
                 completion(pokemon)

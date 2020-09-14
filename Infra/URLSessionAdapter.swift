@@ -1,28 +1,35 @@
 import Foundation
 import Data
 
-public struct URLSessionAdapter: HttpClient {
-    
-    let session: URLSession
-    
+public final class URLSessionAdapter: HttpClient {
+    private let session: URLSession
+
     public init(session: URLSession = .shared) {
         self.session = session
     }
-    
-    public func fetch<T: Decodable>(with request: URLRequest, completion: @escaping (Result<T, HttpError>) -> Void) {
-        session.dataTask(with: request) { (data, response, error) in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completion(.failure(.requestFailed))
-            }
-            
-            if httpResponse.statusCode == 200 {
-                guard let model: T = data?.toModel() else {
-                    return completion(.failure(.jsonParsingFailure))
+
+    public func get(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) {
+        session.dataTask(with: request) { (data, urlResponse, error) in
+            if let data = data, let response = urlResponse as? HTTPURLResponse, error == nil {
+                switch response.statusCode {
+                case 204:
+                    return completion(.success(nil))
+                case 200...299:
+                    return completion(.success(data))
+                case 401:
+                    return completion(.failure(.unauthorized))
+                case 403:
+                    return completion(.failure(.forbidden))
+                case 400...499:
+                    return completion(.failure(.badRequest))
+                case 500...599:
+                    return completion(.failure(.serverError))
+                default:
+                    return completion(.failure(.noConnection))
                 }
-                return completion(.success(model))
+            } else {
+                return completion(.failure(.noConnection))
             }
-            
-            completion(.failure(.responseUnsuccessful))
         }.resume()
     }
 }

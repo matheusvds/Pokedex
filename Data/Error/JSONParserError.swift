@@ -1,6 +1,6 @@
 import Foundation
 
-public enum HttpError: Error {
+public enum RequestError: Error {
     case requestFailed
     case responseUnsuccessful
     case jsonParsingFailure

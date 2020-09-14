@@ -19,9 +19,9 @@ func makePokemonListViewController() -> PokemonListViewController {
 }
 
 private func makeRemoteFetchPokemonsUseCase() -> FetchPokemons {
-    let urlSession = URLSessionAdapter()
-    let remoteFetchReferences = RemoteFetchReferences(client: urlSession)
-    let remoteFetchAllPokemons = RemoteFetchAllPokemons(client: urlSession)
+    let requestClient = RequestObjectClient(client: URLSessionAdapter())
+    let remoteFetchReferences = RemoteFetchReferences(client: requestClient)
+    let remoteFetchAllPokemons = RemoteFetchAllPokemons(client: requestClient)
     return RemoteFetchPokemons(fetchReferences: remoteFetchReferences,
                                fetchAllPokemons: remoteFetchAllPokemons)
 }
