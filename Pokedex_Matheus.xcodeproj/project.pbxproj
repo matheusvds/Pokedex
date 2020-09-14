@@ -231,12 +231,9 @@
 		C658C1B8250D59E600FC54D1 /* Pokedex_Matheus */ = {
 			isa = PBXGroup;
 			children = (
+				C673623F250EEAFF003BB122 /* Essentials */,
 				C679BD67250E82160095EA89 /* Helpers */,
 				C658C1DB250D5D0000FC54D1 /* Scenes */,
-				C658C1B9250D59E600FC54D1 /* AppDelegate.swift */,
-				C658C1C2250D59E700FC54D1 /* Assets.xcassets */,
-				C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */,
-				C658C1C7250D59E700FC54D1 /* Info.plist */,
 				C673623D250EE4E7003BB122 /* SceneFactory.swift */,
 			);
 			path = Pokedex_Matheus;
@@ -364,6 +361,17 @@
 				C658C1F5250D81F700FC54D1 /* HttpClient.swift */,
 			);
 			path = Http;
+			sourceTree = "<group>";
+		};
+		C673623F250EEAFF003BB122 /* Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				C658C1B9250D59E600FC54D1 /* AppDelegate.swift */,
+				C658C1C7250D59E700FC54D1 /* Info.plist */,
+				C658C1C2250D59E700FC54D1 /* Assets.xcassets */,
+				C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */,
+			);
+			path = Essentials;
 			sourceTree = "<group>";
 		};
 		C679BD67250E82160095EA89 /* Helpers */ = {
@@ -844,7 +852,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Pokedex_Matheus/Info.plist;
+				INFOPLIST_FILE = Pokedex_Matheus/Essentials/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -863,7 +871,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Pokedex_Matheus/Info.plist;
+				INFOPLIST_FILE = Pokedex_Matheus/Essentials/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
