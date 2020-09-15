@@ -70,7 +70,9 @@ extension PokemonListViewController: UITableViewDataSource {
 extension PokemonListViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        detectedEndingOf(scrollView)
+        detectedEndingOf(scrollView, onEnd: {
+            fetchNewPokemonPage()
+        })
     }
 }
 
@@ -120,12 +122,12 @@ extension PokemonListViewController {
         }
     }
     
-    private func detectedEndingOf(_ scrollView: UIScrollView) {
+    private func detectedEndingOf(_ scrollView: UIScrollView, onEnd action: () -> ()) {
         let offset = scrollView.contentOffset.y + 49
         let difference = scrollView.contentSize.height - scrollView.frame.size.height
         
         if offset >= difference && !isLoading {
-            fetchNewPokemonPage()
+            action()
         }
     }
 }
