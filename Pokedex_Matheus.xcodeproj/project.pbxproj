@@ -74,6 +74,7 @@
 		C6ECAA2125116B52008F561C /* PokemonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAA2025116B52008F561C /* PokemonDetailInteractor.swift */; };
 		C6ECAA2325116C32008F561C /* PokemonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAA2225116C32008F561C /* PokemonDetailPresenter.swift */; };
 		C6ECAA252511706E008F561C /* PokemonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAA242511706E008F561C /* PokemonDetailRouter.swift */; };
+		C6ECAA2B2511853D008F561C /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAA2A2511853D008F561C /* ViewCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,7 @@
 		C6ECAA2025116B52008F561C /* PokemonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailInteractor.swift; sourceTree = "<group>"; };
 		C6ECAA2225116C32008F561C /* PokemonDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailPresenter.swift; sourceTree = "<group>"; };
 		C6ECAA242511706E008F561C /* PokemonDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailRouter.swift; sourceTree = "<group>"; };
+		C6ECAA2A2511853D008F561C /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,6 +576,7 @@
 				C679BD68250E82220095EA89 /* Identifiable.swift */,
 				C673628D251013DA003BB122 /* ExtensionHelpers.swift */,
 				C6ECAA1925104E39008F561C /* SDWebImageAdapter.swift */,
+				C6ECAA2A2511853D008F561C /* ViewCode.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				C658C1E2250D723F00FC54D1 /* PokemonListPresenter.swift in Sources */,
 				C6ECAA1F251165B4008F561C /* PokemonDetailModels.swift in Sources */,
 				C6ECAA1A25104E39008F561C /* SDWebImageAdapter.swift in Sources */,
+				C6ECAA2B2511853D008F561C /* ViewCode.swift in Sources */,
 				C6ECAA2325116C32008F561C /* PokemonDetailPresenter.swift in Sources */,
 				C679BD69250E82220095EA89 /* Identifiable.swift in Sources */,
 				C658C1E0250D719400FC54D1 /* PokemonListInteractor.swift in Sources */,
