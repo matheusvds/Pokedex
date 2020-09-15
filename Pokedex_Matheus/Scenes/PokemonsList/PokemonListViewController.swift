@@ -123,7 +123,7 @@ extension PokemonListViewController {
     }
     
     private func detectedEndingOf(_ scrollView: UIScrollView, onEnd action: () -> ()) {
-        let offset = scrollView.contentOffset.y + 49
+        let offset = scrollView.contentOffset.y + scrollView.frame.size.height*0.2
         let difference = scrollView.contentSize.height - scrollView.frame.size.height
         
         if offset >= difference && !isLoading {
