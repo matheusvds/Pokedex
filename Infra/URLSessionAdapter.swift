@@ -8,8 +8,9 @@ public final class URLSessionAdapter: HttpClient {
         self.session = session
     }
 
-    public func get(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) {
-        session.dataTask(with: request) { (data, urlResponse, error) in
+    @discardableResult
+    public func get(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) -> URLSessionDataTask {
+        let task = session.dataTask(with: request) { (data, urlResponse, error) in
             if let data = data, let response = urlResponse as? HTTPURLResponse, error == nil {
                 switch response.statusCode {
                 case 204:
@@ -30,6 +31,9 @@ public final class URLSessionAdapter: HttpClient {
             } else {
                 return completion(.failure(.noConnection))
             }
-        }.resume()
+        }
+        task.resume()
+        
+        return task
     }
 }
