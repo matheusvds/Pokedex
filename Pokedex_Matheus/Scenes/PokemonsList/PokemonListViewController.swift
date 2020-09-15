@@ -61,7 +61,7 @@ extension PokemonListViewController: UITableViewDataSource {
         
         let item = displayedPokemons[indexPath.row]
         cell.textLabel?.text = item.name
-        cell.imageView?.setImage(with: item.image, placeholder: UIImage())
+        cell.imageView?.setImage(with: item.image)
         return cell
     }
 }
