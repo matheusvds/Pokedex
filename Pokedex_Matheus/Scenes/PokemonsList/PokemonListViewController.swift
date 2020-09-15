@@ -4,18 +4,23 @@ protocol PokemonListDisplayLogic: class {
     func displayFetchPokemons(viewModel: PokemonList.FetchPokemons.ViewModel)
 }
 
+protocol PokemonListViewControllerObjectAccess: class {
+    var tableView: UITableView { get }
+    func show(_ vc: UIViewController, sender: Any?)
+}
+
 class PokemonListViewController: UIViewController {
     let interactor: PokemonListBusinessLogic
-    let router: RouterLogic
+    let router: PokemonListRouterLogic
     
     var displayedPokemons = [DisplayedPokemon]()
-    var tableView = PokemonListTableView()
+    var tableView: UITableView = PokemonListTableView()
     
     //MARK: - Control
     var pagination: Int = 20
     var isLoading: Bool = true
     
-    init(interactor: PokemonListBusinessLogic, router: RouterLogic) {
+    init(interactor: PokemonListBusinessLogic, router: PokemonListRouterLogic) {
         self.interactor = interactor
         self.router = router
         super.init(nibName: nil, bundle: nil)
@@ -49,6 +54,9 @@ extension PokemonListViewController: PokemonListDisplayLogic {
     }
 }
 
+// MARK: - PokemonListViewControllerObjectAccess
+extension PokemonListViewController: PokemonListViewControllerObjectAccess { }
+
 // MARK: - UITableViewDataSource
 extension PokemonListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +76,10 @@ extension PokemonListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension PokemonListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToPokemonDetail()
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detectedEnding(of: scrollView, onEnd: {

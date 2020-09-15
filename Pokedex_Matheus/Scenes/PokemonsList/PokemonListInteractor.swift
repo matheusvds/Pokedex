@@ -5,14 +5,19 @@ protocol PokemonListBusinessLogic {
     func fetchPokemons(request: PokemonList.FetchPokemons.Request)
 }
 
-protocol PokemonListDataStore {}
+protocol PokemonListDataStore {
+    var pokemons: [Pokemon] { get }
+}
 
 class PokemonListInteractor: PokemonListDataStore {
     var presenter: PokemonListPresentationLogic?
-    let fetchPokemons: FetchPokemons
     
-    init(fetchPokemons: FetchPokemons) {
+    let fetchPokemons: FetchPokemons
+    var pokemons: [Pokemon]
+    
+    init(fetchPokemons: FetchPokemons, pokemons: [Pokemon] = []) {
         self.fetchPokemons = fetchPokemons
+        self.pokemons = pokemons
     }
 }
 
@@ -22,6 +27,7 @@ extension PokemonListInteractor: PokemonListBusinessLogic {
         fetchPokemons.fetch(offset: request.offset) { [weak self] (result) in
             switch result {
             case .success(let pokemons):
+                self?.pokemons.append(contentsOf: pokemons)
                 self?.presenter?.presentFetchPokemons(response: PokemonList.FetchPokemons.Response(pokemons: pokemons))
             case .failure:
                 self?.presenter?.presentFetchPokemons(response: PokemonList.FetchPokemons.Response(pokemons: nil))

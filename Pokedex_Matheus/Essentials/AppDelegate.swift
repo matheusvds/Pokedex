@@ -12,8 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureApp() {
         let pokemonVC = makePokemonListViewController()
+        let navigationVC = UINavigationController(rootViewController: pokemonVC)
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = pokemonVC
+        window.rootViewController = navigationVC
         self.window = window
         
         window.makeKeyAndVisible()
