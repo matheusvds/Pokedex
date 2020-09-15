@@ -67,6 +67,8 @@
 		C679BD69250E82220095EA89 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679BD68250E82220095EA89 /* Identifiable.swift */; };
 		C679BD6B250E827F0095EA89 /* PokemonListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679BD6A250E827F0095EA89 /* PokemonListTableView.swift */; };
 		C679BD77250E89E20095EA89 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C679BD76250E89E20095EA89 /* SnapKit */; };
+		C6ECAA1825104E04008F561C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = C6ECAA1725104E04008F561C /* SDWebImage */; };
+		C6ECAA1A25104E39008F561C /* SDWebImageAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAA1925104E39008F561C /* SDWebImageAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +228,7 @@
 		C67362A0251030AC003BB122 /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		C679BD68250E82220095EA89 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		C679BD6A250E827F0095EA89 /* PokemonListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListTableView.swift; sourceTree = "<group>"; };
+		C6ECAA1925104E39008F561C /* SDWebImageAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDWebImageAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +240,7 @@
 				C6736259250EF1EB003BB122 /* Data.framework in Frameworks */,
 				C679BD77250E89E20095EA89 /* SnapKit in Frameworks */,
 				C6736262250EF1F2003BB122 /* Infra.framework in Frameworks */,
+				C6ECAA1825104E04008F561C /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +562,7 @@
 			children = (
 				C679BD68250E82220095EA89 /* Identifiable.swift */,
 				C673628D251013DA003BB122 /* ExtensionHelpers.swift */,
+				C6ECAA1925104E39008F561C /* SDWebImageAdapter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -608,6 +613,7 @@
 			name = Pokedex_Matheus;
 			packageProductDependencies = (
 				C679BD76250E89E20095EA89 /* SnapKit */,
+				C6ECAA1725104E04008F561C /* SDWebImage */,
 			);
 			productName = Pokedex_Matheus;
 			productReference = C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */;
@@ -770,6 +776,7 @@
 			mainGroup = C658C1AD250D59E600FC54D1;
 			packageReferences = (
 				C679BD75250E89E20095EA89 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C6ECAA1625104E04008F561C /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = C658C1B7250D59E600FC54D1 /* Products */;
 			projectDirPath = "";
@@ -852,6 +859,7 @@
 				C658C1BE250D59E600FC54D1 /* PokemonListViewController.swift in Sources */,
 				C658C1BA250D59E600FC54D1 /* AppDelegate.swift in Sources */,
 				C658C1E2250D723F00FC54D1 /* PokemonListPresenter.swift in Sources */,
+				C6ECAA1A25104E39008F561C /* SDWebImageAdapter.swift in Sources */,
 				C679BD69250E82220095EA89 /* Identifiable.swift in Sources */,
 				C658C1E0250D719400FC54D1 /* PokemonListInteractor.swift in Sources */,
 				C658C208250E73B400FC54D1 /* PokemonListViewCell.swift in Sources */,
@@ -1532,6 +1540,14 @@
 				version = 4.0.1;
 			};
 		};
+		C6ECAA1625104E04008F561C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1539,6 +1555,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C679BD75250E89E20095EA89 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		C6ECAA1725104E04008F561C /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6ECAA1625104E04008F561C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
