@@ -4,6 +4,7 @@ import SnapKit
 
 public protocol PropertiesViewDelegate: class {
     func didTapAbout()
+    func didTapStats()
 }
 
 public final class PropertiesView: UIView {
@@ -26,6 +27,10 @@ public final class PropertiesView: UIView {
         self.about.set(viewModel: viewModel)
     }
     
+    func setBaseStats(viewModel: BaseStatsPropertyViewModel) {
+        self.stats.set(viewModel: viewModel)
+    }
+        
     // MARK: - UI Components
     private let titles = ["About", "Base Stats", "Abilities" , "Games"]
     
@@ -49,11 +54,17 @@ public final class PropertiesView: UIView {
     // MARK: - Actions
     private func tapAboutOption() {
         delegate?.didTapAbout()
-        self.bringSubviewToFront(self.about)
+        bringSubviewToFront(self.about)
+    }
+    
+    private func tapStatsOption() {
+        delegate?.didTapStats()
+        bringSubviewToFront(stats)
     }
     
     private func setInitialTap() {
         self.sections.selectedSegmentIndex = 0
+        tapAboutOption()
     }
     
     private func setupSegmentedControl() {
@@ -64,13 +75,22 @@ public final class PropertiesView: UIView {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             tapAboutOption()
+            removeAllViews()
+            draw(view: about)
         case 1:
-            bringSubviewToFront(stats)
+            tapStatsOption()
+            removeAllViews()
+            draw(view: stats)
         case 2: break
         case 3: break
         default:
             break
         }
+    }
+    
+    private func removeAllViews() {
+        self.about.removeFromSuperview()
+        self.stats.removeFromSuperview()
     }
 }
 
@@ -81,8 +101,6 @@ extension PropertiesView: ViewCode {
     
     func setupHierarchy() {
         addSubview(sections)
-        addSubview(about)
-//        addSubview(stats)
     }
     
     func buildConstraints() {
@@ -91,11 +109,14 @@ extension PropertiesView: ViewCode {
             make.top.equalToSuperview().offset(Self.padding)
         }
         
-        about.snp.makeConstraints { (make) in
+        draw(view: about)
+    }
+    
+    func draw(view: UIView) {
+        addSubview(view)
+        view.snp.makeConstraints { (make) in
             make.top.equalTo(sections.snp.bottom).offset(Self.padding)
             make.left.right.bottom.equalToSuperview().inset(10)
         }
     }
-    
-    
 }

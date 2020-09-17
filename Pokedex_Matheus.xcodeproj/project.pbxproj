@@ -69,6 +69,12 @@
 		C67917D12512E8A9001C4AA1 /* AboutPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917D02512E8A9001C4AA1 /* AboutPropertyView.swift */; };
 		C67917D32512E8E7001C4AA1 /* BaseStatsPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917D22512E8E7001C4AA1 /* BaseStatsPropertyView.swift */; };
 		C67917D625140D98001C4AA1 /* PokemonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917D525140D98001C4AA1 /* PokemonDetailViewModel.swift */; };
+		C67917D92514157F001C4AA1 /* FetchStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917D82514157F001C4AA1 /* FetchStats.swift */; };
+		C67917DC2514197D001C4AA1 /* BaseStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917DB2514197D001C4AA1 /* BaseStatsCell.swift */; };
+		C67917DE25141A09001C4AA1 /* BaseStatsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917DD25141A09001C4AA1 /* BaseStatsTableView.swift */; };
+		C67917DF25141A9F001C4AA1 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679BD68250E82220095EA89 /* Identifiable.swift */; };
+		C67917E325141C93001C4AA1 /* AboutPropertyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917E225141C93001C4AA1 /* AboutPropertyViewModel.swift */; };
+		C67917E525141CEA001C4AA1 /* BaseStatsPropertyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67917E425141CEA001C4AA1 /* BaseStatsPropertyViewModel.swift */; };
 		C679BD69250E82220095EA89 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679BD68250E82220095EA89 /* Identifiable.swift */; };
 		C679BD6B250E827F0095EA89 /* PokemonListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679BD6A250E827F0095EA89 /* PokemonListTableView.swift */; };
 		C6A6F7BD25119CA100618D2D /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A6F7B625119CA100618D2D /* UI.framework */; };
@@ -255,6 +261,11 @@
 		C67917D02512E8A9001C4AA1 /* AboutPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPropertyView.swift; sourceTree = "<group>"; };
 		C67917D22512E8E7001C4AA1 /* BaseStatsPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatsPropertyView.swift; sourceTree = "<group>"; };
 		C67917D525140D98001C4AA1 /* PokemonDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewModel.swift; sourceTree = "<group>"; };
+		C67917D82514157F001C4AA1 /* FetchStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStats.swift; sourceTree = "<group>"; };
+		C67917DB2514197D001C4AA1 /* BaseStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatsCell.swift; sourceTree = "<group>"; };
+		C67917DD25141A09001C4AA1 /* BaseStatsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatsTableView.swift; sourceTree = "<group>"; };
+		C67917E225141C93001C4AA1 /* AboutPropertyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPropertyViewModel.swift; sourceTree = "<group>"; };
+		C67917E425141CEA001C4AA1 /* BaseStatsPropertyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatsPropertyViewModel.swift; sourceTree = "<group>"; };
 		C679BD68250E82220095EA89 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		C679BD6A250E827F0095EA89 /* PokemonListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListTableView.swift; sourceTree = "<group>"; };
 		C6A6F7B625119CA100618D2D /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -438,7 +449,7 @@
 			children = (
 				C673629125102AC3003BB122 /* Error */,
 				C673623C250EE407003BB122 /* Http */,
-				C673629425102E9B003BB122 /* Parser */,
+				C673629425102E9B003BB122 /* RequestObject */,
 				C673623B250EE3F9003BB122 /* UseCases */,
 				C67361E9250ED877003BB122 /* Info.plist */,
 			);
@@ -485,6 +496,7 @@
 		C673623B250EE3F9003BB122 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				C67917D72514155E001C4AA1 /* RemoteFetchStats */,
 				C673628A251007AA003BB122 /* RemoteFetchPokemons */,
 				C6736274250EFBBE003BB122 /* RemoteFetchAllPokemons */,
 				C658C1EA250D7BBF00FC54D1 /* RemoteFetchReferences */,
@@ -545,6 +557,7 @@
 				C658C1E8250D7AB900FC54D1 /* FetchReferences.swift */,
 				C6736272250EFB38003BB122 /* FetchAllPokemons.swift */,
 				C67362862510076F003BB122 /* FetchPokemons.swift */,
+				C67917D82514157F001C4AA1 /* FetchStats.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -574,12 +587,12 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		C673629425102E9B003BB122 /* Parser */ = {
+		C673629425102E9B003BB122 /* RequestObject */ = {
 			isa = PBXGroup;
 			children = (
 				C658C1F5250D81F700FC54D1 /* RequestObject.swift */,
 			);
-			path = Parser;
+			path = RequestObject;
 			sourceTree = "<group>";
 		};
 		C67362A3251030C2003BB122 /* Helpers */ = {
@@ -608,12 +621,41 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		C67917D425140D8B001C4AA1 /* ViewModel */ = {
+		C67917D72514155E001C4AA1 /* RemoteFetchStats */ = {
 			isa = PBXGroup;
 			children = (
-				C67917D525140D98001C4AA1 /* PokemonDetailViewModel.swift */,
 			);
-			path = ViewModel;
+			path = RemoteFetchStats;
+			sourceTree = "<group>";
+		};
+		C67917DA25141965001C4AA1 /* BaseStats */ = {
+			isa = PBXGroup;
+			children = (
+				C67917E425141CEA001C4AA1 /* BaseStatsPropertyViewModel.swift */,
+				C67917D22512E8E7001C4AA1 /* BaseStatsPropertyView.swift */,
+				C67917DD25141A09001C4AA1 /* BaseStatsTableView.swift */,
+				C67917DB2514197D001C4AA1 /* BaseStatsCell.swift */,
+			);
+			path = BaseStats;
+			sourceTree = "<group>";
+		};
+		C67917E025141C08001C4AA1 /* PropertyView */ = {
+			isa = PBXGroup;
+			children = (
+				C67917CE2512C9CB001C4AA1 /* PropertiesView.swift */,
+				C67917E125141C1B001C4AA1 /* About */,
+				C67917DA25141965001C4AA1 /* BaseStats */,
+			);
+			path = PropertyView;
+			sourceTree = "<group>";
+		};
+		C67917E125141C1B001C4AA1 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				C67917D02512E8A9001C4AA1 /* AboutPropertyView.swift */,
+				C67917E225141C93001C4AA1 /* AboutPropertyViewModel.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		C679BD67250E82160095EA89 /* Helpers */ = {
@@ -649,11 +691,9 @@
 		C6A6F7C525119D1E00618D2D /* PokemonDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C67917D425140D8B001C4AA1 /* ViewModel */,
+				C67917D525140D98001C4AA1 /* PokemonDetailViewModel.swift */,
 				C6A6F7C225119CF500618D2D /* PokemonDetailView.swift */,
-				C67917CE2512C9CB001C4AA1 /* PropertiesView.swift */,
-				C67917D02512E8A9001C4AA1 /* AboutPropertyView.swift */,
-				C67917D22512E8E7001C4AA1 /* BaseStatsPropertyView.swift */,
+				C67917E025141C08001C4AA1 /* PropertyView */,
 			);
 			path = PokemonDetail;
 			sourceTree = "<group>";
@@ -1089,6 +1129,7 @@
 				C673626D250EF5AF003BB122 /* Move.swift in Sources */,
 				C673624E250EEFDF003BB122 /* ReferenceList.swift in Sources */,
 				C673626B250EF58F003BB122 /* Sprites.swift in Sources */,
+				C67917D92514157F001C4AA1 /* FetchStats.swift in Sources */,
 				C673624F250EEFDF003BB122 /* FetchReferences.swift in Sources */,
 				C6736251250EF019003BB122 /* FetchError.swift in Sources */,
 				C67362872510076F003BB122 /* FetchPokemons.swift in Sources */,
@@ -1107,12 +1148,17 @@
 			files = (
 				C67917CF2512C9CB001C4AA1 /* PropertiesView.swift in Sources */,
 				C67917D32512E8E7001C4AA1 /* BaseStatsPropertyView.swift in Sources */,
+				C67917DE25141A09001C4AA1 /* BaseStatsTableView.swift in Sources */,
 				C67917D12512E8A9001C4AA1 /* AboutPropertyView.swift in Sources */,
+				C67917DC2514197D001C4AA1 /* BaseStatsCell.swift in Sources */,
+				C67917E525141CEA001C4AA1 /* BaseStatsPropertyViewModel.swift in Sources */,
 				C6A6F7CD2511B8C300618D2D /* RoundPaddingLabel.swift in Sources */,
 				C6A6F7C325119CF500618D2D /* PokemonDetailView.swift in Sources */,
 				C67917CD2512C251001C4AA1 /* ViewExtensionsHelpers.swift in Sources */,
+				C67917DF25141A9F001C4AA1 /* Identifiable.swift in Sources */,
 				C6A6F7C625119D4000618D2D /* ViewCode.swift in Sources */,
 				C67917D625140D98001C4AA1 /* PokemonDetailViewModel.swift in Sources */,
+				C67917E325141C93001C4AA1 /* AboutPropertyViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

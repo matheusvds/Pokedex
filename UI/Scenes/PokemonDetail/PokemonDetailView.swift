@@ -14,9 +14,11 @@ public protocol PokemonDetailViewLogic {
     var image: UIImageView { get set }
     func set(viewModel: PokemonDetailViewModel)
     func set(about viewModel: AboutPropertyViewModel)
+    func set(stats viewModel: BaseStatsPropertyViewModel)
 }
 
 public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
+    
     // MARK: - Public API
     public weak var delegate: PokemonDetailDelegate? {
         didSet {
@@ -50,7 +52,11 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     }
     
     public func set(about viewModel: AboutPropertyViewModel) {
-        self.detailContainer.setAbout(viewModel: AboutPropertyViewModel(height: viewModel.height, weight: viewModel.weight))
+        self.detailContainer.setAbout(viewModel: viewModel)
+    }
+    
+    public func set(stats viewModel: BaseStatsPropertyViewModel) {
+        self.detailContainer.setBaseStats(viewModel: viewModel)
     }
     
     // MARK: - UI Components

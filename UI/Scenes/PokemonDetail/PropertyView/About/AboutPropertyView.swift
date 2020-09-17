@@ -2,16 +2,6 @@ import Foundation
 import SnapKit
 import UIKit
 
-public struct AboutPropertyViewModel {
-    public let height: String
-    public let weight: String
-    
-    public init(height: String, weight: String) {
-        self.height = height
-        self.weight = weight
-    }
-}
-
 class AboutPropertyView: UIView {
     
     // MARK: Public API

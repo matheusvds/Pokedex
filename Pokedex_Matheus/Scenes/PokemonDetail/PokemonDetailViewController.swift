@@ -57,6 +57,10 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
 }
 
 extension PokemonDetailViewController: PropertiesViewDelegate {
+    func didTapStats() {
+        print("trocou")
+    }
+    
     func didTapAbout() {
         interactor.fetchPokemonAbout(request: PokemonDetail.About.Request())
     }
