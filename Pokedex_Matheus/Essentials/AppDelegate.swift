@@ -1,4 +1,5 @@
 import UIKit
+import UI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureApp() {
         let pokemonVC = makePokemonListViewController()
         let navigationVC = UINavigationController(rootViewController: pokemonVC)
+        navigationVC.isNavigationBarHidden = true
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = navigationVC
         self.window = window

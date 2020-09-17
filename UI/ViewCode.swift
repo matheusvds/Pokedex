@@ -13,4 +13,5 @@ extension ViewCode {
         buildConstraints()
         additionalConfiguration()
     }
+    func additionalConfiguration() { }
 }

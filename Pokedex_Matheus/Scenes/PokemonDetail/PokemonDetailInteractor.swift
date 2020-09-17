@@ -2,7 +2,7 @@ import Foundation
 import Domain
 
 protocol PokemonDetailBusinessLogic {
-    func fetchPokemons(request: PokemonDetail.DetailPokemon.Request)
+    func fetchPokemonDetail(request: PokemonDetail.PokemonDetail.Request)
 }
 
 protocol PokemonDetailDataStore {
@@ -15,7 +15,7 @@ class PokemonDetailInteractor: PokemonDetailDataStore {
 }
 
 extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
-    func fetchPokemons(request: PokemonDetail.DetailPokemon.Request) {
-        presenter?.presentFetchPokemons(response: PokemonDetail.DetailPokemon.Response(pokemon: pokemon))
+    func fetchPokemonDetail(request: PokemonDetail.PokemonDetail.Request) {
+        presenter?.presentPokemonDetail(response: PokemonDetail.PokemonDetail.Response(pokemon: pokemon))
     }
 }

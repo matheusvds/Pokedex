@@ -2,6 +2,7 @@ import Foundation
 import Data
 import Domain
 import Infra
+import UI
 
 func makePokemonListViewController() -> PokemonListViewController {
     let presenter = PokemonListPresenter()
@@ -22,8 +23,11 @@ func makePokemonDetailViewController() -> PokemonDetailViewController {
     let presenter = PokemonDetailPresenter()
     let router = PokemonDetailRouter()
     let interactor = PokemonDetailInteractor()
+    let view = PokemonDetailView()
+    let viewController = PokemonDetailViewController(viewLogic: view, interactor: interactor, router: router)
     
-    let viewController = PokemonDetailViewController(interactor: interactor, router: router)
+    view.delegate = viewController
+    viewController.view = view
     presenter.displayLogic = viewController
     interactor.presenter = presenter
     router.viewController = viewController
