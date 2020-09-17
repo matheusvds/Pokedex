@@ -14,7 +14,7 @@ class PokemonDetailViewController: UIViewController {
     var viewLogic: PokemonDetailViewLogic
     
     init(viewLogic: PokemonDetailViewLogic,
-        interactor: PokemonDetailBusinessLogic,
+         interactor: PokemonDetailBusinessLogic,
          router: PokemonDetailRouterLogic) {
         self.viewLogic = viewLogic
         self.interactor = interactor
@@ -41,9 +41,10 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     }
     
     func displayPokemonStats(viewModel: PokemonDetail.Stat.ViewModel) {
-        viewLogic.set(stats: BaseStatsPropertyViewModel(stats: viewModel.stats.map{ BaseStatsPropertyViewModel.BaseStatProperty(name: $0.name,
-                                                                                                                                value: $0.value,
-                                                                                                                                link: $0.link) }))
+        let statsViewModel = viewModel.stats.map{ BaseStatsPropertyViewModel.BaseStatProperty(name: $0.name,
+                                                                                     value: $0.value,
+                                                                                     link: $0.link) }
+        viewLogic.set(stats: BaseStatsPropertyViewModel(stats: statsViewModel))
     }
     
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
