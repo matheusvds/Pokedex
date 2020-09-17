@@ -18,15 +18,7 @@ enum PokemonList {
             
             struct DisplayedPokemon {
                 let image: String
-                let order: Int
-                let id: Int
                 let name: String
-                let height: Int
-                let weight: Int
-                let types: [Reference]
-                let stats: [Reference]
-                let games: [Reference]
-                let abilities: [Reference]
             }
             
             struct Reference {

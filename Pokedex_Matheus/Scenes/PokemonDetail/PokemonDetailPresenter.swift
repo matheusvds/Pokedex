@@ -2,6 +2,7 @@ import Foundation
 
 protocol PokemonDetailPresentationLogic {
     func presentPokemonDetail(response: PokemonDetail.PokemonDetail.Response)
+    func fetchPokemonAbout(response: PokemonDetail.About.Response)
 }
 
 class PokemonDetailPresenter {
@@ -16,6 +17,15 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
         displayLogic?.displayPokemonDetail(viewModel: viewModel)
     }
     
+    func fetchPokemonAbout(response: PokemonDetail.About.Response) {
+        let viewModel = PokemonDetail.About.ViewModel(
+            height: "\(response.pokemon.height) cm",
+            weight: "\(response.pokemon.weight) g"
+        )
+        displayLogic?.displayPokemonAbout(viewModel: viewModel)
+    }
+
+    // MARK: - Helper methods
     private func format(_ response: PokemonDetail.PokemonDetail.Response) -> DetailedPokemon {
         let pokemon = response.pokemon
         return DetailedPokemon(detailImage: pokemon.sprites.other.officialArtwork.frontDefault,

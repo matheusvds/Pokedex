@@ -3,7 +3,7 @@ import UIKit
 import SnapKit
 
 public protocol PropertiesViewDelegate: class {
-    func didTapAbout(completion: @escaping (AboutPropertyViewModel) -> Void)
+    func didTapAbout()
 }
 
 public final class PropertiesView: UIView {
@@ -48,12 +48,8 @@ public final class PropertiesView: UIView {
     
     // MARK: - Actions
     private func tapAboutOption() {
-        delegate?.didTapAbout(completion: { [weak self] (viewModel) in
-            guard let `self` = self else { return }
-            self.about.set(viewModel: viewModel)
-            self.about.setNeedsDisplay()
-            self.bringSubviewToFront(self.about)
-        })
+        delegate?.didTapAbout()
+        self.bringSubviewToFront(self.about)
     }
     
     private func setInitialTap() {

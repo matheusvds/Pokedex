@@ -13,10 +13,10 @@ public protocol PokemonDetailViewLogic {
     var delegate: (PokemonDetailViewDelegate & PropertiesViewDelegate)? { get set }
     var image: UIImageView { get set }
     func set(viewModel: PokemonDetailViewModel)
+    func set(about viewModel: AboutPropertyViewModel)
 }
 
 public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
-    
     // MARK: - Public API
     public weak var delegate: PokemonDetailDelegate? {
         didSet {
@@ -45,9 +45,11 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         detailContainer.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }
     
-    
     public func set(viewModel: PokemonDetailViewModel) {
         self.title.text = viewModel.name
+    }
+    
+    public func set(about viewModel: AboutPropertyViewModel) {
         self.detailContainer.setAbout(viewModel: AboutPropertyViewModel(height: viewModel.height, weight: viewModel.weight))
     }
     

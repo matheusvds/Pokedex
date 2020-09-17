@@ -4,6 +4,7 @@ import UI
 
 protocol PokemonDetailDisplayLogic: class {
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel)
+    func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -27,16 +28,19 @@ class PokemonDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor.fetchPokemonDetail(request: PokemonDetail.PokemonDetail.Request())
+        interactor.fetchPokemonAbout(request: PokemonDetail.About.Request())
     }
 }
 
 // MARK: - PokemonDetailDisplayLogic
 extension PokemonDetailViewController: PokemonDetailDisplayLogic {
+    func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel) {
+        viewLogic.set(about: AboutPropertyViewModel(height: viewModel.height, weight: viewModel.weight))
+    }
+    
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
         viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
-        viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name,
-                                                        height: viewModel.pokemon.height,
-                                                        weight: viewModel.pokemon.weight))
+        viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name))
     }
 }
 
@@ -53,7 +57,7 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
 }
 
 extension PokemonDetailViewController: PropertiesViewDelegate {
-    func didTapAbout(completion: @escaping (AboutPropertyViewModel) -> Void) {
-        print("eita!")
+    func didTapAbout() {
+        interactor.fetchPokemonAbout(request: PokemonDetail.About.Request())
     }
 }

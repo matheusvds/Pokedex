@@ -34,4 +34,16 @@ enum PokemonDetail {
             }
         }
     }
+    
+    enum About {
+        struct Request { }
+        struct Response {
+            let pokemon: Pokemon
+        }
+        
+        struct ViewModel {
+            let height: String
+            let weight: String
+        }
+    }
 }
