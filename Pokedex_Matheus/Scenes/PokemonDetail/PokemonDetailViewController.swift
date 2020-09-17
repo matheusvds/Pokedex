@@ -5,6 +5,7 @@ import UI
 protocol PokemonDetailDisplayLogic: class {
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel)
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel)
+    func displayPokemonStats(viewModel: PokemonDetail.Stat.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -34,8 +35,15 @@ class PokemonDetailViewController: UIViewController {
 
 // MARK: - PokemonDetailDisplayLogic
 extension PokemonDetailViewController: PokemonDetailDisplayLogic {
+    
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel) {
         viewLogic.set(about: AboutPropertyViewModel(height: viewModel.height, weight: viewModel.weight))
+    }
+    
+    func displayPokemonStats(viewModel: PokemonDetail.Stat.ViewModel) {
+        viewLogic.set(stats: BaseStatsPropertyViewModel(stats: viewModel.stats.map{ BaseStatsPropertyViewModel.BaseStatProperty(name: $0.name,
+                                                                                                                                value: $0.value,
+                                                                                                                                link: $0.link) }))
     }
     
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
@@ -58,7 +66,7 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
 
 extension PokemonDetailViewController: PropertiesViewDelegate {
     func didTapStats() {
-        print("trocou")
+        interactor.fetchPokemonStats(request: PokemonDetail.Stat.Request())
     }
     
     func didTapAbout() {

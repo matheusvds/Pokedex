@@ -4,6 +4,7 @@ import Domain
 protocol PokemonDetailBusinessLogic {
     func fetchPokemonDetail(request: PokemonDetail.PokemonDetail.Request)
     func fetchPokemonAbout(request: PokemonDetail.About.Request)
+    func fetchPokemonStats(request: PokemonDetail.Stat.Request)
 }
 
 protocol PokemonDetailDataStore {
@@ -16,11 +17,16 @@ class PokemonDetailInteractor: PokemonDetailDataStore {
 }
 
 extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
+
     func fetchPokemonDetail(request: PokemonDetail.PokemonDetail.Request) {
         presenter?.presentPokemonDetail(response: PokemonDetail.PokemonDetail.Response(pokemon: pokemon))
     }
     
     func fetchPokemonAbout(request: PokemonDetail.About.Request) {
-        presenter?.fetchPokemonAbout(response: PokemonDetail.About.Response(pokemon: pokemon))
+        presenter?.presentPokemonAbout(response: PokemonDetail.About.Response(pokemon: pokemon))
+    }
+    
+    func fetchPokemonStats(request: PokemonDetail.Stat.Request) {
+        presenter?.presentPokemonStats(response: PokemonDetail.About.Response(pokemon: pokemon))
     }
 }

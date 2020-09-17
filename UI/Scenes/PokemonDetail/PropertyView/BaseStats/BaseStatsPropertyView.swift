@@ -9,7 +9,7 @@ protocol BaseStatsPropertyViewDelegate: class {
 class BaseStatsPropertyView: UIView {
     
     weak var delegate: BaseStatsPropertyViewDelegate?
-    private var stats = [BaseStatsPropertyViewModel.BaseStatProperty(name: "hahaha", value: "23", link: "")]
+    private var stats = [BaseStatsPropertyViewModel.BaseStatProperty]()
     
     lazy var statTable: BaseStatsTableView = {
         let label = BaseStatsTableView()

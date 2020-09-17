@@ -2,7 +2,8 @@ import Foundation
 
 protocol PokemonDetailPresentationLogic {
     func presentPokemonDetail(response: PokemonDetail.PokemonDetail.Response)
-    func fetchPokemonAbout(response: PokemonDetail.About.Response)
+    func presentPokemonAbout(response: PokemonDetail.About.Response)
+    func presentPokemonStats(response: PokemonDetail.About.Response)
 }
 
 class PokemonDetailPresenter {
@@ -17,12 +18,22 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
         displayLogic?.displayPokemonDetail(viewModel: viewModel)
     }
     
-    func fetchPokemonAbout(response: PokemonDetail.About.Response) {
+    func presentPokemonAbout(response: PokemonDetail.About.Response) {
         let viewModel = PokemonDetail.About.ViewModel(
             height: "\(response.pokemon.height) cm",
             weight: "\(response.pokemon.weight) g"
         )
         displayLogic?.displayPokemonAbout(viewModel: viewModel)
+    }
+    
+    func presentPokemonStats(response: PokemonDetail.About.Response) {
+        let viewModel = PokemonDetail.Stat.ViewModel(
+            stats: response.pokemon.stats.map { PokemonDetail.Stat.ViewModel.Stat (name: $0.stat.name,
+                                                                                   value: "\($0.baseStat)",
+                                                                                   link: $0.stat.url)
+            }
+        )
+        displayLogic?.displayPokemonStats(viewModel: viewModel)
     }
 
     // MARK: - Helper methods

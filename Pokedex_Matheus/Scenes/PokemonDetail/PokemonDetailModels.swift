@@ -46,4 +46,21 @@ enum PokemonDetail {
             let weight: String
         }
     }
+    
+    enum Stat {
+        struct Request { }
+        struct Response {
+            let pokemon: Pokemon
+        }
+        
+        struct ViewModel {
+            let stats: [Stat]
+            
+            struct Stat {
+                let name: String
+                let value: String
+                let link: String
+            }
+        }
+    }
 }
