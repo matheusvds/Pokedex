@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-class DetailTable<T: Identifiable>: UITableView {
+class DetailTableView<T: Item>: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -19,9 +19,9 @@ class DetailTable<T: Identifiable>: UITableView {
 }
 
 // MARK: - Helpers Methods
-extension DetailTable {
+extension DetailTableView {
     private func setupCells() {
-        register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
+        register(T.cellType, forCellReuseIdentifier: T.reuseIdentifier)
     }
     
     private func setupAppereance() {

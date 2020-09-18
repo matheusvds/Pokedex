@@ -9,12 +9,10 @@ public protocol PokemonDetailViewDelegate: class {
     func didTapFavorite()
 }
 
-public protocol PokemonDetailViewLogic {
+public protocol PokemonDetailViewLogic: PropertiesViewBorder {
     var delegate: (PokemonDetailViewDelegate & PropertiesViewDelegate)? { get set }
     var image: UIImageView { get set }
     func set(viewModel: PokemonDetailViewModel)
-    func set(about viewModel: AboutPropertyViewModel)
-    func set(stats viewModel: BaseStatsPropertyViewModel)
 }
 
 public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
@@ -52,11 +50,15 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     }
     
     public func set(about viewModel: AboutPropertyViewModel) {
-        self.detailContainer.setAbout(viewModel: viewModel)
+        self.detailContainer.set(about: viewModel)
     }
     
     public func set(stats viewModel: BaseStatsPropertyViewModel) {
-        self.detailContainer.setBaseStats(viewModel: viewModel)
+        self.detailContainer.set(stats: viewModel)
+    }
+    
+    public func set(abilities viewModel: AbilitiesViewModel) {
+        self.detailContainer.set(abilities: viewModel)
     }
     
     // MARK: - UI Components

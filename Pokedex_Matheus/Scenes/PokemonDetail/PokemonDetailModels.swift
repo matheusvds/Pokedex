@@ -47,7 +47,7 @@ enum PokemonDetail {
         }
     }
     
-    enum Stat {
+    enum Stats {
         struct Request { }
         struct Response {
             let pokemon: Pokemon
@@ -59,6 +59,22 @@ enum PokemonDetail {
             struct Stat {
                 let name: String
                 let value: String
+                let link: String
+            }
+        }
+    }
+    
+    enum Abilities {
+        struct Request { }
+        struct Response {
+            let pokemon: Pokemon
+        }
+        
+        struct ViewModel {
+            let stats: [Ability]
+            
+            struct Ability {
+                let name: String
                 let link: String
             }
         }

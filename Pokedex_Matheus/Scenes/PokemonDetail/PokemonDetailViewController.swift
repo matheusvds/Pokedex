@@ -5,7 +5,8 @@ import UI
 protocol PokemonDetailDisplayLogic: class {
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel)
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel)
-    func displayPokemonStats(viewModel: PokemonDetail.Stat.ViewModel)
+    func displayPokemonStats(viewModel: PokemonDetail.Stats.ViewModel)
+    func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -35,15 +36,19 @@ class PokemonDetailViewController: UIViewController {
 
 // MARK: - PokemonDetailDisplayLogic
 extension PokemonDetailViewController: PokemonDetailDisplayLogic {
+    func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel) {
+        let viewModel = viewModel.stats.map { AbilityProperty(name: $0.name, link: $0.link) }
+        viewLogic.set(abilities: AbilitiesViewModel(abilities: viewModel))
+    }
     
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel) {
         viewLogic.set(about: AboutPropertyViewModel(height: viewModel.height, weight: viewModel.weight))
     }
     
-    func displayPokemonStats(viewModel: PokemonDetail.Stat.ViewModel) {
-        let statsViewModel = viewModel.stats.map{ BaseStatsPropertyViewModel.BaseStatProperty(name: $0.name,
-                                                                                     value: $0.value,
-                                                                                     link: $0.link) }
+    func displayPokemonStats(viewModel: PokemonDetail.Stats.ViewModel) {
+        let statsViewModel = viewModel.stats.map{ BaseStatProperty(name: $0.name,
+                                                                   value: $0.value,
+                                                                   link: $0.link) }
         viewLogic.set(stats: BaseStatsPropertyViewModel(stats: statsViewModel))
     }
     
@@ -67,10 +72,14 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
 
 extension PokemonDetailViewController: PropertiesViewDelegate {
     func didTapStats() {
-        interactor.fetchPokemonStats(request: PokemonDetail.Stat.Request())
+        interactor.fetchPokemonStats(request: PokemonDetail.Stats.Request())
     }
     
     func didTapAbout() {
         interactor.fetchPokemonAbout(request: PokemonDetail.About.Request())
+    }
+    
+    func didTapAbilities() {
+        interactor.fetchPokemonAbilities(request: PokemonDetail.Abilities.Request())
     }
 }

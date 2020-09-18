@@ -5,9 +5,16 @@ import SnapKit
 public protocol PropertiesViewDelegate: class {
     func didTapAbout()
     func didTapStats()
+    func didTapAbilities()
 }
 
-public final class PropertiesView: UIView {
+public protocol PropertiesViewBorder {
+    func set(about viewModel: AboutPropertyViewModel)
+    func set(stats viewModel: BaseStatsPropertyViewModel)
+    func set(abilities viewModel: AbilitiesViewModel)
+}
+
+final class PropertiesView: UIView, PropertiesViewBorder {
     
     // MARK: - Public API
     public weak var delegate: PropertiesViewDelegate?
@@ -16,19 +23,23 @@ public final class PropertiesView: UIView {
         super.init(frame: frame)
         setup()
         setupSegmentedControl()
-        setInitialTap()
+        initialTap()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setAbout(viewModel: AboutPropertyViewModel) {
+    func set(about viewModel: AboutPropertyViewModel) {
         self.about.set(viewModel: viewModel)
     }
     
-    func setBaseStats(viewModel: BaseStatsPropertyViewModel) {
-        self.stats.set(viewModel: viewModel)
+    func set(stats viewModel: BaseStatsPropertyViewModel) {
+        self.stats.set(viewModel: viewModel.stats)
+    }
+    
+    func set(abilities viewModel: AbilitiesViewModel) {
+        self.abilities.set(viewModel: viewModel.abilities)
     }
         
     // MARK: - UI Components
@@ -46,25 +57,33 @@ public final class PropertiesView: UIView {
         return view
     }()
     
-    private lazy var stats: BaseStatsPropertyView = {
-        let view = BaseStatsPropertyView()
+    private lazy var stats: GenericListView<BaseStatProperty> = {
+        let view = GenericListView<BaseStatProperty>()
+        return view
+    }()
+    
+    private lazy var abilities: GenericListView<AbilityProperty> = {
+        let view = GenericListView<AbilityProperty>()
         return view
     }()
     
     // MARK: - Actions
+    
+    private func initialTap() {
+        self.sections.selectedSegmentIndex = 0
+        tapAboutOption()
+    }
+    
     private func tapAboutOption() {
         delegate?.didTapAbout()
-        bringSubviewToFront(self.about)
     }
     
     private func tapStatsOption() {
         delegate?.didTapStats()
-        bringSubviewToFront(stats)
     }
     
-    private func setInitialTap() {
-        self.sections.selectedSegmentIndex = 0
-        tapAboutOption()
+    private func tapAbilitiesOption() {
+        delegate?.didTapAbilities()
     }
     
     private func setupSegmentedControl() {
@@ -81,7 +100,10 @@ public final class PropertiesView: UIView {
             tapStatsOption()
             removeAllViews()
             draw(view: stats)
-        case 2: break
+        case 2:
+            tapAbilitiesOption()
+            removeAllViews()
+            draw(view: abilities)
         case 3: break
         default:
             break

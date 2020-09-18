@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class BaseStatsCell: UITableViewCell {
+class StatCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         setup()
@@ -17,12 +17,11 @@ class BaseStatsCell: UITableViewCell {
 }
 
 // MARK: - Identifiable
-extension BaseStatsCell: Identifiable { }
+extension StatCell: Identifiable { }
 
 // MARK: - Helper Methods
-extension BaseStatsCell {
+extension StatCell {
     private func setupAppearance() {
         selectionStyle = .none
     }
 }
-
