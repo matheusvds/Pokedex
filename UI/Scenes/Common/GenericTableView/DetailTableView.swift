@@ -26,5 +26,6 @@ extension DetailTableView {
     
     private func setupAppereance() {
         separatorStyle = .none
+        showsVerticalScrollIndicator = false
     }
 }
