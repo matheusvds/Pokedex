@@ -79,4 +79,20 @@ enum PokemonDetail {
             }
         }
     }
+    
+    enum Games {
+        struct Request { }
+        struct Response {
+            let pokemon: Pokemon
+        }
+        
+        struct ViewModel {
+            let games: [Game]
+            
+            struct Game {
+                let name: String
+                let link: String
+            }
+        }
+    }
 }

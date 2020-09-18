@@ -2,20 +2,8 @@ import Foundation
 import UIKit
 import SnapKit
 
-public protocol PropertiesViewDelegate: class {
-    func didTapAbout()
-    func didTapStats()
-    func didTapAbilities()
-}
-
-public protocol PropertiesViewBorder {
-    func set(about viewModel: AboutPropertyViewModel)
-    func set(stats viewModel: BaseStatsPropertyViewModel)
-    func set(abilities viewModel: AbilitiesViewModel)
-}
-
 final class PropertiesView: UIView, PropertiesViewBorder {
-    
+
     // MARK: - Public API
     public weak var delegate: PropertiesViewDelegate?
     
@@ -40,6 +28,10 @@ final class PropertiesView: UIView, PropertiesViewBorder {
     
     func set(abilities viewModel: AbilitiesViewModel) {
         self.abilities.set(viewModel: viewModel.abilities)
+    }
+    
+    func set(games viewModel: GamesViewModel) {
+        self.games.set(viewModel: viewModel.games)
     }
         
     // MARK: - UI Components
@@ -67,6 +59,11 @@ final class PropertiesView: UIView, PropertiesViewBorder {
         return view
     }()
     
+    private lazy var games: GenericListView<GameProperty> = {
+        let view = GenericListView<GameProperty>()
+        return view
+    }()
+    
     // MARK: - Actions
     
     private func initialTap() {
@@ -84,6 +81,10 @@ final class PropertiesView: UIView, PropertiesViewBorder {
     
     private func tapAbilitiesOption() {
         delegate?.didTapAbilities()
+    }
+    
+    private func tapAGamesOption() {
+        delegate?.didTapGames()
     }
     
     private func setupSegmentedControl() {
@@ -104,15 +105,19 @@ final class PropertiesView: UIView, PropertiesViewBorder {
             tapAbilitiesOption()
             removeAllViews()
             draw(view: abilities)
-        case 3: break
-        default:
-            break
+        case 3:
+            tapAGamesOption()
+            removeAllViews()
+            draw(view: games)
+        default: break
         }
     }
     
     private func removeAllViews() {
         self.about.removeFromSuperview()
         self.stats.removeFromSuperview()
+        self.abilities.removeFromSuperview()
+        self.games.removeFromSuperview()
     }
 }
 

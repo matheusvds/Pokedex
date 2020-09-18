@@ -7,6 +7,7 @@ protocol PokemonDetailDisplayLogic: class {
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel)
     func displayPokemonStats(viewModel: PokemonDetail.Stats.ViewModel)
     func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel)
+    func displayPokemonGames(viewModel: PokemonDetail.Games.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -36,9 +37,11 @@ class PokemonDetailViewController: UIViewController {
 
 // MARK: - PokemonDetailDisplayLogic
 extension PokemonDetailViewController: PokemonDetailDisplayLogic {
-    func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel) {
-        let viewModel = viewModel.stats.map { AbilityProperty(name: $0.name, link: $0.link) }
-        viewLogic.set(abilities: AbilitiesViewModel(abilities: viewModel))
+    
+    
+    func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
+        viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
+        viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name))
     }
     
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel) {
@@ -52,10 +55,16 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
         viewLogic.set(stats: BaseStatsPropertyViewModel(stats: statsViewModel))
     }
     
-    func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
-        viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
-        viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name))
+    func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel) {
+        let viewModel = viewModel.stats.map { AbilityProperty(name: $0.name, link: $0.link) }
+        viewLogic.set(abilities: AbilitiesViewModel(abilities: viewModel))
     }
+    
+    func displayPokemonGames(viewModel: PokemonDetail.Games.ViewModel) {
+        let viewModel = viewModel.games.map { GameProperty(name: $0.name, link: $0.link) }
+        viewLogic.set(games: GamesViewModel(games: viewModel))
+    }
+
 }
 
 // didTapAbout() -> AboutViewModel
@@ -71,6 +80,10 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
 }
 
 extension PokemonDetailViewController: PropertiesViewDelegate {
+    func didTapGames() {
+        interactor.fetchPokemonGames(request: PokemonDetail.Games.Request())
+    }
+    
     func didTapStats() {
         interactor.fetchPokemonStats(request: PokemonDetail.Stats.Request())
     }

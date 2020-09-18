@@ -20,7 +20,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     // MARK: - Public API
     public weak var delegate: PokemonDetailDelegate? {
         didSet {
-            detailContainer.delegate = delegate
+            propertiesView.delegate = delegate
         }
     }
     
@@ -42,7 +42,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        detailContainer.roundCorners(corners: [.topLeft, .topRight], radius: 20)
+        propertiesView.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }
     
     public func set(viewModel: PokemonDetailViewModel) {
@@ -50,15 +50,19 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     }
     
     public func set(about viewModel: AboutPropertyViewModel) {
-        self.detailContainer.set(about: viewModel)
+        self.propertiesView.set(about: viewModel)
     }
     
     public func set(stats viewModel: BaseStatsPropertyViewModel) {
-        self.detailContainer.set(stats: viewModel)
+        self.propertiesView.set(stats: viewModel)
     }
     
     public func set(abilities viewModel: AbilitiesViewModel) {
-        self.detailContainer.set(abilities: viewModel)
+        self.propertiesView.set(abilities: viewModel)
+    }
+    
+    public func set(games viewModel: GamesViewModel) {
+        self.propertiesView.set(games: viewModel)
     }
     
     // MARK: - UI Components
@@ -107,7 +111,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         return label
     }()
     
-    private lazy var detailContainer: PropertiesView = {
+    private lazy var propertiesView: PropertiesView = {
         let view = PropertiesView()
         view.backgroundColor = .white
         return view
@@ -140,7 +144,7 @@ extension PokemonDetailView: ViewCode {
         addSubview(number)
         addSubview(firstType)
         addSubview(secType)
-        addSubview(detailContainer)
+        addSubview(propertiesView)
         addSubview(image)
     }
     
@@ -182,15 +186,15 @@ extension PokemonDetailView: ViewCode {
             make.centerY.equalTo(firstType)
         }
         
-        detailContainer.snp.makeConstraints { (make) in
+        propertiesView.snp.makeConstraints { (make) in
             make.height.equalToSuperview().multipliedBy(0.5)
             make.left.right.bottom.equalToSuperview()
         }
         
         image.snp.makeConstraints { (make) in
             make.top.equalTo(secType.snp.bottom).offset(Self.padding)
-            make.centerX.equalTo(detailContainer)
-            make.bottom.equalTo(detailContainer.snp.top).inset(Self.padding)
+            make.centerX.equalTo(propertiesView)
+            make.bottom.equalTo(propertiesView.snp.top).inset(Self.padding)
         }
     }
     func additionalConfiguration() {

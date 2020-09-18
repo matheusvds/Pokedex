@@ -5,6 +5,7 @@ protocol PokemonDetailPresentationLogic {
     func presentPokemonAbout(response: PokemonDetail.About.Response)
     func presentPokemonStats(response: PokemonDetail.About.Response)
     func presentPokemonAbilities(response: PokemonDetail.Abilities.Response)
+    func presentPokemonGames(response: PokemonDetail.Games.Response)
 }
 
 class PokemonDetailPresenter {
@@ -46,6 +47,15 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
         displayLogic?.displayPokemonAbilities(viewModel: viewModel)
     }
 
+    func presentPokemonGames(response: PokemonDetail.Games.Response) {
+        let viewModel = PokemonDetail.Games.ViewModel(
+            games: response.pokemon.game_indices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name,
+                                                                                          link: $0.version.url)
+            }
+        )
+        displayLogic?.displayPokemonGames(viewModel: viewModel)
+    }
+    
     // MARK: - Helper methods
     private func format(_ response: PokemonDetail.PokemonDetail.Response) -> DetailedPokemon {
         let pokemon = response.pokemon

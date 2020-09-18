@@ -6,6 +6,7 @@ protocol PokemonDetailBusinessLogic {
     func fetchPokemonAbout(request: PokemonDetail.About.Request)
     func fetchPokemonStats(request: PokemonDetail.Stats.Request)
     func fetchPokemonAbilities(request: PokemonDetail.Abilities.Request)
+    func fetchPokemonGames(request: PokemonDetail.Games.Request)
 }
 
 protocol PokemonDetailDataStore {
@@ -33,5 +34,9 @@ extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
     
     func fetchPokemonAbilities(request: PokemonDetail.Abilities.Request) {
         presenter?.presentPokemonAbilities(response: PokemonDetail.Abilities.Response(pokemon: pokemon))
+    }
+    
+    func fetchPokemonGames(request: PokemonDetail.Games.Request) {
+        presenter?.presentPokemonGames(response: PokemonDetail.Games.Response(pokemon: pokemon))
     }
 }

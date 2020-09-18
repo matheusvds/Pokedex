@@ -12,7 +12,7 @@ public struct AbilitiesViewModel {
 public class AbilityProperty: Item {
     
     static var cellType: AnyClass {
-        return UITableViewCell.self
+        return AbilityCell.self
     }
     
     var name: String?
