@@ -31,8 +31,8 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     func presentPokemonStats(response: PokemonDetail.About.Response) {
         let viewModel = PokemonDetail.Stats.ViewModel(
             stats: response.pokemon.stats.map { PokemonDetail.Stats.ViewModel.Stat (name: $0.stat.name,
-                                                                                   value: "\($0.baseStat)",
-                                                                                   link: $0.stat.url)
+                                                                                    value: "\($0.baseStat)",
+                link: $0.stat.url)
             }
         )
         displayLogic?.displayPokemonStats(viewModel: viewModel)
@@ -46,7 +46,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
         )
         displayLogic?.displayPokemonAbilities(viewModel: viewModel)
     }
-
+    
     func presentPokemonGames(response: PokemonDetail.Games.Response) {
         let viewModel = PokemonDetail.Games.ViewModel(
             games: response.pokemon.game_indices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name,
@@ -59,15 +59,14 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     // MARK: - Helper methods
     private func format(_ response: PokemonDetail.PokemonDetail.Response) -> DetailedPokemon {
         let pokemon = response.pokemon
-        return DetailedPokemon(detailImage: pokemon.sprites.other.officialArtwork.frontDefault,
-                               image: pokemon.sprites.frontDefault,
-                                id: pokemon.id,
-                                name: pokemon.name,
-                                height: "\(pokemon.height) cm",
-                                weight: "\(pokemon.weight) g",
-                                types: pokemon.types.map { DetailReference(name: $0.type.name, link: $0.type.url) },
-                                stats: pokemon.stats.map { DetailReference(name: $0.stat.name, value: $0.baseStat.toString(), link: $0.stat.url) },
-                                games: pokemon.game_indices.map { DetailReference(name: $0.version.name, link: $0.version.url) },
-                                abilities: pokemon.abilities.map { DetailReference(name: $0.ability.name, link: $0.ability.url) })
+        return DetailedPokemon(
+            detailImage: pokemon.sprites.other.officialArtwork.frontDefault,
+            image: pokemon.sprites.frontDefault,
+            name: pokemon.name,
+            height: "\(pokemon.height) cm",
+            weight: "\(pokemon.weight) g",
+            firstType: pokemon.types.first?.type.name ?? "",
+            secType: pokemon.types.count == 1 ? nil : pokemon.types.last?.type.name
+        )
     }
 }

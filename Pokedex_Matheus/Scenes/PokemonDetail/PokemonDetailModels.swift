@@ -2,7 +2,6 @@ import Foundation
 import Domain
 
 typealias DetailedPokemon = PokemonDetail.PokemonDetail.ViewModel.DetailedPokemon
-typealias DetailReference = PokemonDetail.PokemonDetail.ViewModel.DetailReference
 
 enum PokemonDetail {
     enum PokemonDetail {
@@ -17,21 +16,13 @@ enum PokemonDetail {
             struct DetailedPokemon {
                 let detailImage: String
                 let image: String
-                let id: Int
                 let name: String
                 let height: String
                 let weight: String
-                let types: [DetailReference]
-                let stats: [DetailReference]
-                let games: [DetailReference]
-                let abilities: [DetailReference]
+                let firstType: String
+                let secType: String?
             }
             
-            struct DetailReference {
-                let name: String
-                var value: String?
-                let link: String
-            }
         }
     }
     

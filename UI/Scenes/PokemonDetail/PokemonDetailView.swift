@@ -47,6 +47,9 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     
     public func set(viewModel: PokemonDetailViewModel) {
         self.title.text = viewModel.name
+        self.firstType.text = viewModel.firstType
+        self.secType.text = viewModel.secType
+        self.secType.isHidden = viewModel.secType == nil
     }
     
     public func set(about viewModel: AboutPropertyViewModel) {
@@ -99,14 +102,12 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     
     private lazy var firstType: UILabel = {
         let label = RoundPaddingLabel()
-        label.text = "Grass"
         label.backgroundColor = .blue
         return label
     }()
     
     private lazy var secType: UILabel = {
         let label = RoundPaddingLabel()
-        label.text = "Poison"
         label.backgroundColor = .cyan
         return label
     }()

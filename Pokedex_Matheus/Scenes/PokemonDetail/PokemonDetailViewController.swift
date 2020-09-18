@@ -41,7 +41,9 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
         viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
-        viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name))
+        viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name,
+                                                        firstType: viewModel.pokemon.firstType,
+                                                        secType: viewModel.pokemon.secType))
     }
     
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel) {
@@ -67,8 +69,7 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
 
 }
 
-// didTapAbout() -> AboutViewModel
-
+// MARK: - UI Events
 extension PokemonDetailViewController: PokemonDetailViewDelegate {
     func didTapBackButton() {
         self.navigationController?.popViewController(animated: true)
