@@ -16,6 +16,6 @@ class PokemonDetailRouter: PokemonDetailRoutingLogic, PokemonDetailDataPassing {
     var dataStore: PokemonDetailDataStore?
     
     func popViewController() {
-        viewController?.navigationController?.popViewController(animated: true) // ROUTER
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }
