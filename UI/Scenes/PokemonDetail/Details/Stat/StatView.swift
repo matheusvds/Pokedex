@@ -2,28 +2,9 @@ import UIKit
 import Foundation
 import SnapKit
 
-
 public protocol StatViewLogic {
     func set(viewModel: StatViewModel)
     var view: UIView { get }
-}
-
-public struct StatViewModel {
-    public let title: String?
-    public let items: [Section]
-    public init(title: String?, items: [Section]) {
-        self.title = title
-        self.items = items
-    }
-}
-
-public struct Section {
-    public let name: String
-    public let items: [String]
-    public init(name: String, items: [String]) {
-        self.name = name
-        self.items = items
-    }
 }
 
 public final class StatView: UIView {

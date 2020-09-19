@@ -49,6 +49,8 @@
 		C60CDE6D2516C8A20063EE9E /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C67361E6250ED877003BB122 /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C60CDE792516CABA0063EE9E /* Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60CDE3D2516C1A80063EE9E /* Application.framework */; };
 		C60CDE822516CCF30063EE9E /* ApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE812516CCF30063EE9E /* ApplicationTests.swift */; };
+		C60CDE852516D17A0063EE9E /* AbilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE842516D17A0063EE9E /* AbilityViewModel.swift */; };
+		C60CDE872516D1960063EE9E /* StatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE862516D1960063EE9E /* StatViewModel.swift */; };
 		C658C1BA250D59E600FC54D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C1B9250D59E600FC54D1 /* AppDelegate.swift */; };
 		C658C1C3250D59E700FC54D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C2250D59E700FC54D1 /* Assets.xcassets */; };
 		C658C1C6250D59E700FC54D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */; };
@@ -314,6 +316,8 @@
 		C60CDE742516CABA0063EE9E /* ApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60CDE782516CABA0063EE9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C60CDE812516CCF30063EE9E /* ApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationTests.swift; sourceTree = "<group>"; };
+		C60CDE842516D17A0063EE9E /* AbilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityViewModel.swift; sourceTree = "<group>"; };
+		C60CDE862516D1960063EE9E /* StatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatViewModel.swift; sourceTree = "<group>"; };
 		C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex_Matheus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C658C1B9250D59E600FC54D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C658C1BD250D59E600FC54D1 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
@@ -538,18 +542,19 @@
 		C60CDE242516828F0063EE9E /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				C60CDE25251682970063EE9E /* Abilities */,
+				C60CDE832516D14E0063EE9E /* Stat */,
+				C60CDE25251682970063EE9E /* Ability */,
 			);
 			path = Details;
 			sourceTree = "<group>";
 		};
-		C60CDE25251682970063EE9E /* Abilities */ = {
+		C60CDE25251682970063EE9E /* Ability */ = {
 			isa = PBXGroup;
 			children = (
 				C60CDE26251682B00063EE9E /* AbilityView.swift */,
-				C60CDE322516ADCA0063EE9E /* StatView.swift */,
+				C60CDE842516D17A0063EE9E /* AbilityViewModel.swift */,
 			);
-			path = Abilities;
+			path = Ability;
 			sourceTree = "<group>";
 		};
 		C60CDE3E2516C1A80063EE9E /* Application */ = {
@@ -570,6 +575,15 @@
 				C60CDE812516CCF30063EE9E /* ApplicationTests.swift */,
 			);
 			path = ApplicationTests;
+			sourceTree = "<group>";
+		};
+		C60CDE832516D14E0063EE9E /* Stat */ = {
+			isa = PBXGroup;
+			children = (
+				C60CDE322516ADCA0063EE9E /* StatView.swift */,
+				C60CDE862516D1960063EE9E /* StatViewModel.swift */,
+			);
+			path = Stat;
 			sourceTree = "<group>";
 		};
 		C658C1AD250D59E600FC54D1 = {
@@ -1547,6 +1561,8 @@
 				C60CDE17251664E80063EE9E /* PokemonListTableView.swift in Sources */,
 				C60CDE1B251666010063EE9E /* PokemonListViewLogic.swift in Sources */,
 				C67917F625144736001C4AA1 /* GamesViewModel.swift in Sources */,
+				C60CDE872516D1960063EE9E /* StatViewModel.swift in Sources */,
+				C60CDE852516D17A0063EE9E /* AbilityViewModel.swift in Sources */,
 				C67917D32512E8E7001C4AA1 /* GenericListView.swift in Sources */,
 				C67917DE25141A09001C4AA1 /* DetailTableView.swift in Sources */,
 				C60CDE27251682B00063EE9E /* AbilityView.swift in Sources */,

@@ -7,18 +7,6 @@ public protocol AbilityViewLogic {
     var view: UIView { get }
 }
 
-public struct AbilityViewModel {
-    public let name: String?
-    public let abilityDescription: String?
-    public let pokemons: [String]
-    
-    public init(name: String?, abilityDescription: String?, pokemons: [String]) {
-        self.name = name
-        self.abilityDescription = abilityDescription
-        self.pokemons = pokemons
-    }
-}
-
 public final class AbilityView: UIView {
     private lazy var name: UILabel = {
         let label = UILabel()
