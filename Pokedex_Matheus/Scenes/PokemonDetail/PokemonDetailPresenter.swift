@@ -63,6 +63,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
             detailImage: pokemon.sprites.other.officialArtwork.frontDefault,
             image: pokemon.sprites.frontDefault,
             name: pokemon.name,
+            order: String(format: "#%03d", pokemon.order),
             height: "\(pokemon.height) cm",
             weight: "\(pokemon.weight) g",
             firstType: pokemon.types.first?.type.name ?? "",

@@ -43,7 +43,8 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
         viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
         viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name,
                                                         firstType: viewModel.pokemon.firstType,
-                                                        secType: viewModel.pokemon.secType))
+                                                        secType: viewModel.pokemon.secType,
+                                                        order: viewModel.pokemon.order))
     }
     
     func displayPokemonAbout(viewModel: PokemonDetail.About.ViewModel) {

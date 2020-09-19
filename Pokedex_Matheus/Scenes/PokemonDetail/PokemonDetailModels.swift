@@ -17,6 +17,7 @@ enum PokemonDetail {
                 let detailImage: String
                 let image: String
                 let name: String
+                let order: String
                 let height: String
                 let weight: String
                 let firstType: String

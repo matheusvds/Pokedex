@@ -50,6 +50,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         self.firstType.text = viewModel.firstType
         self.secType.text = viewModel.secType
         self.secType.isHidden = viewModel.secType == nil
+        self.number.text = viewModel.order
     }
     
     public func set(about viewModel: AboutPropertyViewModel) {
