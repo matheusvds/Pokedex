@@ -73,8 +73,27 @@ class GetPokemonsIntegrationTests: XCTestCase {
         sut.fetch(url: url) { (result: Result<AbilityDetail, FetchError>) in
             switch result {
             case .success(let detail):
-                print(detail)
                 XCTAssertFalse(detail.pokemon.isEmpty)
+                
+            case .failure: XCTFail("expecting success, got \(result)")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 2.0)
+    }
+    
+    func test_fetch_stat() {
+        let urlSessionAdapter = URLSessionAdapter()
+        let client = RequestObjectClient(client: urlSessionAdapter)
+        let url = "https://pokeapi.co/api/v2/stat/3/"
+        
+        let sut = RemoteFetchURLInfo(client: client)
+        
+        let exp = expectation(description: "wait")
+        sut.fetch(url: url) { (result: Result<StatDetail, FetchError>) in
+            switch result {
+            case .success(let stat):
+                XCTAssertFalse(stat.names.isEmpty)
                 
             case .failure: XCTFail("expecting success, got \(result)")
             }

@@ -19,8 +19,18 @@ enum PropertyDetail {
     enum FetchStat {
         struct Request {}
         
-        struct Response {}
+        struct Response {
+            
+        }
         
-        struct ViewModel {}
+        struct ViewModel {
+            let name: String
+            let items: [Section]
+            
+            struct Section {
+                let name: String
+                let items: [String]
+            }
+        }
     }
 }

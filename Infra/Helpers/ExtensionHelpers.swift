@@ -2,6 +2,11 @@ import Foundation
 
 extension Data {
     func toModel<T: Decodable>() -> T? {
-        return try? JSONDecoder().decode(T.self, from: self)
+        do {
+            return try JSONDecoder().decode(T.self, from: self)
+        } catch {
+            print(error)
+            return nil
+        }
     }
 }
