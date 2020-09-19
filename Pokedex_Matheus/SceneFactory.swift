@@ -8,9 +8,10 @@ func makePokemonListViewController() -> PokemonListViewController {
     let presenter = PokemonListPresenter()
     let router = PokemonListRouter()
     let interactor = PokemonListInteractor(fetchPokemons: makeRemoteFetchPokemonsUseCase())
+    let view = PokemonListView()
+    let viewController = PokemonListViewController(viewLogic: view, interactor: interactor, router: router)
     
-    let viewController = PokemonListViewController(interactor: interactor, router: router)
-    
+    view.delegate = viewController
     presenter.displayLogic = viewController
     interactor.presenter = presenter
     router.viewController = viewController

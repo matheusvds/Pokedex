@@ -27,7 +27,7 @@ class PokemonListRouter: PokemonListRoutingLogic, PokemonListDataPassing {
     }
     
     func passDataToDetailPokemon(source: PokemonListDataStore, destination: inout PokemonDetailDataStore) {
-        let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row
+        let selectedRow = viewController?.viewLogic.getSelectedRow()
         destination.pokemon = source.pokemons[selectedRow!]
     }
 }

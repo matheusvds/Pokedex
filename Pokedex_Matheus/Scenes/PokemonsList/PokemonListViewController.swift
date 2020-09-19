@@ -1,12 +1,8 @@
 import UIKit
+import UI
 
 protocol PokemonListDisplayLogic: class {
     func displayFetchPokemons(viewModel: PokemonList.FetchPokemons.ViewModel)
-}
-
-protocol PokemonListViewControllerObjectAccess: class {
-    var tableView: UITableView { get }
-    func show(_ vc: UIViewController, sender: Any?)
 }
 
 class PokemonListViewController: UIViewController {
@@ -14,13 +10,17 @@ class PokemonListViewController: UIViewController {
     let router: PokemonListRouterLogic
     
     var displayedPokemons = [DisplayedPokemon]()
-    var tableView: UITableView = PokemonListTableView()
+    var viewLogic: PokemonListViewLogic
     
-    //MARK: - Control
+    // MARK: - Control
     var pagination: Int = 20
-    var isLoading: Bool = true
+    var loading: Bool = true
     
-    init(interactor: PokemonListBusinessLogic, router: PokemonListRouterLogic) {
+    // MARK: - Life Cycle
+    init(viewLogic: PokemonListViewLogic,
+         interactor: PokemonListBusinessLogic,
+         router: PokemonListRouterLogic) {
+        self.viewLogic = viewLogic
         self.interactor = interactor
         self.router = router
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +31,7 @@ class PokemonListViewController: UIViewController {
     }
     
     override func loadView() {
-        self.view = tableView
+        self.view = viewLogic.view
     }
     
     override func viewDidLoad() {
@@ -40,7 +40,6 @@ class PokemonListViewController: UIViewController {
     
     private func start() {
         startLoading()
-        setupTableView()
         fetchPokemons()
     }
 }
@@ -48,49 +47,34 @@ class PokemonListViewController: UIViewController {
 // MARK: - PokemonListDisplayLogic
 extension PokemonListViewController: PokemonListDisplayLogic {
     func displayFetchPokemons(viewModel: PokemonList.FetchPokemons.ViewModel) {
-        setPokemonList(viewModel)
-        reloadData()
+        guard let pokemons = viewModel.pokemons else { return }
+        viewLogic.set(viewModel: PokemonListViewModel(items: pokemons.map{ PokemonListItem(name: $0.name, image: $0.image) }))
         stopLoading()
     }
 }
 
-// MARK: - PokemonListViewControllerObjectAccess
-extension PokemonListViewController: PokemonListViewControllerObjectAccess { }
-
-// MARK: - UITableViewDataSource
-extension PokemonListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedPokemons.count
+// MARK: - PokemonListViewDelegate
+extension PokemonListViewController: PokemonListViewDelegate {
+    func set(imageView: UIImageView?, with url: String) {
+        imageView?.setImage(with: url)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PokemonListViewCell.reuseIdentifier,
-                                                 for: indexPath)
-        
-        let item = displayedPokemons[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.imageView?.setImage(with: item.image)
-        return cell
+    func isLoading() -> Bool {
+        return self.loading
     }
-}
-
-// MARK: - UITableViewDelegate
-extension PokemonListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func reachedEndOfPage() {
+        fetchNewPokemonPage()
+    }
+    
+    func didSelectRow() {
         router?.routeToPokemonDetail()
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        detectedEnding(of: scrollView, onEnd: {
-            fetchNewPokemonPage()
-        })
-    }
 }
 
+// MARK: - Helpers
 extension PokemonListViewController {
     
-    // MARK: - DisplayLogic Helpers
     private func fetchPokemons() {
         interactor.fetchPokemons(request: PokemonList.FetchPokemons.Request(offset: pagination))
     }
@@ -102,44 +86,15 @@ extension PokemonListViewController {
         debugPrint("Ask new page: \(self.pagination)")
     }
     
-    private func setPokemonList(_ viewModel: PokemonList.FetchPokemons.ViewModel) {
-        guard let pokemons = viewModel.pokemons else {
-            return
-        }
-        displayedPokemons.append(contentsOf: pokemons)
-    }
-
-    // MARK: - Control Helpers
     private func incrementPagination() {
         self.pagination += 20
     }
     
     private func startLoading() {
-        self.isLoading = true
+        self.loading = true
     }
     
     private func stopLoading() {
-        self.isLoading = false
-    }
-    
-    // MARK: - TableView Helpers
-    private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
-    
-    private func reloadData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-    
-    private func detectedEnding(of scrollView: UIScrollView, onEnd action: () -> ()) {
-        let offset = scrollView.contentOffset.y + scrollView.frame.size.height*0.2
-        let difference = scrollView.contentSize.height - scrollView.frame.size.height
-        
-        if offset >= difference && !isLoading {
-            action()
-        }
+        self.loading = false
     }
 }

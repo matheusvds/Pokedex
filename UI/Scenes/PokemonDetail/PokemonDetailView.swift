@@ -9,12 +9,6 @@ public protocol PokemonDetailActionsDelegate: class {
     func didTapFavorite()
 }
 
-public protocol PokemonDetailViewLogic: PropertiesViewBorder {
-    var delegate: (PokemonDetailActionsDelegate & PropertiesViewDelegate)? { get set }
-    var image: UIImageView { get set }
-    func set(viewModel: PokemonDetailViewModel)
-}
-
 public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     
     // MARK: - Public API
