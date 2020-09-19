@@ -5,7 +5,6 @@ import UIKit
 public protocol GenericListViewDelegate: class {
     func didTapStat(at row: Int)
     func didTapAbility(at row: Int)
-    func didTapGame(at row: Int)
 }
 
 class GenericListView<T: Item>: UIView, UITableViewDelegate, UITableViewDataSource  {
@@ -57,11 +56,6 @@ class GenericListView<T: Item>: UIView, UITableViewDelegate, UITableViewDataSour
         
         if item is AbilityProperty {
             delegate?.didTapAbility(at: row)
-            return
-        }
-        
-        if item is GameProperty {
-            delegate?.didTapGame(at: row)
             return
         }
     }

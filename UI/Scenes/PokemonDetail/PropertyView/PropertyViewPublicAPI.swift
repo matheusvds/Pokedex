@@ -13,9 +13,3 @@ public protocol PropertiesViewBorder {
     func set(abilities viewModel: AbilitiesViewModel)
     func set(games viewModel: GamesViewModel)
 }
-
-public enum Type: String {
-    case stat
-    case ability
-    case game
-}

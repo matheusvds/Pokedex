@@ -37,6 +37,20 @@ func makePokemonDetailViewController() -> PokemonDetailViewController {
     return viewController
 }
 
+func makeProperyDetailViewController(type: PropertyDetailType) -> PropertyDetailViewController {
+    let presenter = PropertyDetailPresenter()
+    let interactor = PropertyDetailInteractor(fetchURL: makeFetchURLRemoteUseCase())
+    let router = PropertyDetailRouter()
+    let viewController = PropertyDetailViewController(type: type, interactor: interactor, router: router)
+    
+    presenter.displayLogic = viewController
+    interactor.presenter = presenter
+    router.viewController = viewController
+    router.dataStore = interactor
+    
+    return viewController
+}
+
 // MARK: - Helper Methods
 private func makeRemoteFetchPokemonsUseCase() -> FetchPokemons {
     let requestClient = RequestObjectClient(client: URLSessionAdapter())
@@ -44,4 +58,10 @@ private func makeRemoteFetchPokemonsUseCase() -> FetchPokemons {
     let remoteFetchAllPokemons = RemoteFetchAllPokemons(client: requestClient)
     return RemoteFetchPokemons(fetchReferences: remoteFetchReferences,
                                fetchAllPokemons: remoteFetchAllPokemons)
+}
+
+
+private func makeFetchURLRemoteUseCase() -> FetchURLInfo {
+    let requestClient = RequestObjectClient(client: URLSessionAdapter())
+    return RemoteFetchURLInfo(client: requestClient)
 }

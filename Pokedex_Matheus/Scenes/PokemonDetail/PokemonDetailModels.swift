@@ -92,38 +92,26 @@ enum PokemonDetail {
         struct Request {
             let row: Int
         }
-        struct Response {
-            let stat: Stat
-        }
+        struct Response {}
         
-        struct ViewModel {
-            let link: String
-        }
+        struct ViewModel {}
     }
     
     enum TapAbility {
         struct Request {
             let row: Int
         }
-        struct Response {
-            let ability: Ability
-        }
+        struct Response {}
         
-        struct ViewModel {
-            let link: String
-        }
+        struct ViewModel {}
     }
     
     enum TapGame {
         struct Request {
             let row: Int
         }
-        struct Response {
-            let game: GameIndex
-        }
+        struct Response {}
         
-        struct ViewModel {
-            let link: String
-        }
+        struct ViewModel {}
     }
 }

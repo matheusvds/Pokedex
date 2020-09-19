@@ -8,7 +8,6 @@ protocol PokemonDetailPresentationLogic {
     func presentPokemonGames(response: PokemonDetail.Games.Response)
     func presentTappedStat(response: PokemonDetail.TapStat.Response)
     func presentTappedAbility(response: PokemonDetail.TapAbility.Response)
-    func presentTappedGame(response: PokemonDetail.TapGame.Response)
 }
 
 class PokemonDetailPresenter {
@@ -60,18 +59,13 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     }
     
     func presentTappedStat(response: PokemonDetail.TapStat.Response) {
-        let viewModel = PokemonDetail.TapStat.ViewModel(link: response.stat.stat.url)
+        let viewModel = PokemonDetail.TapStat.ViewModel()
         displayLogic?.displayTappedStat(viewModel: viewModel)
     }
     
     func presentTappedAbility(response: PokemonDetail.TapAbility.Response) {
-        let viewModel = PokemonDetail.TapAbility.ViewModel(link: response.ability.ability.url)
+        let viewModel = PokemonDetail.TapAbility.ViewModel()
         displayLogic?.displayTappedAbility(viewModel: viewModel)
-    }
-    
-    func presentTappedGame(response: PokemonDetail.TapGame.Response) {
-        let viewModel = PokemonDetail.TapGame.ViewModel(link: response.game.version.url)
-        displayLogic?.displayTappedGame(viewModel: viewModel)
     }
     
     // MARK: - Helper methods

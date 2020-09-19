@@ -20,7 +20,7 @@ public class RemoteFetchAllPokemons: FetchAllPokemons {
             }
         }
 
-        group.notify(queue: DispatchQueue.global()) {
+        group.notify(queue: DispatchQueue.main) {
             let pokemons = pokemons.compactMap({ $0 })
             if pokemons.isEmpty {
                 return completion(.failure(.errorFetchingData))

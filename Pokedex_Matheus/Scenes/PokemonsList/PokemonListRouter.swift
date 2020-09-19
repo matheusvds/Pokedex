@@ -23,7 +23,9 @@ class PokemonListRouter: PokemonListRoutingLogic, PokemonListDataPassing {
     }
     
     func navigateToDetailPokemon(source: PokemonListViewController?, destination: UIViewController) {
-        source?.navigationController?.pushViewController(destination, animated: true)
+        DispatchQueue.main.async { [weak source] in
+            source?.navigationController?.pushViewController(destination, animated: true)
+        }
     }
     
     func passDataToDetailPokemon(source: PokemonListDataStore, destination: inout PokemonDetailDataStore) {
