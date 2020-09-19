@@ -14,17 +14,17 @@ protocol PokemonDetailDataPassing {
 
 class PokemonDetailRouter: PokemonDetailDataPassing {
     weak var viewController: PokemonDetailViewController?
+    weak var propertyDetailFactory: PropertyDetailFactory!
     var dataStore: PokemonDetailDataStore?
 }
 
 extension PokemonDetailRouter: PokemonDetailRoutingLogic {
-    
     func popViewController() {
         viewController?.navigationController?.popViewController(animated: true)
     }
     
     func routeToPropertyDetail(type: PropertyDetailType) {
-        let destinationVC = makeProperyDetailViewController(type: type)
+        let destinationVC = propertyDetailFactory.makePropertyDetailViewController(type: type) as! PropertyDetailViewController
         var destinationDataStore = destinationVC.router.dataStore
         passDataToPropertyDetail(source: dataStore!, destination: &destinationDataStore!)
         navigateToDetailPokemon(source: viewController, destination: destinationVC)

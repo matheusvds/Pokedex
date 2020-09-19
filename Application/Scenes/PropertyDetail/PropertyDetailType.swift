@@ -1,6 +1,6 @@
 import Foundation
 
-enum PropertyDetailType {
+public enum PropertyDetailType {
     case ability
     case stat
 }

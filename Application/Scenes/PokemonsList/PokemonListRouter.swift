@@ -11,12 +11,16 @@ protocol PokemonListDataPassing {
     var dataStore: PokemonListDataStore? { get }
 }
 
-class PokemonListRouter: PokemonListRoutingLogic, PokemonListDataPassing {
+class PokemonListRouter: PokemonListDataPassing {
     weak var viewController: PokemonListViewController?
+    weak var pokemonDetailFactory: PokemonDetailFactory!
     var dataStore: PokemonListDataStore?
-    
+}
+
+// MARK: - PokemonListRoutingLogic
+extension PokemonListRouter: PokemonListRoutingLogic {
     func routeToPokemonDetail() {
-        let destinationVC = makePokemonDetailViewController()
+        let destinationVC = pokemonDetailFactory.makePokemonDetailViewController() as! PokemonDetailViewController
         var destinationDataStore = destinationVC.router?.dataStore
         passDataToDetailPokemon(source: dataStore!, destination: &destinationDataStore!)
         navigateToDetailPokemon(source: viewController, destination: destinationVC)

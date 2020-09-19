@@ -1,8 +1,16 @@
 import UIKit
 import UI
+import Infra
+import Application
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    lazy var main: SceneFactory = {
+        let requester = RequestObjectClient(client: URLSessionAdapter())
+        let main = Main(requestObject: requester)
+        return main
+    }()
     
     var window: UIWindow?
     
@@ -12,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureApp() {
-        let pokemonVC = makePokemonListViewController()
+        let pokemonVC = main.makePokemonListViewController()
         let navigationVC = UINavigationController(rootViewController: pokemonVC)
         navigationVC.isNavigationBarHidden = true
         let window = UIWindow(frame: UIScreen.main.bounds)
