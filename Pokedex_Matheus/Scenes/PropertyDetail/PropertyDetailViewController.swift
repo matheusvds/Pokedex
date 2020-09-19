@@ -2,17 +2,12 @@ import Foundation
 import UIKit
 import UI
 
-enum PropertyDetailType {
-    case ability
-    case stat
-}
-
 protocol PropetyDetailDisplayLogic: class {
     func displayAbility(viewModel: PropertyDetail.FetchAbility.ViewModel)
     func displayStat(viewModel: PropertyDetail.FetchStat.ViewModel)
 }
 
-class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic {
+class PropertyDetailViewController: UIViewController {
     let type: PropertyDetailType
     let interactor: PropertyDetailBusinessLogic
     let router: PropertyDetailRouter
@@ -54,6 +49,16 @@ class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic 
         }
     }
     
+    private func setView(type: PropertyDetailType) {
+        switch type {
+        case .ability: self.abilityView = AbilityView()
+        case .stat: self.statView = StatView()
+        }
+    }
+}
+
+// MARK: - PropetyDetailDisplayLogic
+extension PropertyDetailViewController: PropetyDetailDisplayLogic {
     func displayAbility(viewModel: PropertyDetail.FetchAbility.ViewModel) {
         let viewModel = AbilityViewModel(name: viewModel.name,
                                          abilityDescription: viewModel.description,
@@ -69,12 +74,4 @@ class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic 
                                                          items: viewModel.items.map { UI.Section(name: $0.name, items: $0.items) }))
         }
     }
-    
-    private func setView(type: PropertyDetailType) {
-        switch type {
-        case .ability: self.abilityView = AbilityView()
-        case .stat: self.statView = StatView()
-        }
-    }
 }
-
