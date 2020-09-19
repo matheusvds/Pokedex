@@ -9,13 +9,21 @@ public protocol StatViewLogic {
 }
 
 public struct StatViewModel {
-    public let name: String
+    public let title: String?
     public let items: [Section]
+    public init(title: String?, items: [Section]) {
+        self.title = title
+        self.items = items
+    }
 }
 
 public struct Section {
     public let name: String
     public let items: [String]
+    public init(name: String, items: [String]) {
+        self.name = name
+        self.items = items
+    }
 }
 
 public final class StatView: UIView {
@@ -64,6 +72,10 @@ extension StatView: UITableViewDataSource {
         return items.count
     }
     
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return items[section].name
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items[section].items.count
     }
@@ -83,9 +95,10 @@ extension StatView: StatViewLogic {
     }
     
     public func set(viewModel: StatViewModel) {
-        self.name.text = viewModel.name
-        reloadTableOnMain()
+        self.name.text = viewModel.title
+        self.items = viewModel.items
         toggleView()
+        reloadTableOnMain()
     }
 }
 
@@ -124,6 +137,7 @@ extension StatView: ViewCode {
     
     func addViewHiearchy() {
         addSubview(name)
+        addSubview(tableView)
     }
     
     func buildLoadingConstraints() {

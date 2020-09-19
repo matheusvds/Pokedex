@@ -24,6 +24,13 @@ extension PropertyDetailPresenter: PropertyDetailPresentationLogic {
     }
     
     func presentStat(response: PropertyDetail.FetchStat.Response) {
-        
+        let sections = [
+            Section(name: "Affecting moves: decrease", items: response.statDetail.affectingMoves.decrease.map { $0.move.name }),
+            Section(name: "Affecting moves: increase", items: response.statDetail.affectingMoves.increase.map { $0.move.name }),
+            Section(name: "Affecting natures: decrease", items: response.statDetail.affectingNatures.decrease.map { $0.name }),
+            Section(name: "Affecting natures: increase", items: response.statDetail.affectingNatures.increase.map { $0.name }),
+            ].filter { !$0.items.isEmpty }
+        let title = response.statDetail.names.filter { $0.language.name == "en" }.first?.name
+        displayLogic?.displayStat(viewModel: PropertyDetail.FetchStat.ViewModel(title: title, items: sections))
     }
 }

@@ -1,6 +1,8 @@
 import Foundation
 import Domain
 
+typealias Section = PropertyDetail.FetchStat.ViewModel.Section
+
 enum PropertyDetail {
     enum FetchAbility {
         struct Request {}
@@ -20,11 +22,11 @@ enum PropertyDetail {
         struct Request {}
         
         struct Response {
-            
+            let statDetail: StatDetail
         }
         
         struct ViewModel {
-            let name: String
+            let title: String?
             let items: [Section]
             
             struct Section {

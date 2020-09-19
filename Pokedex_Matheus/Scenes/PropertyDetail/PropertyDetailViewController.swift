@@ -64,7 +64,10 @@ class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic 
     }
     
     func displayStat(viewModel: PropertyDetail.FetchStat.ViewModel) {
-        
+        DispatchQueue.main.async { [weak self] in
+            self?.statView?.set(viewModel: StatViewModel(title: viewModel.title,
+                                                         items: viewModel.items.map { UI.Section(name: $0.name, items: $0.items) }))
+        }
     }
     
     private func setView(type: PropertyDetailType) {

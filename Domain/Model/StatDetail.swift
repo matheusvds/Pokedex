@@ -5,14 +5,12 @@ public struct StatDetail: Codable {
     public let affectingMoves: AffectingMove
     public let affectingNatures: AffectingNature
     public let isBattleOnly: Bool
-    public let moveDamageClass: Reference
     public let names: [Name]
 
     enum CodingKeys: String, CodingKey {
         case affectingMoves = "affecting_moves"
         case affectingNatures = "affecting_natures"
         case isBattleOnly = "is_battle_only"
-        case moveDamageClass = "move_damage_class"
         case names
     }
     

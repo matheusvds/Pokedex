@@ -40,6 +40,14 @@ extension PropertyDetailInteractor: PropertyDetailBusinessLogic {
     }
     
     func fetchStat(request: PropertyDetail.FetchStat.Request) {
-        
+        let url = stat.stat.url
+        fetchURL.fetch(url: url) { [weak self] (result: Result<StatDetail, FetchError>) in
+            switch result {
+            case .success(let stat):
+                let response = PropertyDetail.FetchStat.Response(statDetail: stat)
+                self?.presenter?.presentStat(response: response)
+            case .failure: break
+            }
+        }
     }
 }
