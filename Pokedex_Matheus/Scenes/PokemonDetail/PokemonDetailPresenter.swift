@@ -6,6 +6,7 @@ protocol PokemonDetailPresentationLogic {
     func presentPokemonStats(response: PokemonDetail.About.Response)
     func presentPokemonAbilities(response: PokemonDetail.Abilities.Response)
     func presentPokemonGames(response: PokemonDetail.Games.Response)
+    func presentTappedStat(response: PokemonDetail.TapStat.Response)
 }
 
 class PokemonDetailPresenter {
@@ -54,6 +55,11 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
             }
         )
         displayLogic?.displayPokemonGames(viewModel: viewModel)
+    }
+    
+    func presentTappedStat(response: PokemonDetail.TapStat.Response) {
+        let viewModel = PokemonDetail.TapStat.ViewModel(link: response.stat.stat.url)
+        displayLogic?.displayTappedStat(viewModel: viewModel)
     }
     
     // MARK: - Helper methods

@@ -8,6 +8,7 @@ protocol PokemonDetailDisplayLogic: class {
     func displayPokemonStats(viewModel: PokemonDetail.Stats.ViewModel)
     func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel)
     func displayPokemonGames(viewModel: PokemonDetail.Games.ViewModel)
+    func displayTappedStat(viewModel: PokemonDetail.TapStat.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -37,8 +38,6 @@ class PokemonDetailViewController: UIViewController {
 
 // MARK: - PokemonDetailDisplayLogic
 extension PokemonDetailViewController: PokemonDetailDisplayLogic {
-    
-    
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
         viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
         viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name,
@@ -68,10 +67,27 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
         viewLogic.set(games: GamesViewModel(games: viewModel))
     }
 
+    func displayTappedStat(viewModel: PokemonDetail.TapStat.ViewModel) {
+        
+    }
+
+
 }
 
 // MARK: - UI Events
-extension PokemonDetailViewController: PokemonDetailViewDelegate {
+extension PokemonDetailViewController: PokemonDetailDelegate {
+    func didTapStat(at row: Int) {
+        interactor.fetchTappedStat(request: PokemonDetail.TapStat.Request(row: row))
+    }
+    
+    func didTapAbility(at row: Int) {
+        
+    }
+    
+    func didTapGame(at row: Int) {
+        
+    }
+    
     func didTapBackButton() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -79,9 +95,7 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
     func didTapFavorite() {
         print("faved")
     }
-}
 
-extension PokemonDetailViewController: PropertiesViewDelegate {
     func didTapGames() {
         interactor.fetchPokemonGames(request: PokemonDetail.Games.Request())
     }

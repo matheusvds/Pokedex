@@ -87,4 +87,17 @@ enum PokemonDetail {
             }
         }
     }
+    
+    enum TapStat {
+        struct Request {
+            let row: Int
+        }
+        struct Response {
+            let stat: Stat
+        }
+        
+        struct ViewModel {
+            let link: String
+        }
+    }
 }

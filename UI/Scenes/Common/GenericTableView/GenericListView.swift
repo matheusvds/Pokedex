@@ -2,13 +2,15 @@ import Foundation
 import SnapKit
 import UIKit
 
-protocol BaseStatsPropertyViewDelegate: class {
-    func tableView(_ tableView: UITableView, didTap item: Item, at row: Int)
+public protocol GenericListViewDelegate: class {
+    func didTapStat(at row: Int)
+    func didTapAbility(at row: Int)
+    func didTapGame(at row: Int)
 }
 
 class GenericListView<T: Item>: UIView, UITableViewDelegate, UITableViewDataSource  {
     
-    weak var delegate: BaseStatsPropertyViewDelegate?
+    weak var delegate: GenericListViewDelegate?
     private var items = [T]()
     
     lazy var statTable: UITableView = { [weak self] in
@@ -45,7 +47,23 @@ class GenericListView<T: Item>: UIView, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.tableView(tableView, didTap: items[indexPath.row], at: indexPath.row)
+        let item = items[indexPath.row]
+        let row = indexPath.row
+        
+        if item is BaseStatProperty {
+            delegate?.didTapStat(at: row)
+            return
+        }
+        
+        if item is AbilityProperty {
+            delegate?.didTapAbility(at: row)
+            return
+        }
+        
+        if item is GameProperty {
+            delegate?.didTapGame(at: row)
+            return
+        }
     }
 }
 

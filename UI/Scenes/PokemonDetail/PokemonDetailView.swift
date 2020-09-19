@@ -2,15 +2,15 @@ import Foundation
 import UIKit
 import SnapKit
 
-public typealias PokemonDetailDelegate = (PokemonDetailViewDelegate & PropertiesViewDelegate)
+public typealias PokemonDetailDelegate = (PokemonDetailActionsDelegate & PropertiesViewDelegate)
 
-public protocol PokemonDetailViewDelegate: class {
+public protocol PokemonDetailActionsDelegate: class {
     func didTapBackButton()
     func didTapFavorite()
 }
 
 public protocol PokemonDetailViewLogic: PropertiesViewBorder {
-    var delegate: (PokemonDetailViewDelegate & PropertiesViewDelegate)? { get set }
+    var delegate: (PokemonDetailActionsDelegate & PropertiesViewDelegate)? { get set }
     var image: UIImageView { get set }
     func set(viewModel: PokemonDetailViewModel)
 }

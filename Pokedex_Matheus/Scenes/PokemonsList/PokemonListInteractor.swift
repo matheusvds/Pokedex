@@ -11,9 +11,10 @@ protocol PokemonListDataStore {
 
 class PokemonListInteractor: PokemonListDataStore {
     var presenter: PokemonListPresentationLogic?
-    
-    let fetchPokemons: FetchPokemons
     var pokemons: [Pokemon]
+    
+    // MARK: - Use Cases
+    let fetchPokemons: FetchPokemons
     
     init(fetchPokemons: FetchPokemons, pokemons: [Pokemon] = []) {
         self.fetchPokemons = fetchPokemons

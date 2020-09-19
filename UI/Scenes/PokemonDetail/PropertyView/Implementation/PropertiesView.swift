@@ -5,7 +5,13 @@ import SnapKit
 final class PropertiesView: UIView, PropertiesViewBorder {
 
     // MARK: - Public API
-    public weak var delegate: PropertiesViewDelegate?
+    public weak var delegate: PropertiesViewDelegate? {
+        didSet {
+            stats.delegate = delegate
+            abilities.delegate = delegate
+            games.delegate = delegate
+        }
+    }
     
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)

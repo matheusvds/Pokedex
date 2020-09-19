@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol PropertiesViewDelegate: class {
+public protocol PropertiesViewDelegate: GenericListViewDelegate {
     func didTapAbout()
     func didTapStats()
     func didTapAbilities()
@@ -12,4 +12,10 @@ public protocol PropertiesViewBorder {
     func set(stats viewModel: BaseStatsPropertyViewModel)
     func set(abilities viewModel: AbilitiesViewModel)
     func set(games viewModel: GamesViewModel)
+}
+
+public enum Type: String {
+    case stat
+    case ability
+    case game
 }
