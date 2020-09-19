@@ -48,6 +48,7 @@
 		C60CDE6C2516C8A20063EE9E /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67361E6250ED877003BB122 /* Data.framework */; };
 		C60CDE6D2516C8A20063EE9E /* Data.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C67361E6250ED877003BB122 /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C60CDE792516CABA0063EE9E /* Application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60CDE3D2516C1A80063EE9E /* Application.framework */; };
+		C60CDE822516CCF30063EE9E /* ApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE812516CCF30063EE9E /* ApplicationTests.swift */; };
 		C658C1BA250D59E600FC54D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C1B9250D59E600FC54D1 /* AppDelegate.swift */; };
 		C658C1C3250D59E700FC54D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C2250D59E700FC54D1 /* Assets.xcassets */; };
 		C658C1C6250D59E700FC54D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */; };
@@ -159,6 +160,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C60CDE3C2516C1A80063EE9E;
 			remoteInfo = Application;
+		};
+		C60CDE7F2516CCA20063EE9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C658C1AE250D59E600FC54D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C658C1B5250D59E600FC54D1;
+			remoteInfo = Pokedex_Matheus;
 		};
 		C658C1CD250D59E700FC54D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -305,6 +313,7 @@
 		C60CDE402516C1A80063EE9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C60CDE742516CABA0063EE9E /* ApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60CDE782516CABA0063EE9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C60CDE812516CCF30063EE9E /* ApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationTests.swift; sourceTree = "<group>"; };
 		C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex_Matheus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C658C1B9250D59E600FC54D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C658C1BD250D59E600FC54D1 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
@@ -558,6 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				C60CDE782516CABA0063EE9E /* Info.plist */,
+				C60CDE812516CCF30063EE9E /* ApplicationTests.swift */,
 			);
 			path = ApplicationTests;
 			sourceTree = "<group>";
@@ -1054,6 +1064,7 @@
 			);
 			dependencies = (
 				C60CDE7B2516CABA0063EE9E /* PBXTargetDependency */,
+				C60CDE802516CCA20063EE9E /* PBXTargetDependency */,
 			);
 			name = ApplicationTests;
 			productName = ApplicationTests;
@@ -1251,6 +1262,8 @@
 					};
 					C60CDE732516CABA0063EE9E = {
 						CreatedOnToolsVersion = 11.7;
+						LastSwiftMigration = 1170;
+						TestTargetID = C658C1B5250D59E600FC54D1;
 					};
 					C658C1B5250D59E600FC54D1 = {
 						CreatedOnToolsVersion = 11.5;
@@ -1431,6 +1444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C60CDE822516CCF30063EE9E /* ApplicationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1592,6 +1606,11 @@
 			target = C60CDE3C2516C1A80063EE9E /* Application */;
 			targetProxy = C60CDE7A2516CABA0063EE9E /* PBXContainerItemProxy */;
 		};
+		C60CDE802516CCA20063EE9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C658C1B5250D59E600FC54D1 /* Pokedex_Matheus */;
+			targetProxy = C60CDE7F2516CCA20063EE9E /* PBXContainerItemProxy */;
+		};
 		C658C1CE250D59E700FC54D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C658C1B5250D59E600FC54D1 /* Pokedex_Matheus */;
@@ -1713,6 +1732,8 @@
 		C60CDE7D2516CABA0063EE9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ApplicationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
@@ -1723,14 +1744,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithdev.ApplicationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
 			};
 			name = Debug;
 		};
 		C60CDE7E2516CABA0063EE9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ApplicationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
@@ -1743,6 +1768,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
 			};
 			name = Release;
 		};

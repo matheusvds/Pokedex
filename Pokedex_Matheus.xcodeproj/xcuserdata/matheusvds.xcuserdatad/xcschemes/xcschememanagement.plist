@@ -9,10 +9,10 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>ApplicationTests.xcscheme_^#shared#^_</key>
+		<key>CI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>8</integer>
 		</dict>
 		<key>Data.xcscheme_^#shared#^_</key>
 		<dict>
@@ -47,6 +47,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>C60CDE732516CABA0063EE9E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C658C1B5250D59E600FC54D1</key>
 		<dict>
 			<key>primary</key>
