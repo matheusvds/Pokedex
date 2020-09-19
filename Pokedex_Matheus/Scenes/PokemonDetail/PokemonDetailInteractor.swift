@@ -8,6 +8,8 @@ protocol PokemonDetailBusinessLogic {
     func fetchPokemonAbilities(request: PokemonDetail.Abilities.Request)
     func fetchPokemonGames(request: PokemonDetail.Games.Request)
     func fetchTappedStat(request: PokemonDetail.TapStat.Request)
+    func fetchTappedAbility(request: PokemonDetail.TapAbility.Request)
+    func fetchTappedGame(request: PokemonDetail.TapGame.Request)
 }
 
 protocol PokemonDetailDataStore {
@@ -44,8 +46,16 @@ extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
     func fetchTappedStat(request: PokemonDetail.TapStat.Request) {
         let stat = pokemon.stats[request.row]
         presenter?.presentTappedStat(response: PokemonDetail.TapStat.Response(stat: stat))
-        
+    }
+    
+    func fetchTappedAbility(request: PokemonDetail.TapAbility.Request) {
+        let ability = pokemon.abilities[request.row]
+        presenter?.presentTappedAbility(response: PokemonDetail.TapAbility.Response(ability: ability))
+    }
+    
+    func fetchTappedGame(request: PokemonDetail.TapGame.Request) {
+        let game = pokemon.game_indices[request.row]
+        presenter?.presentTappedGame(response: PokemonDetail.TapGame.Response(game: game))
     }
 }
-//            pokemon.abilities[row]
-//            pokemon.game_indices[row]
+

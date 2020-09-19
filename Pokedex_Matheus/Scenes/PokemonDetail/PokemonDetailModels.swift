@@ -100,4 +100,30 @@ enum PokemonDetail {
             let link: String
         }
     }
+    
+    enum TapAbility {
+        struct Request {
+            let row: Int
+        }
+        struct Response {
+            let ability: Ability
+        }
+        
+        struct ViewModel {
+            let link: String
+        }
+    }
+    
+    enum TapGame {
+        struct Request {
+            let row: Int
+        }
+        struct Response {
+            let game: GameIndex
+        }
+        
+        struct ViewModel {
+            let link: String
+        }
+    }
 }

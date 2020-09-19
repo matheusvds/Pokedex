@@ -9,6 +9,8 @@ protocol PokemonDetailDisplayLogic: class {
     func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel)
     func displayPokemonGames(viewModel: PokemonDetail.Games.ViewModel)
     func displayTappedStat(viewModel: PokemonDetail.TapStat.ViewModel)
+    func displayTappedAbility(viewModel: PokemonDetail.TapAbility.ViewModel)
+    func displayTappedGame(viewModel: PokemonDetail.TapGame.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -68,9 +70,16 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     }
 
     func displayTappedStat(viewModel: PokemonDetail.TapStat.ViewModel) {
-        
+        print("go to stat")
     }
-
+    
+    func displayTappedAbility(viewModel: PokemonDetail.TapAbility.ViewModel) {
+        print("go to ab")
+    }
+    
+    func displayTappedGame(viewModel: PokemonDetail.TapGame.ViewModel) {
+        print("go to ga")
+    }
 
 }
 
@@ -81,15 +90,15 @@ extension PokemonDetailViewController: PokemonDetailDelegate {
     }
     
     func didTapAbility(at row: Int) {
-        
+        interactor.fetchTappedAbility(request: PokemonDetail.TapAbility.Request(row: row))
     }
     
     func didTapGame(at row: Int) {
-        
+        interactor.fetchTappedGame(request: PokemonDetail.TapGame.Request(row: row))
     }
     
     func didTapBackButton() {
-        self.navigationController?.popViewController(animated: true)
+        router?.popViewController()
     }
     
     func didTapFavorite() {

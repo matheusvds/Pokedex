@@ -3,7 +3,9 @@ import UIKit
 
 typealias PokemonDetailRouterLogic = (PokemonDetailRoutingLogic & PokemonDetailDataPassing)?
 
-protocol PokemonDetailRoutingLogic { }
+protocol PokemonDetailRoutingLogic {
+    func popViewController()
+}
 
 protocol PokemonDetailDataPassing {
     var dataStore: PokemonDetailDataStore? { get }
@@ -12,4 +14,8 @@ protocol PokemonDetailDataPassing {
 class PokemonDetailRouter: PokemonDetailRoutingLogic, PokemonDetailDataPassing {
     weak var viewController: UIViewController?
     var dataStore: PokemonDetailDataStore?
+    
+    func popViewController() {
+        viewController?.navigationController?.popViewController(animated: true) // ROUTER
+    }
 }
