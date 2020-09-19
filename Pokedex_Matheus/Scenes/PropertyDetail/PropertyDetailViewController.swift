@@ -17,6 +17,7 @@ class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic 
     let interactor: PropertyDetailBusinessLogic
     let router: PropertyDetailRouter
     var abilityView: AbilityViewLogic?
+    var statView: StatViewLogic?
     
     init(type: PropertyDetailType,
          interactor: PropertyDetailBusinessLogic,
@@ -30,9 +31,8 @@ class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic 
     
     override func loadView() {
         switch type {
-        case .ability:
-            view = abilityView?.view
-        default: break
+        case .ability: view = abilityView?.view
+        case .stat: view = statView?.view
         }
     }
     
@@ -69,9 +69,8 @@ class PropertyDetailViewController: UIViewController, PropetyDetailDisplayLogic 
     
     private func setView(type: PropertyDetailType) {
         switch type {
-        case .ability:
-            self.abilityView = AbilityView()
-        default: break
+        case .ability: self.abilityView = AbilityView()
+        case .stat: self.statView = StatView()
         }
     }
 }
