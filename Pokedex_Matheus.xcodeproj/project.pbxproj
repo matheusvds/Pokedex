@@ -482,7 +482,6 @@
 				C658C1E1250D723F00FC54D1 /* PokemonListPresenter.swift */,
 				C658C1DD250D6E4300FC54D1 /* PokemonListModels.swift */,
 				C658C1E3250D734D00FC54D1 /* PokemonListRouter.swift */,
-				C658C209250E73B700FC54D1 /* Views */,
 			);
 			path = PokemonsList;
 			sourceTree = "<group>";
@@ -495,13 +494,6 @@
 				C658C202250E56CD00FC54D1 /* PokeAPIRequest.swift */,
 			);
 			path = RemoteFetchReferences;
-			sourceTree = "<group>";
-		};
-		C658C209250E73B700FC54D1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C67361E7250ED877003BB122 /* Data */ = {
