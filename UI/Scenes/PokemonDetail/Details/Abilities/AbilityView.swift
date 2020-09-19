@@ -19,16 +19,11 @@ public struct AbilityViewModel {
     }
 }
 
-public final class AbilityView: UIView, AbilityViewLogic {
-    public var view: UIView {
-        return self
-    }
-    
+public final class AbilityView: UIView {
     private lazy var name: UILabel = {
         let label = UILabel()
         label.text = "Chlorophylle"
         label.font = UIFont.boldSystemFont(ofSize: 42)
-        label.backgroundColor = .green
         return label
     }()
     
@@ -36,7 +31,6 @@ public final class AbilityView: UIView, AbilityViewLogic {
         let label = UILabel()
         label.text = "This Pokémon's Speed is doubled during strong sunlight. This bonus does not count as a stat modifier."
         label.font = UIFont.systemFont(ofSize: 20)
-        label.backgroundColor = .yellow
         label.numberOfLines = 0
         return label
     }()
@@ -45,7 +39,6 @@ public final class AbilityView: UIView, AbilityViewLogic {
         let label = UILabel()
         label.text = "Pokemons with this ability"
         label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.backgroundColor = .green
         return label
     }()
     
@@ -62,23 +55,11 @@ public final class AbilityView: UIView, AbilityViewLogic {
         return view
     }()
     
-    private var items = [String]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var items = [String]()
     
     public init() {
         super.init(frame: .zero)
         setup()
-    }
-    
-    public func set(viewModel: AbilityViewModel) {
-        self.name.text = viewModel.name
-        self.abilityDesc.text = viewModel.abilityDescription
-        self.items = viewModel.pokemons
-        reloadTableOnMain()
-        toggleView()
     }
     
     required init?(coder: NSCoder) {
@@ -106,6 +87,22 @@ extension AbilityView: UITableViewDataSource {
     }
 }
 
+// MARK: - AbilityViewLogic
+extension AbilityView: AbilityViewLogic {
+    public var view: UIView {
+        return self
+    }
+    
+    public func set(viewModel: AbilityViewModel) {
+        self.name.text = viewModel.name
+        self.abilityDesc.text = viewModel.abilityDescription
+        self.items = viewModel.pokemons
+        reloadTableOnMain()
+        toggleView()
+    }
+}
+
+
 // MARK: - UI Implementation
 extension AbilityView: ViewCode {
     
@@ -114,7 +111,6 @@ extension AbilityView: ViewCode {
     func setupHierarchy() {
         addLoadingViewHiearchy()
     }
-
     
     func buildConstraints() {
         buildLoadingConstraints()
@@ -123,8 +119,6 @@ extension AbilityView: ViewCode {
     func additionalConfiguration() {
         backgroundColor = .white
     }
-    
-    
     
     // MARK: - Helpers
     func toggleView() {
