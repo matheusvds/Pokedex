@@ -61,7 +61,6 @@
 		C658C1BA250D59E600FC54D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C1B9250D59E600FC54D1 /* AppDelegate.swift */; };
 		C658C1C3250D59E700FC54D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C2250D59E700FC54D1 /* Assets.xcassets */; };
 		C658C1C6250D59E700FC54D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */; };
-		C658C1D1250D59E700FC54D1 /* Pokedex_MatheusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C1D0250D59E700FC54D1 /* Pokedex_MatheusTests.swift */; };
 		C67361EF250ED877003BB122 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67361E6250ED877003BB122 /* Data.framework */; };
 		C6736208250EDC04003BB122 /* PokeAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C202250E56CD00FC54D1 /* PokeAPIRequest.swift */; };
 		C673620C250EDC04003BB122 /* RemoteFetchReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C1F3250D7DD200FC54D1 /* RemoteFetchReferences.swift */; };
@@ -171,13 +170,6 @@
 			remoteInfo = Application;
 		};
 		C60CDE7F2516CCA20063EE9E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C658C1AE250D59E600FC54D1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C658C1B5250D59E600FC54D1;
-			remoteInfo = Pokedex_Matheus;
-		};
-		C658C1CD250D59E700FC54D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C658C1AE250D59E600FC54D1 /* Project object */;
 			proxyType = 1;
@@ -338,9 +330,6 @@
 		C658C1C2250D59E700FC54D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C658C1C5250D59E700FC54D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C658C1C7250D59E700FC54D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C658C1CC250D59E700FC54D1 /* Pokedex_MatheusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pokedex_MatheusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C658C1D0250D59E700FC54D1 /* Pokedex_MatheusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokedex_MatheusTests.swift; sourceTree = "<group>"; };
-		C658C1D2250D59E700FC54D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C658C1DD250D6E4300FC54D1 /* PokemonListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListModels.swift; sourceTree = "<group>"; };
 		C658C1DF250D719400FC54D1 /* PokemonListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListInteractor.swift; sourceTree = "<group>"; };
 		C658C1E1250D723F00FC54D1 /* PokemonListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListPresenter.swift; sourceTree = "<group>"; };
@@ -453,13 +442,6 @@
 				C6736259250EF1EB003BB122 /* Data.framework in Frameworks */,
 				C6736262250EF1F2003BB122 /* Infra.framework in Frameworks */,
 				C60CDE442516C1A80063EE9E /* Application.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C658C1C9250D59E700FC54D1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +601,6 @@
 			isa = PBXGroup;
 			children = (
 				C658C1B8250D59E600FC54D1 /* Pokedex_Matheus */,
-				C658C1CF250D59E700FC54D1 /* Pokedex_MatheusTests */,
 				C60CDE3E2516C1A80063EE9E /* Application */,
 				C6A6F7B725119CA100618D2D /* UI */,
 				C60CDE752516CABA0063EE9E /* ApplicationTests */,
@@ -638,7 +619,6 @@
 			isa = PBXGroup;
 			children = (
 				C658C1B6250D59E600FC54D1 /* Pokedex.app */,
-				C658C1CC250D59E700FC54D1 /* Pokedex_MatheusTests.xctest */,
 				C67361E6250ED877003BB122 /* Data.framework */,
 				C67361EE250ED877003BB122 /* DataTests.xctest */,
 				C6736219250EE07E003BB122 /* Infra.framework */,
@@ -661,15 +641,6 @@
 				C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */,
 			);
 			path = Pokedex_Matheus;
-			sourceTree = "<group>";
-		};
-		C658C1CF250D59E700FC54D1 /* Pokedex_MatheusTests */ = {
-			isa = PBXGroup;
-			children = (
-				C658C1D0250D59E700FC54D1 /* Pokedex_MatheusTests.swift */,
-				C658C1D2250D59E700FC54D1 /* Info.plist */,
-			);
-			path = Pokedex_MatheusTests;
 			sourceTree = "<group>";
 		};
 		C658C1DB250D5D0000FC54D1 /* Scenes */ = {
@@ -1147,24 +1118,6 @@
 			productReference = C658C1B6250D59E600FC54D1 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C658C1CB250D59E700FC54D1 /* Pokedex_MatheusTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C658C1D8250D59E700FC54D1 /* Build configuration list for PBXNativeTarget "Pokedex_MatheusTests" */;
-			buildPhases = (
-				C658C1C8250D59E700FC54D1 /* Sources */,
-				C658C1C9250D59E700FC54D1 /* Frameworks */,
-				C658C1CA250D59E700FC54D1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C658C1CE250D59E700FC54D1 /* PBXTargetDependency */,
-			);
-			name = Pokedex_MatheusTests;
-			productName = Pokedex_MatheusTests;
-			productReference = C658C1CC250D59E700FC54D1 /* Pokedex_MatheusTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		C67361E5250ED877003BB122 /* Data */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C67361F7250ED877003BB122 /* Build configuration list for PBXNativeTarget "Data" */;
@@ -1319,10 +1272,6 @@
 					C658C1B5250D59E600FC54D1 = {
 						CreatedOnToolsVersion = 11.5;
 					};
-					C658C1CB250D59E700FC54D1 = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = C658C1B5250D59E600FC54D1;
-					};
 					C67361E5250ED877003BB122 = {
 						CreatedOnToolsVersion = 11.7;
 					};
@@ -1366,7 +1315,6 @@
 			projectRoot = "";
 			targets = (
 				C658C1B5250D59E600FC54D1 /* Pokedex_Matheus */,
-				C658C1CB250D59E700FC54D1 /* Pokedex_MatheusTests */,
 				C60CDE3C2516C1A80063EE9E /* Application */,
 				C60CDE732516CABA0063EE9E /* ApplicationTests */,
 				C6A6F7B525119CA100618D2D /* UI */,
@@ -1401,13 +1349,6 @@
 			files = (
 				C658C1C6250D59E700FC54D1 /* LaunchScreen.storyboard in Resources */,
 				C658C1C3250D59E700FC54D1 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C658C1CA250D59E700FC54D1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1504,14 +1445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C658C1BA250D59E600FC54D1 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C658C1C8250D59E700FC54D1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C658C1D1250D59E700FC54D1 /* Pokedex_MatheusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1671,11 +1604,6 @@
 			target = C658C1B5250D59E600FC54D1 /* Pokedex_Matheus */;
 			targetProxy = C60CDE7F2516CCA20063EE9E /* PBXContainerItemProxy */;
 		};
-		C658C1CE250D59E700FC54D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C658C1B5250D59E600FC54D1 /* Pokedex_Matheus */;
-			targetProxy = C658C1CD250D59E700FC54D1 /* PBXContainerItemProxy */;
-		};
 		C67361F1250ED877003BB122 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C67361E5250ED877003BB122 /* Data */;
@@ -1796,7 +1724,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ApplicationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1807,7 +1735,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex.app/Pokedex";
 			};
 			name = Debug;
 		};
@@ -1818,7 +1746,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ApplicationTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1828,7 +1756,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex.app/Pokedex";
 			};
 			name = Release;
 		};
@@ -1984,50 +1912,6 @@
 			};
 			name = Release;
 		};
-		C658C1D9250D59E700FC54D1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Pokedex_MatheusTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mithdev.Pokedex-MatheusTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
-			};
-			name = Debug;
-		};
-		C658C1DA250D59E700FC54D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Pokedex_MatheusTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mithdev.Pokedex-MatheusTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
-			};
-			name = Release;
-		};
 		C67361F8250ED877003BB122 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2096,6 +1980,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -2106,6 +1991,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2117,6 +2003,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DataTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -2127,6 +2014,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -2196,6 +2084,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = InfraTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -2206,6 +2095,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2217,6 +2107,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = InfraTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -2227,6 +2118,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -2304,7 +2196,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex.app/Pokedex";
 			};
 			name = Debug;
 		};
@@ -2324,7 +2216,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex_Matheus.app/Pokedex_Matheus";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex.app/Pokedex";
 			};
 			name = Release;
 		};
@@ -2420,15 +2312,6 @@
 			buildConfigurations = (
 				C658C1D6250D59E700FC54D1 /* Debug */,
 				C658C1D7250D59E700FC54D1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C658C1D8250D59E700FC54D1 /* Build configuration list for PBXNativeTarget "Pokedex_MatheusTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C658C1D9250D59E700FC54D1 /* Debug */,
-				C658C1DA250D59E700FC54D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

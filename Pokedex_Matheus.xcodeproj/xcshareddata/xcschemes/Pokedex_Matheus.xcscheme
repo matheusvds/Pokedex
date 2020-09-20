@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C658C1B5250D59E600FC54D1"
-               BuildableName = "Pokedex_Matheus.app"
+               BuildableName = "Pokedex.app"
                BlueprintName = "Pokedex_Matheus"
                ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
             </BuildableReference>
@@ -32,29 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C658C1CB250D59E700FC54D1"
-               BuildableName = "Pokedex_MatheusTests.xctest"
-               BlueprintName = "Pokedex_MatheusTests"
-               ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C67917FE251455E7001C4AA1"
-               BuildableName = "UseCasesIntegrationTests.xctest"
-               BlueprintName = "UseCasesIntegrationTests"
-               ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C6736220250EE07E003BB122"
-               BuildableName = "InfraTests.xctest"
-               BlueprintName = "InfraTests"
+               BlueprintIdentifier = "C60CDE732516CABA0063EE9E"
+               BuildableName = "ApplicationTests.xctest"
+               BlueprintName = "ApplicationTests"
                ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -72,9 +52,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C60CDE732516CABA0063EE9E"
-               BuildableName = "ApplicationTests.xctest"
-               BlueprintName = "ApplicationTests"
+               BlueprintIdentifier = "C6736220250EE07E003BB122"
+               BuildableName = "InfraTests.xctest"
+               BlueprintName = "InfraTests"
+               ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C67917FE251455E7001C4AA1"
+               BuildableName = "UseCasesIntegrationTests.xctest"
+               BlueprintName = "UseCasesIntegrationTests"
                ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -95,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C658C1B5250D59E600FC54D1"
-            BuildableName = "Pokedex_Matheus.app"
+            BuildableName = "Pokedex.app"
             BlueprintName = "Pokedex_Matheus"
             ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
          </BuildableReference>
@@ -112,7 +102,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C658C1B5250D59E600FC54D1"
-            BuildableName = "Pokedex_Matheus.app"
+            BuildableName = "Pokedex.app"
             BlueprintName = "Pokedex_Matheus"
             ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
          </BuildableReference>
