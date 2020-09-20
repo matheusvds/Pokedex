@@ -25,10 +25,12 @@ class PokemonDetailInteractor: PokemonDetailDataStore {
     var presenter: PokemonDetailPresentationLogic?
     
     // MARK: Use cases
-    let remoteFavoriteWebHook: FavoritePokemon
+    let remoteFavorite: FavoritePokemon
+    let localFavorite: LocalFavoritePokemon
     
-    init(remoteFavorite: FavoritePokemon) {
-        self.remoteFavoriteWebHook = remoteFavorite
+    init(remoteFavorite: FavoritePokemon, localFavorite: LocalFavoritePokemon) {
+        self.remoteFavorite = remoteFavorite
+        self.localFavorite = localFavorite
     }
 }
 
@@ -67,12 +69,14 @@ extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
     }
     
     func fetchFavoritePokemon(request: PokemonDetail.FavoritePokemon.Request) {
-        remoteFavoriteWebHook.favorite(pokemon: pokemon) { [weak self] result in
+        remoteFavorite.favorite(pokemon: pokemon) { [weak self] result in
+            guard let `self` = self else { return }
             switch result {
             case .success:
-                self?.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: true))
+                let favorite = self.localFavorite.favorite(pokemon: self.pokemon)
+                self.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: true, favorite: favorite))
             case .failure:
-                self?.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: false))
+                self.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: false, favorite: false))
             }
         }
     }

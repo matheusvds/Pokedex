@@ -68,7 +68,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response) {
         DispatchQueue.main.async { [weak self] in
-            self?.displayLogic?.displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel(success: response.success))
+            self?.displayLogic?.displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel(success: response.success, favorite: response.favorite))
         }
     }
     

@@ -65,8 +65,10 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         self.propertiesView.set(games: viewModel)
     }
     
-    public func set(favorite: Bool) {
+    public func set(favorite: Bool, success: Bool) {
         stopFavoriteLoading()
+        guard success else { return }
+        self.favorite.tintColor = favorite ? .yellow : .black
     }
     
     // MARK: - UI Components
@@ -80,7 +82,6 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     
     private lazy var favorite: UIButton = {
         let button = UIButton()
-//        button.setTitle("Fav", for: .normal)
         button.setTitleColor(.white, for: .normal)
         let image = UIImage(named: "heart", in: Bundle(for: type(of: self)), compatibleWith: .none)?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
@@ -225,7 +226,7 @@ extension PokemonDetailView: ViewCode {
     private func drawFavorite(_ view: UIView) {
         view.snp.makeConstraints { (make) in
             make.centerY.equalTo(back)
-            make.height.equalTo(title)
+            make.height.equalTo(35)
             make.width.equalTo(view.snp.height)
             make.right.equalToSuperview().inset(Self.padding)
         }

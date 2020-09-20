@@ -47,7 +47,7 @@ public class Main: SceneFactory {
     public func makePokemonDetailViewController() -> UIViewController {
         let presenter = PokemonDetailPresenter()
         let router = PokemonDetailRouter()
-        let interactor = PokemonDetailInteractor(remoteFavorite: makeFavoritePokemonRemoteUseCase())
+        let interactor = PokemonDetailInteractor(remoteFavorite: makeRemoteFavoritePokemonUseCase(), localFavorite: makeLocalFavoritePokemonUseCase())
         let view = PokemonDetailView()
         let viewController = PokemonDetailViewController(viewLogic: view, interactor: interactor, router: router)
         
@@ -89,7 +89,11 @@ public class Main: SceneFactory {
         return RemoteFetchURLInfo(client: requestObject)
     }
 
-    private func makeFavoritePokemonRemoteUseCase() -> FavoritePokemon {
+    private func makeRemoteFavoritePokemonUseCase() -> FavoritePokemon {
         return RemoteFavoritePokemon(client: client)
+    }
+    
+    private func makeLocalFavoritePokemonUseCase() -> LocalFavoritePokemon {
+        return UserDefaultFavoritePokemon()
     }
 }

@@ -77,7 +77,7 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     }
     
     func displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel) {
-        self.viewLogic.set(favorite: viewModel.success)
+        self.viewLogic.set(favorite: viewModel.favorite, success: viewModel.success)
         shouldShowErrorAlert(success: viewModel.success)
     }
 }

@@ -53,6 +53,8 @@
 		C60CDE872516D1960063EE9E /* StatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE862516D1960063EE9E /* StatViewModel.swift */; };
 		C60CDE8A2516D6D20063EE9E /* FavoritePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE892516D6D20063EE9E /* FavoritePokemon.swift */; };
 		C60CDE8E2516D9DF0063EE9E /* RemoteFavoritePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE8D2516D9DF0063EE9E /* RemoteFavoritePokemon.swift */; };
+		C60CDE902516F05A0063EE9E /* UserDefaultFavoritePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE8F2516F05A0063EE9E /* UserDefaultFavoritePokemon.swift */; };
+		C60CDE922516F2920063EE9E /* LocalFavoritePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60CDE912516F2920063EE9E /* LocalFavoritePokemon.swift */; };
 		C658C1BA250D59E600FC54D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C658C1B9250D59E600FC54D1 /* AppDelegate.swift */; };
 		C658C1C3250D59E700FC54D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C2250D59E700FC54D1 /* Assets.xcassets */; };
 		C658C1C6250D59E700FC54D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C658C1C4250D59E700FC54D1 /* LaunchScreen.storyboard */; };
@@ -322,6 +324,8 @@
 		C60CDE862516D1960063EE9E /* StatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatViewModel.swift; sourceTree = "<group>"; };
 		C60CDE892516D6D20063EE9E /* FavoritePokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePokemon.swift; sourceTree = "<group>"; };
 		C60CDE8D2516D9DF0063EE9E /* RemoteFavoritePokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFavoritePokemon.swift; sourceTree = "<group>"; };
+		C60CDE8F2516F05A0063EE9E /* UserDefaultFavoritePokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultFavoritePokemon.swift; sourceTree = "<group>"; };
+		C60CDE912516F2920063EE9E /* LocalFavoritePokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoritePokemon.swift; sourceTree = "<group>"; };
 		C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex_Matheus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C658C1B9250D59E600FC54D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C658C1BD250D59E600FC54D1 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
@@ -601,6 +605,7 @@
 		C60CDE8C2516D73A0063EE9E /* LocalFavoritePokemon */ = {
 			isa = PBXGroup;
 			children = (
+				C60CDE8F2516F05A0063EE9E /* UserDefaultFavoritePokemon.swift */,
 			);
 			path = LocalFavoritePokemon;
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				C67362862510076F003BB122 /* FetchPokemons.swift */,
 				C67917D82514157F001C4AA1 /* FetchURLInfo.swift */,
 				C60CDE892516D6D20063EE9E /* FavoritePokemon.swift */,
+				C60CDE912516F2920063EE9E /* LocalFavoritePokemon.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1500,6 +1506,7 @@
 				C6736289251007A3003BB122 /* RemoteFetchPokemons.swift in Sources */,
 				C673629325102B1C003BB122 /* HttpError.swift in Sources */,
 				C6736208250EDC04003BB122 /* PokeAPIRequest.swift in Sources */,
+				C60CDE902516F05A0063EE9E /* UserDefaultFavoritePokemon.swift in Sources */,
 				C6736290251029C5003BB122 /* HttpClient.swift in Sources */,
 				C6736238250EE2BD003BB122 /* JSONParserError.swift in Sources */,
 				C6736236250EE27B003BB122 /* RequestObject.swift in Sources */,
@@ -1563,6 +1570,7 @@
 				C6736267250EF4C9003BB122 /* TypeElement.swift in Sources */,
 				C60CDE352516B1680063EE9E /* StatDetail.swift in Sources */,
 				C60CDE31251693C80063EE9E /* AbilityDetail.swift in Sources */,
+				C60CDE922516F2920063EE9E /* LocalFavoritePokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

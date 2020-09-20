@@ -117,10 +117,12 @@ enum PokemonDetail {
         
         struct Response {
             let success: Bool
+            let favorite: Bool
         }
         
         struct ViewModel {
             let success: Bool
+            let favorite: Bool
         }
     }
 }
