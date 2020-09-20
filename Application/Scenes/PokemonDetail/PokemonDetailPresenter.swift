@@ -33,7 +33,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentPokemonStats(response: PokemonDetail.About.Response) {
         let viewModel = PokemonDetail.Stats.ViewModel(
-            stats: response.pokemon.stats.map { PokemonDetail.Stats.ViewModel.Stat (name: $0.stat.name,
+            stats: response.pokemon.stats.map { PokemonDetail.Stats.ViewModel.Stat (name: $0.stat.name.replacingOccurrences(of: "-", with: " "),
                                                                                     value: "\($0.baseStat)")
             }
         )
@@ -42,7 +42,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentPokemonAbilities(response: PokemonDetail.Abilities.Response) {
         let viewModel = PokemonDetail.Abilities.ViewModel(
-            stats: response.pokemon.abilities.map { PokemonDetail.Abilities.ViewModel.Ability(name: $0.ability.name)
+            stats: response.pokemon.abilities.map { PokemonDetail.Abilities.ViewModel.Ability(name: $0.ability.name.replacingOccurrences(of: "-", with: " "))
             }
         )
         displayLogic?.displayPokemonAbilities(viewModel: viewModel)
@@ -50,7 +50,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentPokemonGames(response: PokemonDetail.Games.Response) {
         let viewModel = PokemonDetail.Games.ViewModel(
-            games: response.pokemon.gamesIndices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name)
+            games: response.pokemon.gamesIndices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name.replacingOccurrences(of: "-", with: " "))
             }
         )
         displayLogic?.displayPokemonGames(viewModel: viewModel)
