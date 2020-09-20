@@ -332,7 +332,7 @@
 		C60CDE93251797950063EE9E /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		C60CDE95251798220063EE9E /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		C60CDE992517A0C90063EE9E /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
-		C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex_Matheus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C658C1B6250D59E600FC54D1 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C658C1B9250D59E600FC54D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C658C1BD250D59E600FC54D1 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		C658C1C2250D59E700FC54D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -637,7 +637,7 @@
 		C658C1B7250D59E600FC54D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */,
+				C658C1B6250D59E600FC54D1 /* Pokedex.app */,
 				C658C1CC250D59E700FC54D1 /* Pokedex_MatheusTests.xctest */,
 				C67361E6250ED877003BB122 /* Data.framework */,
 				C67361EE250ED877003BB122 /* DataTests.xctest */,
@@ -1144,7 +1144,7 @@
 			packageProductDependencies = (
 			);
 			productName = Pokedex_Matheus;
-			productReference = C658C1B6250D59E600FC54D1 /* Pokedex_Matheus.app */;
+			productReference = C658C1B6250D59E600FC54D1 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C658C1CB250D59E700FC54D1 /* Pokedex_MatheusTests */ = {
@@ -1959,7 +1959,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mithdev.Pokedex-Matheus";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pokedex;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1978,7 +1978,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mithdev.Pokedex-Matheus";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pokedex;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
