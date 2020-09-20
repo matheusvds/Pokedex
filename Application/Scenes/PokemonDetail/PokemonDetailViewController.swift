@@ -41,8 +41,8 @@ class PokemonDetailViewController: UIViewController {
 // MARK: - PokemonDetailDisplayLogic
 extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
-        viewLogic.image.setImage(with: viewModel.pokemon.detailImage, placeholder: nil)
         viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name,
+                                                        image: viewModel.pokemon.detailImage,
                                                         firstType: viewModel.pokemon.firstType,
                                                         secType: viewModel.pokemon.secType,
                                                         order: viewModel.pokemon.order))
@@ -84,6 +84,10 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
 
 // MARK: - UI Events
 extension PokemonDetailViewController: PokemonDetailDelegate {
+    func set(imageView: UIImageView?, with url: String) {
+        imageView?.setImage(with: url, placeholder: nil)
+    }
+    
     func didTapStat(at row: Int) {
         interactor.fetchTappedStat(request: PokemonDetail.TapStat.Request(row: row))
     }

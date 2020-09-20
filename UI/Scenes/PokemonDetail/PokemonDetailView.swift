@@ -7,6 +7,7 @@ public typealias PokemonDetailDelegate = (PokemonDetailActionsDelegate & Propert
 public protocol PokemonDetailActionsDelegate: class {
     func didTapBackButton()
     func didTapFavorite()
+    func set(imageView: UIImageView?, with url: String)
 }
 
 public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
@@ -45,6 +46,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         self.secType.text = viewModel.secType
         self.secType.isHidden = viewModel.secType == nil
         self.number.text = viewModel.order
+        delegate?.set(imageView: self.image, with: viewModel.image)
     }
     
     public func set(about viewModel: AboutPropertyViewModel) {
