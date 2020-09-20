@@ -43,7 +43,11 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     public func set(viewModel: PokemonDetailViewModel) {
         self.title.text = viewModel.name
         self.firstType.text = viewModel.firstType
+        self.firstType.backgroundColor = ColorTheme(rawValue: viewModel.firstType)?.color
         self.secType.text = viewModel.secType
+        if let secType = viewModel.secType {
+            self.secType.backgroundColor = ColorTheme(rawValue: secType)?.color
+        }
         self.secType.isHidden = viewModel.secType == nil
         self.number.text = viewModel.order
         setFavColor(viewModel.favorited)
@@ -73,7 +77,26 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     }
     
     private func setFavColor(_ favorited: Bool) {
-        self.favorite.tintColor = favorited ? .yellow : .black
+        if favorited {
+            favorite.setImage(filledHeart, for: .normal)
+            return
+        }
+        favorite.setImage(emptyHeart, for: .normal)
+    }
+    
+    override public func draw(_ rect: CGRect) {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [
+            self.firstType.backgroundColor?.cgColor ?? UIColor.systemPurple.cgColor,
+            self.secType.backgroundColor?.cgColor ?? UIColor.systemPink.cgColor
+        ]
+        gradient.startPoint = CGPoint(x: 1, y: 0)
+        gradient.endPoint = CGPoint(x: 0.2, y: 1)
+        gradient.cornerRadius = 10
+        if gradient.superlayer == nil {
+            layer.insertSublayer(gradient, at: 0)
+        }
     }
     
     // MARK: - UI Components
@@ -88,9 +111,9 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     private lazy var favorite: UIButton = {
         let button = UIButton()
         button.setTitleColor(.white, for: .normal)
-        let image = UIImage(named: "heart", in: Bundle(for: type(of: self)), compatibleWith: .none)?.withRenderingMode(.alwaysTemplate)
+        let image = filledHeart
         button.setImage(image, for: .normal)
-        button.tintColor = .black
+        button.tintColor = .white
         return button
     }()
     
@@ -104,12 +127,14 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         let label = UILabel()
         label.text = "Bulbasaur"
         label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textColor = .white
         return label
     }()
     
     private lazy var number: UILabel = {
         let label = UILabel()
         label.text = "#001"
+        label.textColor = .white
         return label
     }()
     
@@ -117,6 +142,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         let label = RoundPaddingLabel()
         label.text = "Poison"
         label.backgroundColor = .blue
+        label.textColor = .white
         return label
     }()
     
@@ -124,6 +150,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         let label = RoundPaddingLabel()
         label.text = "Flying"
         label.backgroundColor = .cyan
+        label.textColor = .white
         return label
     }()
     
@@ -159,6 +186,15 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         addSubview(favorite)
         drawFavorite(favorite)
     }
+    
+    private var filledHeart: UIImage? {
+        return UIImage(named: "heart", in: Bundle(for: type(of: self)), compatibleWith: .none)?.withRenderingMode(.alwaysTemplate)
+    }
+    
+    private var emptyHeart: UIImage? {
+        return UIImage(named: "heartEmpty", in: Bundle(for: type(of: self)), compatibleWith: .none)?.withRenderingMode(.alwaysTemplate)
+    }
+
 }
 
 // MARK: - UI Implementation
@@ -222,10 +258,6 @@ extension PokemonDetailView: ViewCode {
             make.centerX.equalTo(propertiesView)
             make.bottom.equalTo(propertiesView.snp.top).inset(Self.padding)
         }
-    }
-    
-    func additionalConfiguration() {
-        backgroundColor = .systemPink
     }
     
     private func drawFavorite(_ view: UIView) {

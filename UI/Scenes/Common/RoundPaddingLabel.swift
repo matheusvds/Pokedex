@@ -8,7 +8,7 @@ class RoundPaddingLabel: UILabel {
     var leftInset: CGFloat
     var rightInset: CGFloat
     
-    required init(withInsets top: CGFloat = 5, _ bottom: CGFloat = 5, _ left: CGFloat = 15, _ right: CGFloat = 15) {
+    required init(withInsets top: CGFloat = 5, _ bottom: CGFloat = 5, _ left: CGFloat = 20, _ right: CGFloat = 20) {
         self.topInset = top
         self.bottomInset = bottom
         self.leftInset = left
@@ -38,6 +38,8 @@ class RoundPaddingLabel: UILabel {
     private func setBorderRadius() {
         layer.cornerRadius = 15
         layer.masksToBounds = true
+        let color = backgroundColor?.withAlphaComponent(0.7)
+        self.backgroundColor = color
     }
     
 }
