@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 public protocol PokemonDetailViewLogic: PropertiesViewBorder {
     var delegate: (PokemonDetailActionsDelegate & PropertiesViewDelegate)? { get set }
