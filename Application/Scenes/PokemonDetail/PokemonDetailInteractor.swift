@@ -9,6 +9,7 @@ protocol PokemonDetailBusinessLogic {
     func fetchPokemonGames(request: PokemonDetail.Games.Request)
     func fetchTappedStat(request: PokemonDetail.TapStat.Request)
     func fetchTappedAbility(request: PokemonDetail.TapAbility.Request)
+    func fetchFavoritePokemon(request: PokemonDetail.FavoritePokemon.Request)
 }
 
 protocol PokemonDetailDataStore {
@@ -22,6 +23,13 @@ class PokemonDetailInteractor: PokemonDetailDataStore {
     var stat: Stat!
     var ability: Ability!
     var presenter: PokemonDetailPresentationLogic?
+    
+    // MARK: Use cases
+    let remoteFavoriteWebHook: FavoritePokemon
+    
+    init(remoteFavorite: FavoritePokemon) {
+        self.remoteFavoriteWebHook = remoteFavorite
+    }
 }
 
 extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
@@ -56,6 +64,17 @@ extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
         let ability = pokemon.abilities[request.row]
         self.ability = ability
         presenter?.presentTappedAbility(response: PokemonDetail.TapAbility.Response())
+    }
+    
+    func fetchFavoritePokemon(request: PokemonDetail.FavoritePokemon.Request) {
+        remoteFavoriteWebHook.favorite(pokemon: pokemon) { [weak self] result in
+            switch result {
+            case .success:
+                self?.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: true))
+            case .failure:
+                self?.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: false))
+            }
+        }
     }
 }
 

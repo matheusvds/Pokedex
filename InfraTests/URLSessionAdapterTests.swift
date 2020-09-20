@@ -62,7 +62,7 @@ extension URLSessionAdapterTests {
     func testRequest(for request: URLRequest = makeDummyRequest(), action: @escaping (URLRequest)-> Void) {
         let sut = makeSut()
         let exp = expectation(description: "wait")
-        sut.get(from: request) { _ in exp.fulfill() }
+        sut.send(from: request) { _ in exp.fulfill() }
         var request: URLRequest?
         RequestObserver.observe { request = $0 }
         wait(for: [exp], timeout: 1.0)
@@ -73,7 +73,7 @@ extension URLSessionAdapterTests {
         let sut = makeSut()
         URLProtocolStub.simulate(data: stub.data, response: stub.response, error: stub.error)
         let exp = expectation(description: "wait")
-        sut.get(from: makeDummyRequest()) { receivedResult in
+        sut.send(from: makeDummyRequest()) { receivedResult in
             switch (expectedResult, receivedResult) {
             case (.failure(let expectedError), .failure(let receivedError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)

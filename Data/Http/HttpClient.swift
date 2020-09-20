@@ -1,5 +1,5 @@
 import Foundation
 
 public protocol HttpClient {
-    @discardableResult func get(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) -> URLSessionDataTask
+    @discardableResult func send(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) -> URLSessionDataTask
 }

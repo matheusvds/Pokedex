@@ -3,6 +3,7 @@ import Data
 import Domain
 import UI
 import UIKit
+import Infra
 
 public typealias SceneFactory = PropertyDetailFactory & PokemonDetailFactory & PokemonListFactory
 
@@ -18,10 +19,12 @@ public protocol PokemonListFactory: class {
 
 public class Main: SceneFactory {
     
+    let client: HttpClient
     let requestObject: RequestObject
     
-    public init(requestObject: RequestObject) {
-        self.requestObject = requestObject
+    public init(client: HttpClient) {
+        self.client = client
+        self.requestObject = RequestObjectClient(client: client)
     }
     
     public func makePokemonListViewController() -> UIViewController {
@@ -44,7 +47,7 @@ public class Main: SceneFactory {
     public func makePokemonDetailViewController() -> UIViewController {
         let presenter = PokemonDetailPresenter()
         let router = PokemonDetailRouter()
-        let interactor = PokemonDetailInteractor()
+        let interactor = PokemonDetailInteractor(remoteFavorite: makeFavoritePokemonRemoteUseCase())
         let view = PokemonDetailView()
         let viewController = PokemonDetailViewController(viewLogic: view, interactor: interactor, router: router)
         
@@ -86,4 +89,7 @@ public class Main: SceneFactory {
         return RemoteFetchURLInfo(client: requestObject)
     }
 
+    private func makeFavoritePokemonRemoteUseCase() -> FavoritePokemon {
+        return RemoteFavoritePokemon(client: client)
+    }
 }

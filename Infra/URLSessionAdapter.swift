@@ -9,7 +9,7 @@ public final class URLSessionAdapter: HttpClient {
     }
 
     @discardableResult
-    public func get(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) -> URLSessionDataTask {
+    public func send(from request: URLRequest, completion: @escaping (Result<Data?, HttpError>) -> Void) -> URLSessionDataTask {
         let task = session.dataTask(with: request) { (data, urlResponse, error) in
             if let data = data, let response = urlResponse as? HTTPURLResponse, error == nil {
                 switch response.statusCode {

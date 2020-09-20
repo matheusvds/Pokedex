@@ -10,7 +10,7 @@ public struct RequestObjectClient: RequestObject {
     }
     
     public func fetch<T: Decodable>(with request: URLRequest, completion: @escaping (Result<T, RequestError>) -> Void) {
-        client.get(from: request) { (result) in
+        client.send(from: request) { (result) in
             switch result {
             case .success(let data):
                 guard let data = data else { return completion(.failure(.responseUnsuccessful))  }

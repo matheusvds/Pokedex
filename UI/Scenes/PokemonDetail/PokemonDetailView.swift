@@ -63,6 +63,10 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         self.propertiesView.set(games: viewModel)
     }
     
+    public func set(favorite: Bool) {
+        stopFavoriteLoading()
+    }
+    
     // MARK: - UI Components
     private lazy var back: UIButton = {
         let button = UIButton()
@@ -78,6 +82,12 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .darkGray
         return button
+    }()
+    
+    private lazy var favoriteLoading: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .gray)
+        view.startAnimating()
+        return view
     }()
     
     private lazy var title: UILabel = {
@@ -121,10 +131,23 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     
     @objc private func didTapFavorite() {
         delegate?.didTapFavorite()
+        startFavoriteLoading()
     }
     
     @objc private func didTapBack() {
         delegate?.didTapBackButton()
+    }
+    
+    private func startFavoriteLoading() {
+        favorite.removeFromSuperview()
+        addSubview(favoriteLoading)
+        drawFavorite(favoriteLoading)
+    }
+    
+    private func stopFavoriteLoading() {
+        favoriteLoading.removeFromSuperview()
+        addSubview(favorite)
+        drawFavorite(favorite)
     }
 }
 
@@ -156,10 +179,7 @@ extension PokemonDetailView: ViewCode {
             make.height.equalTo(favorite)
         }
         
-        favorite.snp.makeConstraints { (make) in
-            make.centerY.equalTo(back)
-            make.right.equalToSuperview().inset(Self.padding)
-        }
+        drawFavorite(favorite)
         
         title.snp.makeConstraints { (make) in
             make.top.equalTo(back.snp.bottom).offset(Self.padding)
@@ -193,7 +213,15 @@ extension PokemonDetailView: ViewCode {
             make.bottom.equalTo(propertiesView.snp.top).inset(Self.padding)
         }
     }
+    
     func additionalConfiguration() {
         backgroundColor = .systemPink
+    }
+    
+    private func drawFavorite(_ view: UIView) {
+        view.snp.makeConstraints { (make) in
+            make.centerY.equalTo(back)
+            make.right.equalToSuperview().inset(Self.padding)
+        }
     }
 }

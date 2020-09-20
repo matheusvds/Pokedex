@@ -10,6 +10,7 @@ protocol PokemonDetailDisplayLogic: class {
     func displayPokemonGames(viewModel: PokemonDetail.Games.ViewModel)
     func displayTappedStat(viewModel: PokemonDetail.TapStat.ViewModel)
     func displayTappedAbility(viewModel: PokemonDetail.TapAbility.ViewModel)
+    func displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel)
 }
 
 class PokemonDetailViewController: UIViewController {
@@ -53,18 +54,17 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     
     func displayPokemonStats(viewModel: PokemonDetail.Stats.ViewModel) {
         let statsViewModel = viewModel.stats.map{ BaseStatProperty(name: $0.name,
-                                                                   value: $0.value,
-                                                                   link: $0.link) }
+                                                                   value: $0.value) }
         viewLogic.set(stats: BaseStatsPropertyViewModel(stats: statsViewModel))
     }
     
     func displayPokemonAbilities(viewModel: PokemonDetail.Abilities.ViewModel) {
-        let viewModel = viewModel.stats.map { AbilityProperty(name: $0.name, link: $0.link) }
+        let viewModel = viewModel.stats.map { AbilityProperty(name: $0.name) }
         viewLogic.set(abilities: AbilitiesViewModel(abilities: viewModel))
     }
     
     func displayPokemonGames(viewModel: PokemonDetail.Games.ViewModel) {
-        let viewModel = viewModel.games.map { GameProperty(name: $0.name, link: $0.link) }
+        let viewModel = viewModel.games.map { GameProperty(name: $0.name) }
         viewLogic.set(games: GamesViewModel(games: viewModel))
     }
 
@@ -75,7 +75,11 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     func displayTappedAbility(viewModel: PokemonDetail.TapAbility.ViewModel) {
         router?.routeToPropertyDetail(type: .ability)
     }
-
+    
+    func displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel) {
+        self.viewLogic.set(favorite: viewModel.success)
+        shouldShowErrorAlert(success: viewModel.success)
+    }
 }
 
 // MARK: - UI Events
@@ -93,7 +97,7 @@ extension PokemonDetailViewController: PokemonDetailDelegate {
     }
     
     func didTapFavorite() {
-        print("faved")
+        interactor.fetchFavoritePokemon(request: PokemonDetail.FavoritePokemon.Request())
     }
 
     func didTapGames() {
@@ -110,5 +114,13 @@ extension PokemonDetailViewController: PokemonDetailDelegate {
     
     func didTapAbilities() {
         interactor.fetchPokemonAbilities(request: PokemonDetail.Abilities.Request())
+    }
+}
+
+// MARK: - Helper Methods
+extension PokemonDetailViewController {
+    private func shouldShowErrorAlert(success: Bool) {
+        guard !success else { return }
+        showAlert(title: "Error", message: "An error occurred while saving 😭")
     }
 }

@@ -17,10 +17,8 @@ public class GameProperty: Item {
     
     var name: String?
     var value: String?
-    var link: String?
     
-    public init(name: String, link: String) {
+    public init(name: String) {
         self.name = name
-        self.link = link
     }
 }

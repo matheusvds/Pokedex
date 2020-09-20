@@ -8,6 +8,7 @@ protocol PokemonDetailPresentationLogic {
     func presentPokemonGames(response: PokemonDetail.Games.Response)
     func presentTappedStat(response: PokemonDetail.TapStat.Response)
     func presentTappedAbility(response: PokemonDetail.TapAbility.Response)
+    func presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response)
 }
 
 class PokemonDetailPresenter {
@@ -33,8 +34,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     func presentPokemonStats(response: PokemonDetail.About.Response) {
         let viewModel = PokemonDetail.Stats.ViewModel(
             stats: response.pokemon.stats.map { PokemonDetail.Stats.ViewModel.Stat (name: $0.stat.name,
-                                                                                    value: "\($0.baseStat)",
-                link: $0.stat.url)
+                                                                                    value: "\($0.baseStat)")
             }
         )
         displayLogic?.displayPokemonStats(viewModel: viewModel)
@@ -42,8 +42,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentPokemonAbilities(response: PokemonDetail.Abilities.Response) {
         let viewModel = PokemonDetail.Abilities.ViewModel(
-            stats: response.pokemon.abilities.map { PokemonDetail.Abilities.ViewModel.Ability(name: $0.ability.name,
-                                                                                              link: $0.ability.url)
+            stats: response.pokemon.abilities.map { PokemonDetail.Abilities.ViewModel.Ability(name: $0.ability.name)
             }
         )
         displayLogic?.displayPokemonAbilities(viewModel: viewModel)
@@ -51,8 +50,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentPokemonGames(response: PokemonDetail.Games.Response) {
         let viewModel = PokemonDetail.Games.ViewModel(
-            games: response.pokemon.gamesIndices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name,
-                                                                                          link: $0.version.url)
+            games: response.pokemon.gamesIndices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name)
             }
         )
         displayLogic?.displayPokemonGames(viewModel: viewModel)
@@ -66,6 +64,12 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     func presentTappedAbility(response: PokemonDetail.TapAbility.Response) {
         let viewModel = PokemonDetail.TapAbility.ViewModel()
         displayLogic?.displayTappedAbility(viewModel: viewModel)
+    }
+    
+    func presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response) {
+        DispatchQueue.main.async { [weak self] in
+            self?.displayLogic?.displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel(success: response.success))
+        }
     }
     
     // MARK: - Helper methods

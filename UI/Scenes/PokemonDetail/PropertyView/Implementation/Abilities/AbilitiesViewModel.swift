@@ -17,10 +17,9 @@ public class AbilityProperty: Item {
     
     var name: String?
     var value: String?
-    var link: String?
     
-    public init(name: String, link: String) {
+    public init(name: String, value: String? = nil) {
         self.name = name
-        self.link = link
+        self.value = value
     }
 }

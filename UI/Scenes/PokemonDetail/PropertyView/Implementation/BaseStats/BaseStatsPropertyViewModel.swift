@@ -16,11 +16,9 @@ public class BaseStatProperty: Item {
     
     var name: String?
     var value: String?
-    var link: String?
     
-    public init(name: String, value: String, link: String) {
+    public init(name: String, value: String) {
         self.name = name
         self.value = value
-        self.link = link
     }
 }
