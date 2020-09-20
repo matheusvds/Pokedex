@@ -39,12 +39,42 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C67917FE251455E7001C4AA1"
                BuildableName = "UseCasesIntegrationTests.xctest"
                BlueprintName = "UseCasesIntegrationTests"
+               ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C6736220250EE07E003BB122"
+               BuildableName = "InfraTests.xctest"
+               BlueprintName = "InfraTests"
+               ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C67361ED250ED877003BB122"
+               BuildableName = "DataTests.xctest"
+               BlueprintName = "DataTests"
+               ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C60CDE732516CABA0063EE9E"
+               BuildableName = "ApplicationTests.xctest"
+               BlueprintName = "ApplicationTests"
                ReferencedContainer = "container:Pokedex_Matheus.xcodeproj">
             </BuildableReference>
          </TestableReference>
