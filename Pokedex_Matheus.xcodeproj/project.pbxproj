@@ -539,15 +539,6 @@
 			path = PropertyDetail;
 			sourceTree = "<group>";
 		};
-		C60CDE242516828F0063EE9E /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				C60CDE832516D14E0063EE9E /* Stat */,
-				C60CDE25251682970063EE9E /* Ability */,
-			);
-			path = Details;
-			sourceTree = "<group>";
-		};
 		C60CDE25251682970063EE9E /* Ability */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +575,15 @@
 				C60CDE862516D1960063EE9E /* StatViewModel.swift */,
 			);
 			path = Stat;
+			sourceTree = "<group>";
+		};
+		C60CDE882516D1E70063EE9E /* PropertyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C60CDE832516D14E0063EE9E /* Stat */,
+				C60CDE25251682970063EE9E /* Ability */,
+			);
+			path = PropertyDetail;
 			sourceTree = "<group>";
 		};
 		C658C1AD250D59E600FC54D1 = {
@@ -962,6 +962,7 @@
 			isa = PBXGroup;
 			children = (
 				C67917E725143691001C4AA1 /* Common */,
+				C60CDE882516D1E70063EE9E /* PropertyDetail */,
 				C6A6F7C525119D1E00618D2D /* PokemonDetail */,
 				C60CDE15251664AB0063EE9E /* PokemonsList */,
 			);
@@ -971,7 +972,6 @@
 		C6A6F7C525119D1E00618D2D /* PokemonDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C60CDE242516828F0063EE9E /* Details */,
 				C60CDE18251665B10063EE9E /* PokemonDetailViewLogic.swift */,
 				C67917D525140D98001C4AA1 /* PokemonDetailViewModel.swift */,
 				C6A6F7C225119CF500618D2D /* PokemonDetailView.swift */,
