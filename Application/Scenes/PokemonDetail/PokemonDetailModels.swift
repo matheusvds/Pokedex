@@ -18,6 +18,7 @@ enum PokemonDetail {
                 let image: String
                 let name: String
                 let order: String
+                let favorited: Bool
                 let height: String
                 let weight: String
                 let firstType: String
@@ -116,8 +117,7 @@ enum PokemonDetail {
         struct Request {}
         
         struct Response {
-            let success: Bool
-            let favorite: Bool
+            let pokemon: Pokemon?
         }
         
         struct ViewModel {

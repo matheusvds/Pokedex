@@ -43,6 +43,7 @@ extension PokemonDetailViewController: PokemonDetailDisplayLogic {
     func displayPokemonDetail(viewModel: PokemonDetail.PokemonDetail.ViewModel) {
         viewLogic.set(viewModel: PokemonDetailViewModel(name: viewModel.pokemon.name,
                                                         image: viewModel.pokemon.detailImage,
+                                                        favorited: viewModel.pokemon.favorited,
                                                         firstType: viewModel.pokemon.firstType,
                                                         secType: viewModel.pokemon.secType,
                                                         order: viewModel.pokemon.order))

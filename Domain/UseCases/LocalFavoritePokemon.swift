@@ -1,5 +1,6 @@
 import Foundation
 
 public protocol LocalFavoritePokemon {
-    func favorite(pokemon: Pokemon) -> Bool
+    func setFavorite(pokemon: Pokemon)
+    func isFavorited(pokemon: Pokemon) -> Bool
 }

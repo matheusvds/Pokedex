@@ -46,6 +46,7 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         self.secType.text = viewModel.secType
         self.secType.isHidden = viewModel.secType == nil
         self.number.text = viewModel.order
+        setFavColor(viewModel.favorited)
         delegate?.set(imageView: self.image, with: viewModel.image)
     }
     
@@ -68,7 +69,11 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     public func set(favorite: Bool, success: Bool) {
         stopFavoriteLoading()
         guard success else { return }
-        self.favorite.tintColor = favorite ? .yellow : .black
+        setFavColor(favorite)
+    }
+    
+    private func setFavColor(_ favorited: Bool) {
+        self.favorite.tintColor = favorited ? .yellow : .black
     }
     
     // MARK: - UI Components
@@ -181,7 +186,7 @@ extension PokemonDetailView: ViewCode {
                 make.top.equalToSuperview()
             }
             make.left.equalToSuperview().inset(Self.padding)
-            make.height.equalTo(favorite)
+            make.height.equalTo(30).priorityRequired()
         }
         
         drawFavorite(favorite)

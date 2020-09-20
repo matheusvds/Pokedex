@@ -68,7 +68,11 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response) {
         DispatchQueue.main.async { [weak self] in
-            self?.displayLogic?.displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel(success: response.success, favorite: response.favorite))
+            if let pokemon = response.pokemon {
+                self?.displayLogic?.displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel(success: true, favorite: pokemon.favorited))
+            } else {
+                self?.displayLogic?.displayFavoritePokemon(viewModel: PokemonDetail.FavoritePokemon.ViewModel(success: false, favorite: false))
+            }
         }
     }
     
@@ -80,6 +84,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
             image: pokemon.sprites.frontDefault,
             name: pokemon.name,
             order: String(format: "#%03d", pokemon.order),
+            favorited: pokemon.favorited,
             height: "\(pokemon.height) cm",
             weight: "\(pokemon.weight) g",
             firstType: pokemon.types.first?.type.name ?? "",

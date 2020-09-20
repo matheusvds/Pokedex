@@ -37,6 +37,7 @@ class PokemonDetailInteractor: PokemonDetailDataStore {
 extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
 
     func fetchPokemonDetail(request: PokemonDetail.PokemonDetail.Request) {
+        self.pokemon.favorited = self.localFavorite.isFavorited(pokemon: pokemon)
         presenter?.presentPokemonDetail(response: PokemonDetail.PokemonDetail.Response(pokemon: pokemon))
     }
     
@@ -73,10 +74,12 @@ extension PokemonDetailInteractor: PokemonDetailBusinessLogic {
             guard let `self` = self else { return }
             switch result {
             case .success:
-                let favorite = self.localFavorite.favorite(pokemon: self.pokemon)
-                self.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: true, favorite: favorite))
+                let favorite = self.localFavorite.isFavorited(pokemon: self.pokemon)
+                self.pokemon.favorited = !favorite
+                self.localFavorite.setFavorite(pokemon: self.pokemon)
+                self.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(pokemon: self.pokemon))
             case .failure:
-                self.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(success: false, favorite: false))
+                self.presenter?.presentFavoritePokemon(response: PokemonDetail.FavoritePokemon.Response(pokemon: nil))
             }
         }
     }
