@@ -102,9 +102,8 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
     // MARK: - UI Components
     private lazy var back: UIButton = {
         let button = UIButton()
-        button.setTitle("Voltar", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .darkGray
+        button.setImage(backImage, for: .normal)
+        button.tintColor = .white
         return button
     }()
     
@@ -195,6 +194,9 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         return UIImage(named: "heartEmpty", in: Bundle(for: type(of: self)), compatibleWith: .none)?.withRenderingMode(.alwaysTemplate)
     }
 
+    private var backImage: UIImage? {
+        return UIImage(named: "back", in: Bundle(for: type(of: self)), compatibleWith: .none)?.withRenderingMode(.alwaysTemplate)
+    }
 }
 
 // MARK: - UI Implementation
@@ -222,7 +224,8 @@ extension PokemonDetailView: ViewCode {
                 make.top.equalToSuperview()
             }
             make.left.equalToSuperview().inset(Self.padding)
-            make.height.equalTo(30).priorityRequired()
+            make.height.equalTo(20).priorityRequired()
+            make.width.equalTo(back.snp.height).multipliedBy(1.5)
         }
         
         drawFavorite(favorite)
