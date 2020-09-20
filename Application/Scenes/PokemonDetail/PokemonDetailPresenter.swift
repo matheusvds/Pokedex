@@ -51,7 +51,7 @@ extension PokemonDetailPresenter: PokemonDetailPresentationLogic {
     
     func presentPokemonGames(response: PokemonDetail.Games.Response) {
         let viewModel = PokemonDetail.Games.ViewModel(
-            games: response.pokemon.game_indices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name,
+            games: response.pokemon.gamesIndices.map { PokemonDetail.Games.ViewModel.Game(name: $0.version.name,
                                                                                           link: $0.version.url)
             }
         )
