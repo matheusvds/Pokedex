@@ -44,7 +44,7 @@ class GenericListView<T: Item>: UIView, UITableViewDelegate, UITableViewDataSour
         cell.detailTextLabel?.text = item.value
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         let row = indexPath.row
@@ -72,8 +72,5 @@ extension GenericListView: ViewCode {
         statTable.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalToSuperview().inset(10)
         }
-    }
-    func additionalConfiguration() {
-        backgroundColor = .red
     }
 }
