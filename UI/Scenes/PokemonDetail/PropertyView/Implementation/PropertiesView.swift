@@ -46,7 +46,9 @@ final class PropertiesView: UIView, PropertiesViewBorder {
     private lazy var sections: UISegmentedControl = { [weak self] in
         guard let `self` = self else { return UISegmentedControl() }
         let control = UISegmentedControl(items: self.titles)
-        control.backgroundColor = .red
+        control.backgroundColor = .white
+        control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.lightGray], for: .normal)
+        control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
         return control
         }()
         
