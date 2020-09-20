@@ -13,6 +13,7 @@ class URLSessionAdapterTests: XCTestCase {
     
     func test_get_should_have_request_with_valid_method() {
         testRequest { (request) in
+            print(request.httpMethod!)
             XCTAssertEqual("GET", request.httpMethod, "expecting GET, got \(request.httpMethod ?? "no request")")
         }
     }
