@@ -12,6 +12,12 @@ public final class PokemonListView: UIView {
     
     public weak var delegate: PokemonListViewDelegate?
     
+    private lazy var screenLoading: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .gray)
+        view.startAnimating()
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = { [weak self] in
         guard let `self` = self else { return UICollectionView() }
         let collection = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
@@ -36,6 +42,7 @@ public final class PokemonListView: UIView {
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         setup()
+        startScreenLoading()
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +54,18 @@ public final class PokemonListView: UIView {
             self?.collectionView.reloadData()
         }
     }
+    
+    private func startScreenLoading() {
+        self.subviews.forEach { $0.removeFromSuperview() }
+        addSubview(screenLoading)
+        drawLoading()
+    }
+    
+    private func stopLoading() {
+        self.subviews.forEach { $0.removeFromSuperview() }
+        setupHierarchy()
+        buildConstraints()
+    }
 }
 
 // MARK: - PokemonListViewLogic
@@ -54,6 +73,7 @@ extension PokemonListView: PokemonListViewLogic {
     public func set(viewModel: PokemonListViewModel) {
         items.append(contentsOf: viewModel.items)
         reloadData()
+        stopLoading()
     }
     
     public func getSelectedRow() -> Int? {
@@ -125,6 +145,12 @@ extension PokemonListView: ViewCode {
                 make.top.equalToSuperview().offset(10)
             }
             make.left.right.bottom.equalToSuperview().inset(10)
+        }
+    }
+    
+    private func drawLoading() {
+        screenLoading.snp.makeConstraints { (make) in
+            make.centerX.centerY.equalToSuperview()
         }
     }
     
