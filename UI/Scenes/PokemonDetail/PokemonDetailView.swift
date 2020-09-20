@@ -84,25 +84,25 @@ public final class PokemonDetailView: UIView, PokemonDetailViewLogic {
         let label = UILabel()
         label.text = "Bulbasaur"
         label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.backgroundColor = .green
         return label
     }()
     
     private lazy var number: UILabel = {
         let label = UILabel()
         label.text = "#001"
-        label.backgroundColor = .green
         return label
     }()
     
     private lazy var firstType: UILabel = {
         let label = RoundPaddingLabel()
+        label.text = "Poison"
         label.backgroundColor = .blue
         return label
     }()
     
     private lazy var secType: UILabel = {
         let label = RoundPaddingLabel()
+        label.text = "Flying"
         label.backgroundColor = .cyan
         return label
     }()
