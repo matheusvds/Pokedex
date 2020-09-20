@@ -17,7 +17,9 @@ extension PokemonListPresenter: PokemonListPresentationLogic {
     }
     
     private func format(_ response: PokemonList.FetchPokemons.Response) -> [DisplayedPokemon]? {
-        return response.pokemons?.map { DisplayedPokemon(image: $0.sprites.frontDefault,
+        return response.pokemons?.map { DisplayedPokemon(firstType: $0.types.first?.type.name ?? "",
+                                                         secType: $0.types.count == 1 ? nil : $0.types.last?.type.name,
+                                                         image: $0.sprites.other.officialArtwork.frontDefault,
                                                          name: $0.name.replacingOccurrences(of: "-", with: " ").capitalized) }
     }
 }

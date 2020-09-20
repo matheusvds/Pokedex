@@ -48,7 +48,10 @@ class PokemonListViewController: UIViewController {
 extension PokemonListViewController: PokemonListDisplayLogic {
     func displayFetchPokemons(viewModel: PokemonList.FetchPokemons.ViewModel) {
         guard let pokemons = viewModel.pokemons else { return }
-        viewLogic.set(viewModel: PokemonListViewModel(items: pokemons.map{ PokemonListItem(name: $0.name, image: $0.image) }))
+        viewLogic.set(viewModel: PokemonListViewModel(items: pokemons.map{ PokemonListItem(name: $0.name,
+                                                                                           image: $0.image,
+                                                                                           firstType: $0.firstType,
+                                                                                           secType: $0.secType) }))
         stopLoading()
     }
 }
@@ -56,7 +59,7 @@ extension PokemonListViewController: PokemonListDisplayLogic {
 // MARK: - PokemonListViewDelegate
 extension PokemonListViewController: PokemonListViewDelegate {
     func set(imageView: UIImageView?, with url: String) {
-        imageView?.setImage(with: url)
+        imageView?.setImage(with: url,placeholder: nil)
     }
     
     func isLoading() -> Bool {

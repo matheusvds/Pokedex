@@ -17,6 +17,8 @@ enum PokemonList {
             let pokemons: [DisplayedPokemon]?
             
             struct DisplayedPokemon {
+                let firstType: String
+                let secType: String?
                 let image: String
                 let name: String
             }

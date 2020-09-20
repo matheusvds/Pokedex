@@ -12,12 +12,23 @@ public final class PokemonListView: UIView {
     
     public weak var delegate: PokemonListViewDelegate?
     
-    private lazy var tableView: UITableView = { [weak self] in
-        guard let `self` = self else { return UITableView() }
-        let table = PokemonListTableView()
-        table.delegate = self
-        table.dataSource = self
-        return table
+    private lazy var collectionView: UICollectionView = { [weak self] in
+        guard let `self` = self else { return UICollectionView() }
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: self.flowLayout)
+        collection.delegate = self
+        collection.dataSource = self
+        collection.register(PokemonCollectionCell.self, forCellWithReuseIdentifier: PokemonCollectionCell.reuseIdentifier)
+        collection.backgroundColor = .white
+        collection.showsVerticalScrollIndicator = false
+        return collection
+    }()
+    
+    lazy var flowLayout: UICollectionViewFlowLayout = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        return flowLayout
     }()
     
     private var items = [PokemonListItem]()
@@ -33,7 +44,7 @@ public final class PokemonListView: UIView {
     
     private func reloadData() {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
+            self?.collectionView.reloadData()
         }
     }
 }
@@ -46,7 +57,7 @@ extension PokemonListView: PokemonListViewLogic {
     }
     
     public func getSelectedRow() -> Int? {
-        return tableView.indexPathForSelectedRow?.row
+        return collectionView.indexPathsForSelectedItems?.first?.row
     }
     
     public var view: UIView {
@@ -54,36 +65,44 @@ extension PokemonListView: PokemonListViewLogic {
     }
 }
 
-// MARK: - UITableViewDataSource
-extension PokemonListView: UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+// MARK: - UICollectionViewDataSource
+extension PokemonListView: UICollectionViewDataSource {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PokemonListViewCell.reuseIdentifier,
-                                                 for: indexPath)
-        
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionCell.reuseIdentifier,
+                                                      for: indexPath) as! PokemonCollectionCell
         let item = items[indexPath.row]
-        cell.textLabel?.text = item.name
         delegate?.set(imageView: cell.imageView, with: item.image)
+        cell.set(item: item)
         return cell
     }
 }
 
-// MARK: - UITableViewDelegate
-extension PokemonListView: UITableViewDelegate {
+// MARK: - UICollectionViewDelegate
+extension PokemonListView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectRow()
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellHeight = collectionView.bounds.height / 6
+        let collectionPadding = CGFloat(20)
+        let collectionWidth = collectionView.bounds.width - collectionPadding
+        let cellWidth = collectionWidth / 2
+        
+        return CGSize(width: cellWidth, height: cellHeight);
     }
     
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectRow()
+    }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         detectedEnding(of: scrollView)
     }
     
     private func detectedEnding(of scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y + scrollView.frame.size.height*0.2
+        let offset = scrollView.contentOffset.y + scrollView.frame.size.height*0.6
         let difference = scrollView.contentSize.height - scrollView.frame.size.height
         
         if let isLoading =  delegate?.isLoading(), offset >= difference && !isLoading {
@@ -95,12 +114,21 @@ extension PokemonListView: UITableViewDelegate {
 // MARK: - UI Implementation
 extension PokemonListView: ViewCode {
     func setupHierarchy() {
-        addSubview(tableView)
+        addSubview(collectionView)
     }
     
     func buildConstraints() {
-        tableView.snp.makeConstraints { (make) in
-            make.top.left.right.bottom.equalToSuperview()
+        collectionView.snp.makeConstraints { (make) in
+            if #available(iOS 11, *) {
+                make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(10)
+            } else {
+                make.top.equalToSuperview().offset(10)
+            }
+            make.left.right.bottom.equalToSuperview().inset(10)
         }
+    }
+    
+    func additionalConfiguration() {
+        backgroundColor = .white
     }
 }
