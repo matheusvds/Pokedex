@@ -32,7 +32,7 @@ func makePokemon() -> Pokemon {
 }
 
 
-let pokemon: Pokemon? = """
+private let pokemon: Pokemon? = """
 {
     "abilities": [
         {
@@ -10270,7 +10270,7 @@ let pokemon: Pokemon? = """
             ]
         }
     ],
-    "name": "bulbasaur",
+    "name": "bulbasaur-65",
     "order": 1,
     "species": {
         "name": "bulbasaur",
@@ -10491,13 +10491,6 @@ let pokemon: Pokemon? = """
             "type": {
                 "name": "grass",
                 "url": "https://pokeapi.co/api/v2/type/12/"
-            }
-        },
-        {
-            "slot": 2,
-            "type": {
-                "name": "poison",
-                "url": "https://pokeapi.co/api/v2/type/4/"
             }
         }
     ],

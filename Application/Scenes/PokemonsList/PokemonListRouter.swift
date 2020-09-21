@@ -11,7 +11,7 @@ protocol PokemonListDataPassing {
     var dataStore: PokemonListDataStore? { get }
 }
 
-class PokemonListRouter: PokemonListDataPassing {
+final class PokemonListRouter: PokemonListDataPassing {
     weak var viewController: PokemonListViewController?
     weak var pokemonDetailFactory: PokemonDetailFactory!
     var dataStore: PokemonListDataStore?
