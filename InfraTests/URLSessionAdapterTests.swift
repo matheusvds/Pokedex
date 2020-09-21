@@ -5,9 +5,9 @@ import Data
 
 class URLSessionAdapterTests: XCTestCase {
     func test_get_should_have_request_with_valid_url() {
-        let request = makeDummyRequest()
-        testRequest(for: request) { request in
-            XCTAssertEqual(request.url, request.url)
+        let dummyRequest = makeDummyRequest()
+        testRequest(for: dummyRequest) { request in
+            XCTAssertEqual(dummyRequest.url, request.url)
         }
     }
     
