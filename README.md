@@ -20,7 +20,17 @@ An iOS application written in Swift using the Clean Architecture design. Built w
 ## Instructions
 
 Make sure you have a Xcode version compatible with Swift 5. Open the *.xcodeproj* file and **wait for SPM to download dependencies**. 
-Once that is done, you are free to run the app!
+Once that is done, you are free to run the app.
+
+Choose between the following schemes:
+- **Pokedex_Matheus**: Run this scheme to run the app.
+- **Application**: Build this scheme to create the application layer framework (or **Cmd + U** to run its unit tests).
+- **UI**: Build this scheme to create the UI layer framework (or **Cmd + U** to run its unit tests).
+- **Domain**: Build this scheme to create the Domain layer framework.
+- **Data**: Build this scheme to create the Data layer framework (or **Cmd + U** to run its unit tests).
+- **Infra**: Build this scheme to create the Infra layer framework (or **Cmd + U** to run its unit tests).
+- **UseCaseIntegrationTests**: **Cmd + U** to run the integration tests for several use cases.
+
 
 ## Aditional Information
 
