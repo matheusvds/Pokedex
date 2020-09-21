@@ -15,7 +15,7 @@ An iOS application written in Swift using the Clean Architecture design. Built w
 - **UI**: contains the whole UI abstractions and implementations used by the application. It's implemented with SnapKit.
 - **Domain**: contains the application's use cases abstractions and the core entities.
 - **Data**: contains the use cases implementations and external interfaces abstractions.
-- **Infra**: contains the implementation of the interfaces abstractions like an http client.
+- **Infra**: contains the implementation of the external interfaces abstractions like an http client.
 
 ## Instructions
 
