@@ -21,3 +21,7 @@ An iOS application written in Swift using the Clean Architecture design. Built w
 
 Make sure you have a Xcode version compatible with Swift 5. Open the *.xcodeproj* file and **wait for SPM to download dependencies**. 
 Once that is done, you are free to run the app!
+
+## Aditional Information
+
+When favoriting a pokemon, a POST request is sent to this WebHook URL: https://webhook.site/#!/3209dcca-c16d-4d48-8854-77bae12a48b2/09a2269c-8e02-4e62-970b-d0312dd2b6e7/1
