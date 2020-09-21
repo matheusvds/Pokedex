@@ -27,3 +27,7 @@ func makeInvalidData() -> Data {
 func makeError() -> Error {
     return NSError(domain: "any", code: 0)
 }
+
+struct DummyDecodable: Codable, Equatable {
+    let property: String
+}

@@ -19,4 +19,8 @@ class HttpClientSpy: HttpClient {
     func complete(withData data: Data) {
         completion?(.success(data))
     }
+    
+    func completeWithNilData() {
+        completion?(.success(nil))
+    }
 }
