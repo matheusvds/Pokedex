@@ -1,3 +1,5 @@
+[![Build Status](https://app.bitrise.io/app/3f3509de68c03e35/status.svg?token=gF8edjub3W-8YAowEMWMQA)](https://app.bitrise.io/app/3f3509de68c03e35)
+
 # Pokedex
 An iOS application written in Swift using the Clean Architecture design. Built with Xcode 11.7, Swift 5 and for iOS 9.3+.
 
