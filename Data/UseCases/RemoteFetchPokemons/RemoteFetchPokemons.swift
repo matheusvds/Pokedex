@@ -13,9 +13,10 @@ public class RemoteFetchPokemons: FetchPokemons {
     
     public func fetch(offset: Int, completion: @escaping (Result<[Pokemon], FetchError>) -> Void) {
         fetchReferences.fetchReferences(offset: offset) { [weak self] (result) in
+            guard let `self` = self else { return }
             switch result {
             case .success(let references):
-                self?.fetchAllPokemons.fetchAllPokemon(for: references.results) { (result) in
+                self.fetchAllPokemons.fetchAllPokemon(for: references.results) { (result) in
                     switch result {
                     case .success(let pokemons):
                         completion(.success(pokemons))

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Pokemon: Model {
+public struct Pokemon: Model, Equatable {
     public let uuid = UUID()
     public var favorited = false
     public let abilities: [Ability]
@@ -18,5 +18,9 @@ public struct Pokemon: Model {
     enum CodingKeys: String, CodingKey {
         case abilities, height, id, moves, name, order, sprites, stats, types, weight
         case gamesIndices = "game_indices"
+    }
+    
+    public static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        return lhs.id == rhs.id
     }
 }
