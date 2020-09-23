@@ -16,7 +16,7 @@ public final class RemoteFavoritePokemon: FavoritePokemon {
             components.queryItems = [
                 URLQueryItem(name: "id", value: "\(pokemon.id)"),
                 URLQueryItem(name: "name", value: pokemon.name),
-                URLQueryItem(name: "setFavorite", value: pokemon.favorited ? "true" : "false")
+                URLQueryItem(name: "setFavorite", value: pokemon.favorited ? "false" : "true")
             ]
             let query = components.url!.query
             var request = URLRequest(url: url)
