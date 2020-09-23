@@ -8,7 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var main: SceneFactory = {
         let client = URLSessionAdapter()
-        let main = Main(client: client)
+        let requester = RequestObjectClient(client: client)
+        let main = Main(client: client, requestObject: requester)
         return main
     }()
     

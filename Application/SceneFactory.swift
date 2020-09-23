@@ -3,7 +3,6 @@ import Data
 import Domain
 import UI
 import UIKit
-import Infra
 
 public typealias SceneFactory = PropertyDetailFactory & PokemonDetailFactory & PokemonListFactory
 
@@ -22,9 +21,10 @@ public class Main: SceneFactory {
     let client: HttpClient
     let requestObject: RequestObject
     
-    public init(client: HttpClient) {
+    public init(client: HttpClient,
+                requestObject: RequestObject) {
         self.client = client
-        self.requestObject = RequestObjectClient(client: client)
+        self.requestObject = requestObject
     }
     
     public func makePokemonListViewController() -> UIViewController {
